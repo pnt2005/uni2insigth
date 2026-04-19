@@ -54,12 +54,12 @@ export default function Home() {
           <h2 className={styles.sectionTitle}>Top Trường Được Quan Tâm Nhất</h2>
           <div className={styles.schoolGrid}>
             {[
-              { name: 'Đại học FPT', reviews: 1250, rating: 4.8, type: 'Tư thục' },
-              { name: 'Đại học Bách Khoa HCM', reviews: 980, rating: 4.9, type: 'Công lập' },
-              { name: 'Đại học Kinh tế Quốc dân', reviews: 850, rating: 4.7, type: 'Công lập' },
-              { name: 'Đại học RMIT', reviews: 720, rating: 4.9, type: 'Quốc tế' },
+              { name: 'Đại học FPT', id: 'fpt', reviews: 1250, rating: 4.8, type: 'Tư thục' },
+              { name: 'Đại học Bách Khoa HCM', id: 'bach-khoa', reviews: 980, rating: 4.9, type: 'Công lập' },
+              { name: 'Đại học Kinh tế Quốc dân', id: 'kinh-te-quoc-dan', reviews: 850, rating: 4.7, type: 'Công lập' },
+              { name: 'Đại học RMIT', id: 'rmit', reviews: 720, rating: 4.9, type: 'Quốc tế' },
             ].map((school, idx) => (
-              <Link href={`/review/${school.name.toLowerCase().replace(/ /g, '-')}`} key={idx} className={styles.schoolCard}>
+              <Link href={`/review/${school.id}`} key={idx} className={styles.schoolCard}>
                 <div className={styles.schoolImage}>🏫</div>
                 <div className={styles.schoolInfo}>
                   <h3 className={styles.schoolName}>{school.name}</h3>

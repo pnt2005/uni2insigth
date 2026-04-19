@@ -1,0 +1,102 @@
+.reviewLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 2rem 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .reviewLayout {
+    flex-direction: row;
+  }
+}
+
+.mainContent {
+  flex: 1;
+  max-width: 800px;
+}
+
+.breadcrumbs {
+  margin-bottom: 2rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.breadcrumbList {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.breadcrumbList a {
+  transition: var(--transition);
+}
+
+.breadcrumbList a:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.currentObj {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.sidebar {
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .sidebar {
+    width: 320px;
+    flex-shrink: 0;
+  }
+}
+
+.stickyBox {
+  position: sticky;
+  top: 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.spokeNav, .toc {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.sidebarTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--background);
+}
+
+.spokeList, .tocList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.spokeLink, .tocList a {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  transition: var(--transition);
+  padding: 0.5rem;
+  border-radius: var(--radius-md);
+}
+
+.spokeLink:hover, .tocList a:hover {
+  color: var(--primary);
+  background: var(--background);
+}

@@ -1,0 +1,89 @@
+.article {
+  background: var(--surface);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.metaTags {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.tag {
+  background: var(--background);
+  color: var(--primary);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Typography styles for Content */
+.content h2 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 3rem 0 1.5rem;
+  scroll-margin-top: 5rem; /* for TOC */
+}
+
+.content h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 2rem 0 1rem;
+}
+
+.content p {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.content ul {
+  list-style: disc;
+  padding-left: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-secondary);
+  font-size: 1.125rem;
+}
+
+.content li {
+  margin-bottom: 0.5rem;
+}
+
+/* FAQ section */
+.faqSection {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 2px dashed var(--border);
+}
+
+.faqItem {
+  margin-bottom: 1.5rem;
+}
+
+.faqQuestion {
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.faqAnswer {
+  color: var(--text-secondary);
+}

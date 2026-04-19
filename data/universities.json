@@ -7,7 +7,7 @@
     "tuitionScore": 5,
     "tuitionText": "Từ 28.700.000 VNĐ / học kỳ",
     "admissionScoreRange": "21 - 25",
-    "image": "/images/fpt-logo.jpg"
+    "image": "/images/fpt-logo.svg"
   },
   {
     "id": "bach-khoa",
@@ -17,7 +17,7 @@
     "tuitionScore": 4,
     "tuitionText": "Từ 15.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "24 - 28",
-    "image": "/images/bach-khoa-logo.jpg"
+    "image": "/images/bach-khoa-logo.svg"
   },
   {
     "id": "kinh-te-quoc-dan",
@@ -27,7 +27,7 @@
     "tuitionScore": 4,
     "tuitionText": "Từ 16.000.000 - 22.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "25 - 28.5",
-    "image": "/images/neu-logo.jpg"
+    "image": "/images/neu-logo.svg"
   },
   {
     "id": "rmit",
@@ -37,6 +37,6 @@
     "tuitionScore": 5,
     "tuitionText": "Từ 100.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "Tuyển sinh riêng",
-    "image": "/images/rmit-logo.jpg"
+    "image": "/images/rmit-logo.svg"
   }
 ]

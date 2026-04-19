@@ -1,23 +1,43 @@
+/* Layout Tổng thể */
 .reviewLayout {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
-  padding: 2rem 1.5rem;
+  gap: 2rem;
+  /* Giảm khoảng cách giữa Content và Sidebar trên Mobile */
+  padding: 1.5rem 1rem;
+  /* Căn chỉnh lại padding cho Mobile gọn hơn */
+  max-width: 1200px;
+  /* Thêm max-width để trên màn hình máy tính to không bị giãn ngoác ra */
+  margin: 0 auto;
+  /* Căn giữa toàn bộ khung review */
 }
 
 @media (min-width: 1024px) {
   .reviewLayout {
     flex-direction: row;
+    gap: 3rem;
+    /* Phục hồi gap rộng cho Desktop */
+    padding: 2rem 1.5rem;
   }
 }
 
+/* Cột Nội dung chính */
 .mainContent {
   flex: 1;
-  max-width: 800px;
+  width: 100%;
 }
 
+@media (min-width: 1024px) {
+  .mainContent {
+    max-width: 800px;
+    /* Chỉ giới hạn 800px trên Desktop để đảm bảo độ dài dòng dễ đọc (khoảng 70-80 ký tự/dòng) */
+  }
+}
+
+/* Breadcrumbs (Thanh điều hướng) */
 .breadcrumbs {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+  /* Thu gọn lại một chút */
   font-size: 0.875rem;
   color: var(--text-secondary);
 }
@@ -32,6 +52,8 @@
 
 .breadcrumbList a {
   transition: var(--transition);
+  color: var(--text-secondary);
+  /* Đảm bảo link lúc đầu cùng màu */
 }
 
 .breadcrumbList a:hover {
@@ -44,6 +66,7 @@
   font-weight: 600;
 }
 
+/* Sidebar & Table of Contents (TOC) */
 .sidebar {
   width: 100%;
 }
@@ -58,12 +81,30 @@
 .stickyBox {
   position: sticky;
   top: 6rem;
+  /* Khoảng cách từ Header (tùy thuộc độ cao header của web) */
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
+
+  /* QUAN TRỌNG: Giới hạn chiều cao để TOC dài không bị mất, và cho phép cuộn bên trong Sidebar */
+  max-height: calc(100vh - 7rem);
+  overflow-y: auto;
+
+  /* Làm đẹp thanh cuộn cho Sidebar */
+  scrollbar-width: thin;
 }
 
-.spokeNav, .toc {
+.stickyBox::-webkit-scrollbar {
+  width: 4px;
+}
+
+.stickyBox::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+.spokeNav,
+.toc {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -76,27 +117,44 @@
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--background);
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+  /* Dùng border thường thay vì background color để kẻ vạch */
 }
 
-.spokeList, .tocList {
+.spokeList,
+.tocList {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.5rem;
+  /* Giảm gap xuống để hiển thị được nhiều mục lục hơn */
 }
 
-.spokeLink, .tocList a {
+.spokeLink,
+.tocList a {
   display: block;
   font-size: 0.95rem;
   color: var(--text-secondary);
   transition: var(--transition);
-  padding: 0.5rem;
+  padding: 0.5rem 0.75rem;
   border-radius: var(--radius-md);
+  line-height: 1.4;
 }
 
-.spokeLink:hover, .tocList a:hover {
+.spokeLink:hover,
+.tocList a:hover {
   color: var(--primary);
   background: var(--background);
+}
+
+/* QUAN TRỌNG: Thêm class .active cho Mục lục. 
+Dùng JavaScript (Intersection Observer) để gắn class này khi người dùng cuộn tới mục tương ứng */
+.tocList a.active {
+  color: var(--primary);
+  font-weight: 600;
+  background: var(--background);
+  border-left: 3px solid var(--primary);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }

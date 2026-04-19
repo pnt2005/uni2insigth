@@ -3,14 +3,50 @@ import Link from "next/link";
 import styles from "../nganh-hoc/page.module.css";
 import { slugify } from "../../utils/slugify";
 
-export default function RegionList() {
-  const regions = [
-    { title: "Khu vực TP.HCM", count: 85, icon: "🌆" },
-    { title: "Khu vực Hà Nội", count: 90, icon: "🏛️" },
-    { title: "Khu vực Đà Nẵng", count: 25, icon: "🌉" },
-    { title: "Khu vực Cần Thơ", count: 12, icon: "🚤" },
-    { title: "Đồng Bằng Sông Hồng", count: 45, icon: "🌾" },
-  ];
+import fs from 'fs';
+import path from 'path';
+
+export default async function RegionList() {
+  let unis: any[] = [];
+  try {
+    const unisContent = fs.readFileSync(path.join(process.cwd(), 'data/universities.json'), 'utf8');
+    unis = JSON.parse(unisContent);
+  } catch (error) {
+    console.error("Could not read universities.json", error);
+  }
+
+  // Calculate counts by city
+  const cityCounts: Record<string, number> = {};
+  unis.forEach((u: any) => {
+    if (u.city) {
+      cityCounts[u.city] = (cityCounts[u.city] || 0) + 1;
+    }
+  });
+
+  // Default hardcoded fallback if missing
+  if (Object.keys(cityCounts).length === 0) {
+    cityCounts["TP.HCM"] = 85;
+    cityCounts["Hà Nội"] = 90;
+    cityCounts["Đà Nẵng"] = 25;
+  }
+
+  const regions = Object.keys(cityCounts).map(city => {
+    let icon = "📍";
+    if (city.includes("Hồ Chí Minh") || city.includes("TP.HCM")) icon = "🌆";
+    if (city.includes("Hà Nội")) icon = "🏛️";
+    if (city.includes("Đà Nẵng")) icon = "🌉";
+    if (city.includes("Cần Thơ")) icon = "🚤";
+
+    // Clean up city name when parsing for URL slug
+    const cleanCity = city.replace(/TP\.\s*/g, '');
+
+    return { 
+      title: `Khu vực ${city}`, 
+      count: cityCounts[city], 
+      icon,
+      slug: cleanCity
+    };
+  });
 
   return (
     <FilterLayout 

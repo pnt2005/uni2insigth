@@ -3,40 +3,76 @@
     "id": "fpt",
     "name": "Đại học FPT",
     "region": "Miền Nam",
-    "majors": ["Công nghệ thông tin", "Kinh tế", "Ngôn ngữ"],
+    "city": "TP. Hồ Chí Minh",
+    "majors": [
+      "Công nghệ thông tin",
+      "Kinh tế",
+      "Ngôn ngữ"
+    ],
     "tuitionScore": 5,
     "tuitionText": "Từ 28.700.000 VNĐ / học kỳ",
     "admissionScoreRange": "21 - 25",
-    "image": "/images/fpt-logo.svg"
+    "image": "https://rmep.vn/wp-content/uploads/2024/06/z5503795221847_32de2d1145b3d58dba3c7c10de7885c0.jpg"
   },
   {
-    "id": "bach-khoa",
-    "name": "Đại học Bách Khoa",
-    "region": "Miền Nam",
-    "majors": ["Kỹ thuật", "Công nghệ thông tin", "Cơ khí"],
+    "id": "bach-khoa-hn",
+    "name": "Đại học Bách Khoa Hà Nội",
+    "region": "Miền Bắc",
+    "city": "Hà Nội",
+    "majors": [
+      "Kỹ thuật",
+      "Công nghệ thông tin",
+      "Cơ khí"
+    ],
     "tuitionScore": 4,
     "tuitionText": "Từ 15.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "24 - 28",
-    "image": "/images/bach-khoa-logo.svg"
+    "image": "https://dlcorp.com.vn/wp-content/uploads/2021/09/Ba%CC%81ch-Khoa-768x385.png"
   },
   {
     "id": "kinh-te-quoc-dan",
     "name": "Đại học Kinh Tế Quốc Dân (NEU)",
     "region": "Miền Bắc",
-    "majors": ["Kinh tế", "Quản trị kinh doanh", "Kế toán"],
+    "city": "Hà Nội",
+    "majors": [
+      "Kinh tế",
+      "Quản trị kinh doanh",
+      "Kế toán"
+    ],
     "tuitionScore": 4,
     "tuitionText": "Từ 16.000.000 - 22.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "25 - 28.5",
-    "image": "/images/neu-logo.svg"
+    "image": "https://cdn-media.sforum.vn/storage/app/media/ngocmy/truong-dai-hoc-kinh-te-quoc-dan-neu/truong-dai-hoc-kinh-te-quoc-dan-neu-1.jpg"
   },
   {
     "id": "rmit",
     "name": "Đại học RMIT Việt Nam",
     "region": "Miền Nam",
-    "majors": ["Kinh doanh", "Thiết kế", "Truyền thông"],
+    "city": "TP. Hải Phòng",
+    "majors": [
+      "Kinh doanh",
+      "Thiết kế",
+      "Truyền thông"
+    ],
     "tuitionScore": 5,
     "tuitionText": "Từ 100.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "Tuyển sinh riêng",
-    "image": "/images/rmit-logo.svg"
+    "image": "https://baoxinviec.shop/wp-content/uploads/2020/04/bang-dai-hoc-rmit-co-tot-khong_optimized.jpeg"
+  },
+  {
+    "id": "y-ha-noi",
+    "name": "Đại học Y Hà Nội (HMU)",
+    "region": "Miền Bắc",
+    "city": "Hà Nội",
+    "majors": [
+      "Y khoa",
+      "Răng Hàm Mặt",
+      "Điều dưỡng",
+      "Y học cổ truyền"
+    ],
+    "tuitionScore": 4,
+    "tuitionText": "Từ 16.900.000 - 62.200.000 VNĐ / năm",
+    "admissionScoreRange": "22 - 28.5",
+    "image": "https://huongnghiep.hocmai.vn/wp-content/uploads/2025/10/de-an-tuyen-sinh-dai-hoc-y-ha-noi-2023.jpeg"
   }
 ]

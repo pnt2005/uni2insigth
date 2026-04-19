@@ -40,3 +40,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 data/_template.mdx
+data/blog/_template.mdx
+data/majors/_template.mdx
+data/reviews/_sub_article_template.mdx
+data/reviews/_sub_article_folder/*

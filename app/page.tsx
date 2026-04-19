@@ -1,4 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
+import fs from "fs";
+import path from "path";
 import styles from "./Home.module.css";
 
 const FEATURED_MAJORS = [
@@ -9,14 +12,23 @@ const FEATURED_MAJORS = [
   { icon: '🗣️', name: 'Ngôn Ngữ', href: '/nganh-hoc/ngon-ngu' }
 ];
 
-const TOP_SCHOOLS = [
-  { name: 'Đại học FPT', id: 'fpt', reviews: 1250, rating: 4.8, type: 'Tư thục' },
-  { name: 'Đại học Bách Khoa HCM', id: 'bach-khoa', reviews: 980, rating: 4.9, type: 'Công lập' },
-  { name: 'Đại học Kinh tế Quốc dân', id: 'kinh-te-quoc-dan', reviews: 850, rating: 4.7, type: 'Công lập' },
-  { name: 'Đại học RMIT', id: 'rmit', reviews: 720, rating: 4.9, type: 'Quốc tế' },
-];
+export default async function Home() {
+  let topSchools: any[] = [];
+  try {
+    const unisPath = path.join(process.cwd(), 'data/universities.json');
+    const unisContent = fs.readFileSync(unisPath, 'utf8');
+    const parsedUnis = JSON.parse(unisContent);
+    // Lấy 4 trường đầu tiên làm Top Schools
+    topSchools = parsedUnis.slice(0, 4).map((u: any) => ({
+      id: u.id,
+      name: u.name || "Tên Trường",
+      type: u.name.includes("Quốc gia") || u.name.includes("Bách Khoa") ? "Công lập" : "Tư thục/Quốc tế",
+      image: u.image || "/images/fpt-logo.svg",
+      reviews: Math.floor(Math.random() * 500) + 500, // Sinh số ngẫu nhiên demo
+      rating: (Math.random() * 0.5 + 4.5).toFixed(1) // 4.5 -> 5.0
+    }));
+  } catch(e) {}
 
-export default function Home() {
   return (
     <>
       <section className={styles.hero}>
@@ -62,9 +74,17 @@ export default function Home() {
         <section className={styles.topSchools}>
           <h2 className={styles.sectionTitle}>Top Trường Được Quan Tâm Nhất</h2>
           <div className={styles.schoolGrid}>
-            {TOP_SCHOOLS.map((school, idx) => (
+            {topSchools.map((school, idx) => (
               <Link href={`/review/${school.id}`} key={idx} className={styles.schoolCard}>
-                <div className={styles.schoolImage}>🏫</div>
+                <div className={styles.schoolImage} style={{ position: 'relative', overflow: 'hidden' }}>
+                  <Image 
+                    src={school.image}
+                    alt={`Hình ảnh ${school.name}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    style={{ objectFit: 'cover' }}
+                  />
+                </div>
                 <div className={styles.schoolInfo}>
                   <h3 className={styles.schoolName}>{school.name}</h3>
                   <div className={styles.schoolMeta}>

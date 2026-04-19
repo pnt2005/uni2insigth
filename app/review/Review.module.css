@@ -7,11 +7,13 @@
 }
 
 .title {
-  font-size: 2.5rem;
+  font-size: 2.25rem;
+  /* Giảm từ 2.5rem để tiêu đề gọn gàng hơn */
   font-weight: 800;
   color: var(--text-primary);
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
+  margin-bottom: 1.25rem;
+  line-height: 1.3;
+  /* Chuẩn line-height cho tiêu đề lớn */
 }
 
 .metaTags {
@@ -25,7 +27,8 @@
 .tag {
   background: var(--background);
   color: var(--primary);
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem;
+  /* Thu gọn padding để tag trông thanh thoát hơn */
   border-radius: 999px;
   font-size: 0.875rem;
   font-weight: 600;
@@ -33,33 +36,48 @@
 
 /* Typography styles for Content */
 .content h2 {
-  font-size: 1.875rem;
+  font-size: 1.5rem;
+  /* Giảm từ 1.875rem (24px là chuẩn cho h2 trong bài) */
   font-weight: 700;
   color: var(--text-primary);
-  margin: 3rem 0 1.5rem;
-  scroll-margin-top: 5rem; /* for TOC */
+  margin: 2.5rem 0 1rem;
+  scroll-margin-top: 5rem;
+  /* for TOC */
+  line-height: 1.4;
 }
 
 .content h3 {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
+  /* Giảm từ 1.5rem (20px là chuẩn cho h3) */
   font-weight: 600;
   color: var(--text-primary);
-  margin: 2rem 0 1rem;
+  margin: 1.5rem 0 0.75rem;
+  line-height: 1.4;
 }
 
 .content p {
-  font-size: 1.125rem;
-  color: var(--text-secondary);
-  line-height: 1.8;
-  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  /* 16px - Chuẩn kích thước nội dung, tránh rớt dòng vô lý */
+  color: var(--text-primary);
+  /* ĐỔI QUAN TRỌNG: Dùng primary để chữ đen/đậm, hết mờ */
+  line-height: 1.6;
+  /* Chuẩn line-height để dễ đọc nhất (1.8 hơi thưa) */
+  margin-bottom: 1.25rem;
+  /* Khoảng cách giữa các đoạn văn */
 }
 
-.content ul {
+.content ul,
+.content ol {
+  /* Thêm ol để áp dụng cho cả danh sách đánh số */
   list-style: disc;
-  padding-left: 2rem;
-  margin-bottom: 1.5rem;
-  color: var(--text-secondary);
-  font-size: 1.125rem;
+  padding-left: 1.5rem;
+  /* Giảm lùi lề một chút cho cân đối với mobile */
+  margin-bottom: 1.25rem;
+  color: var(--text-primary);
+  /* Đổi màu đồng bộ với thẻ p */
+  font-size: 1rem;
+  /* 16px */
+  line-height: 1.6;
 }
 
 .content li {
@@ -68,9 +86,11 @@
 
 /* FAQ section */
 .faqSection {
-  margin-top: 4rem;
+  margin-top: 3rem;
+  /* Giảm một chút khoảng cách để bố cục kết nối hơn */
   padding-top: 2rem;
-  border-top: 2px dashed var(--border);
+  border-top: 1px dashed var(--border);
+  /* Đổi về 1px dashed cho tinh tế, 2px hơi thô */
 }
 
 .faqItem {
@@ -80,10 +100,63 @@
 .faqQuestion {
   font-weight: 700;
   color: var(--text-primary);
-  font-size: 1.25rem;
+  font-size: 1.125rem;
+  /* 18px - Chữ to vừa phải làm câu hỏi */
   margin-bottom: 0.5rem;
+  line-height: 1.4;
 }
 
 .faqAnswer {
-  color: var(--text-secondary);
+  font-size: 1rem;
+  color: var(--text-primary);
+  /* Dùng primary cho rõ nét */
+  line-height: 1.6;
+}
+
+/* ---------------- Table Styles for MDX ---------------- */
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden; /* Đảm bảo border-radius hoạt động với thead/tbody */
+}
+
+.content th,
+.content td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.content th:last-child,
+.content td:last-child {
+  border-right: none;
+}
+
+.content thead {
+  background-color: var(--background); /* Màu nền riêng cho Header */
+}
+
+.content th {
+  font-weight: 700;
+}
+
+.content tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Thêm hiệu ứng sọc 얼 vằn và hiệu ứng hover để bảng tương tác tốt */
+.content tbody tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.015);
+}
+
+.content tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.03);
 }

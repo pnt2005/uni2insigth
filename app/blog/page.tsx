@@ -2,13 +2,34 @@ import FilterLayout from "../../components/Common/FilterLayout";
 import Link from "next/link";
 import styles from "../nganh-hoc/page.module.css";
 
-export default function BlogList() {
-  const blogs = [
-    { title: "So sánh Đại học FPT và HUTECH: Chọn trường nào?", slug: "so-sanh-fpt-va-hutech", author: "UniInsight", date: "15/03/2026" },
-    { title: "Top 5 ngành dễ kiếm việc thuật khối D năm 2026", slug: "top-5-nganh-de-kiem-viec-khoi-d", author: "Career Team", date: "12/03/2026" },
-    { title: "Review chân thực về cuộc sống sinh viên Làng Đại Học", slug: "review-cuoc-song-lang-dai-hoc", author: "Sinh viên năm 3", date: "10/03/2026" },
-  ];
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
 
+export default async function BlogList() {
+  const blogDir = path.join(process.cwd(), 'data/blog');
+  let blogs: any[] = [];
+  
+  try {
+    const filenames = fs.readdirSync(blogDir);
+    blogs = filenames
+      .filter((filename) => (filename.endsWith('.md') || filename.endsWith('.mdx')) && !filename.startsWith('_'))
+      .map((filename) => {
+        const filePath = path.join(blogDir, filename);
+        const fileContent = fs.readFileSync(filePath, 'utf8');
+        const { data } = matter(fileContent);
+        
+        return {
+          slug: filename.replace(/\.mdx?$/, ''),
+          title: data.title || "Bài Viết Blog",
+          author: data.author || "UniInsight Team",
+          date: data.date || "Cập nhật mới",
+          category: data.category || "Tin Tức"
+        };
+      });
+  } catch (error) {
+    console.error("Lỗi khi đọc file blog", error);
+  }
   return (
     <FilterLayout 
       title="Blog & Hướng Nghiệp" 

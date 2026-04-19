@@ -3,15 +3,34 @@ import Link from "next/link";
 import styles from "./page.module.css";
 import { slugify } from "../../utils/slugify";
 
-export default function MajorList() {
-  const majors = [
-    { title: "Công nghệ thông tin", category: "Kỹ thuật - Công nghệ", schools: 120, salary: "10-30tr" },
-    { title: "Trí tuệ nhân tạo", category: "Kỹ thuật - Công nghệ", schools: 30, salary: "15-40tr" },
-    { title: "Marketing", category: "Kinh Doanh - Quản Lý", schools: 150, salary: "8-25tr" },
-    { title: "Tài chính ngân hàng", category: "Kinh Doanh - Quản Lý", schools: 140, salary: "10-30tr" },
-    { title: "Ngôn ngữ Anh", category: "Ngôn ngữ", schools: 110, salary: "8-20tr" },
-    { title: "Thiết kế đồ họa", category: "Nghệ thuật - Thiết kế", schools: 80, salary: "9-25tr" },
-  ];
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+
+export default async function MajorList() {
+  const majorsDir = path.join(process.cwd(), 'data/majors');
+  let majors: any[] = [];
+  
+  try {
+    const filenames = fs.readdirSync(majorsDir);
+    majors = filenames
+      .filter((filename) => filename.endsWith('.mdx') && !filename.startsWith('_'))
+      .map((filename) => {
+        const filePath = path.join(majorsDir, filename);
+        const fileContent = fs.readFileSync(filePath, 'utf8');
+        const { data } = matter(fileContent);
+        
+        return {
+          slug: filename.replace(/\.mdx$/, ''),
+          title: data.title || "Ngành học",
+          category: data.category || "Phân loại chung",
+          schools: data.schools || "--",
+          salary: data.salaryRange || "Thỏa thuận"
+        };
+      });
+  } catch (error) {
+    console.error("Lỗi khi đọc file majors", error);
+  }
 
   return (
     <FilterLayout 
@@ -20,7 +39,7 @@ export default function MajorList() {
     >
       <div className={styles.grid}>
         {majors.map((major, idx) => (
-          <Link href={`/nganh-hoc/${slugify(major.category)}/${slugify(major.title)}`} key={idx} className={styles.card}>
+          <Link href={`/nganh-hoc/${major.slug}`} key={idx} className={styles.card}>
             <div className={styles.cardHeader}>
               <span className={styles.category}>{major.category}</span>
             </div>

@@ -55,6 +55,14 @@ export default async function SchoolReviewPage({ params }: { params: Promise<{ s
 
   const { data, content } = matter(fileContent);
   const schoolName = data.schoolName || 'Đại học';
+
+  let universityData: any = null;
+  try {
+    const unisContent = fs.readFileSync(path.join(process.cwd(), 'data/universities.json'), 'utf8');
+    universityData = JSON.parse(unisContent).find((u: any) => u.id === school);
+  } catch (e) {}
+
+  const tuitionText = universityData?.tuitionText || "Liên hệ để biết thêm chi tiết";
   
   const faqSchema = {
     "@context": "https://schema.org",
@@ -86,15 +94,18 @@ export default async function SchoolReviewPage({ params }: { params: Promise<{ s
       </div>
 
       <div className={styles.content}>
-        <MDXRemote source={content} />
+        <MDXRemote 
+          source={content} 
+          options={{ mdxOptions: { remarkPlugins: [(await import('remark-gfm')).default] } }} 
+        />
 
         {/* You can still insert dynamic InternalLink statically if MDX doesn't have it, or modify MDX to allow custom components */}
         <h2 id="co-hoi">Cơ hội việc làm</h2>
-        <p>100% sinh viên được hõ trợ giới thiệu việc làm sau tốt nghiệp thông qua mạng lưới doanh nghiệp đối tác lớn.</p>
+        <p>Sinh viên được hỗ trợ giới thiệu việc làm sau tốt nghiệp thông qua mạng lưới doanh nghiệp đối tác lớn.</p>
         <InternalLink href={`/review/${school}/co-hoi-viec-lam`} text={`Định hướng nghề nghiệp và việc làm ${schoolName}`} />
 
         <h2 id="hoc-phi">Học phí</h2>
-        <p>Học phí tại {schoolName} dao động từ 25 - 35 triệu VNĐ/học kỳ tùy thuộc vào ngành học, và có lộ trình tăng học phí rõ ràng hàng năm.</p>
+        <p>Học phí tại {schoolName} hiện tại: <strong>{tuitionText}</strong>, có lộ trình tăng học phí rõ ràng hàng năm.</p>
         <InternalLink href={`/review/${school}/hoc-phi`} text={`Bảng học phí ${schoolName} năm 2026`} />
 
         {data.faq && data.faq.length > 0 && (

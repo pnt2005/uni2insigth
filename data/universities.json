@@ -28,5 +28,15 @@
     "tuitionText": "Từ 16.000.000 - 22.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "25 - 28.5",
     "image": "/images/neu-logo.jpg"
+  },
+  {
+    "id": "rmit",
+    "name": "Đại học RMIT Việt Nam",
+    "region": "Miền Nam",
+    "majors": ["Kinh doanh", "Thiết kế", "Truyền thông"],
+    "tuitionScore": 5,
+    "tuitionText": "Từ 100.000.000 VNĐ / học kỳ",
+    "admissionScoreRange": "Tuyển sinh riêng",
+    "image": "/images/rmit-logo.jpg"
   }
 ]

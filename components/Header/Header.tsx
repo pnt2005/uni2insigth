@@ -12,7 +12,7 @@ export default function Header() {
         <nav className={styles.nav}>
           <Link href="/nganh-hoc" className={styles.navLink}>Ngành Học</Link>
           <Link href="/khu-vuc" className={styles.navLink}>Cụm Trường</Link>
-          <Link href="/review/dai-hoc-fpt" className={styles.navLink}>Review</Link>
+          <Link href="/review/fpt" className={styles.navLink}>Review</Link>
           <Link href="/tra-cuu" className={styles.navLink}>Tra Cứu</Link>
           <Link href="/blog" className={styles.navLink}>Blog</Link>
         </nav>

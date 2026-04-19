@@ -1,31 +1,72 @@
-import Script from "next/script";
-import styles from "../Review.module.css";
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import { MDXRemote } from 'next-mdx-remote/rsc';
+import Script from 'next/script';
+import styles from '../Review.module.css';
+import InternalLink from '../../../components/InternalLink/InternalLink';
+import { notFound } from 'next/navigation';
+
+export async function generateStaticParams() {
+  const reviewsDir = path.join(process.cwd(), 'data/reviews');
+  try {
+    const filenames = fs.readdirSync(reviewsDir);
+    return filenames
+      .filter((filename) => filename.endsWith('.mdx'))
+      .map((filename) => ({
+        school: filename.replace(/\.mdx$/, ''),
+      }));
+  } catch (error) {
+    return [];
+  }
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ school: string }> }) {
+  const resolvedParams = await params;
+  const { school } = resolvedParams;
+  const filePath = path.join(process.cwd(), 'data/reviews', `${school}.mdx`);
+  
+  try {
+    const fileContent = fs.readFileSync(filePath, 'utf8');
+    const { data } = matter(fileContent);
+    return {
+      title: data.title,
+      description: data.description,
+      keywords: data.keywords,
+    };
+  } catch (error) {
+    return {
+      title: 'Review Trường Đại học',
+    };
+  }
+}
 
 export default async function SchoolReviewPage({ params }: { params: Promise<{ school: string }> }) {
   const resolvedParams = await params;
-  const schoolName = "Đại học " + resolvedParams.school.replace(/-/g, ' ').toUpperCase();
+  const { school } = resolvedParams;
+  const filePath = path.join(process.cwd(), 'data/reviews', `${school}.mdx`);
 
+  let fileContent;
+  try {
+    fileContent = fs.readFileSync(filePath, 'utf8');
+  } catch (error) {
+    notFound();
+  }
+
+  const { data, content } = matter(fileContent);
+  const schoolName = data.schoolName || 'Đại học';
+  
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": `Học phí ${schoolName} là bao nhiêu?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Học phí dao động từ 25 - 35 triệu VNĐ/học kỳ tùy thuộc vào ngành học."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": `Trường ${schoolName} là công lập hay tư thục?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `Trường ${schoolName} là một cơ sở đào tạo uy tín với hệ thống quản lý chuẩn quốc tế.`
-        }
+    "mainEntity": (data.faq || []).map((item: any) => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
       }
-    ]
+    }))
   };
 
   return (
@@ -36,7 +77,7 @@ export default async function SchoolReviewPage({ params }: { params: Promise<{ s
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       
-      <h1 className={styles.title}>Review chi tiết {schoolName} - Có đáng học hông?</h1>
+      <h1 className={styles.title}>{data.title}</h1>
       
       <div className={styles.metaTags}>
         <span className={styles.tag}>Đánh giá sinh viên</span>
@@ -45,33 +86,28 @@ export default async function SchoolReviewPage({ params }: { params: Promise<{ s
       </div>
 
       <div className={styles.content}>
-        <p>Nếu bạn đang băn khoăn không biết <strong>{schoolName}</strong> có thực sự tốt như lời đồn? Cơ sở vật chất ra sao, chương trình đào tạo thế nào? Cùng UniInsight khám phá chi tiết trong bài review này.</p>
-        
-        <h2 id="gioi-thieu">1. Giới thiệu chung</h2>
-        <p>{schoolName} được thành lập với mục tiêu đào tạo sinh viên chất lượng cao, đáp ứng nhu cầu doanh nghiệp. Tọa lạc tại trung tâm thành phố, trường mang đến một môi trường học tập năng động, hiện đại và chuẩn quốc tế.</p>
-        
-        <h2 id="chuong-trinh">2. Chương trình đào tạo</h2>
-        <ul>
-          <li>Đào tạo chuyên sâu về Công nghệ, Kinh tế và Ngôn ngữ.</li>
-          <li>Chương trình liên kết quốc tế, trao đổi sinh viên.</li>
-          <li>Phát triển kỹ năng mềm và ngoại ngữ cường độ cao.</li>
-        </ul>
+        <MDXRemote source={content} />
 
-        <h2 id="co-hoi">3. Cơ hội việc làm</h2>
+        {/* You can still insert dynamic InternalLink statically if MDX doesn't have it, or modify MDX to allow custom components */}
+        <h2 id="co-hoi">Cơ hội việc làm</h2>
         <p>100% sinh viên được hõ trợ giới thiệu việc làm sau tốt nghiệp thông qua mạng lưới doanh nghiệp đối tác lớn.</p>
+        <InternalLink href={`/review/${school}/co-hoi-viec-lam`} text={`Định hướng nghề nghiệp và việc làm ${schoolName}`} />
 
-        {/* FAQ Section */}
-        <div className={`${styles.faqSection}`} id="faq">
-          <h2>4. Câu hỏi thường gặp (FAQ)</h2>
-          <div className={styles.faqItem}>
-            <div className={styles.faqQuestion}>Học phí {schoolName} là bao nhiêu?</div>
-            <div className={styles.faqAnswer}>Học phí dao động từ 25 - 35 triệu VNĐ/học kỳ tùy thuộc vào ngành học.</div>
+        <h2 id="hoc-phi">Học phí</h2>
+        <p>Học phí tại {schoolName} dao động từ 25 - 35 triệu VNĐ/học kỳ tùy thuộc vào ngành học, và có lộ trình tăng học phí rõ ràng hàng năm.</p>
+        <InternalLink href={`/review/${school}/hoc-phi`} text={`Bảng học phí ${schoolName} năm 2026`} />
+
+        {data.faq && data.faq.length > 0 && (
+          <div className={`${styles.faqSection}`} id="faq">
+            <h2>Câu hỏi thường gặp (FAQ)</h2>
+            {data.faq.map((item: any, idx: number) => (
+              <div className={styles.faqItem} key={idx}>
+                <div className={styles.faqQuestion}>{item.question}</div>
+                <div className={styles.faqAnswer}>{item.answer}</div>
+              </div>
+            ))}
           </div>
-          <div className={styles.faqItem}>
-            <div className={styles.faqQuestion}>Trường {schoolName} là công lập hay tư thục?</div>
-            <div className={styles.faqAnswer}>Trường {schoolName} là một cơ sở đào tạo uy tín với hệ thống quản lý chuẩn quốc tế.</div>
-          </div>
-        </div>
+        )}
       </div>
     </article>
   );

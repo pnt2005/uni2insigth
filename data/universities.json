@@ -1,0 +1,32 @@
+[
+  {
+    "id": "fpt",
+    "name": "Đại học FPT",
+    "region": "Miền Nam",
+    "majors": ["Công nghệ thông tin", "Kinh tế", "Ngôn ngữ"],
+    "tuitionScore": 5,
+    "tuitionText": "Từ 28.700.000 VNĐ / học kỳ",
+    "admissionScoreRange": "21 - 25",
+    "image": "/images/fpt-logo.jpg"
+  },
+  {
+    "id": "bach-khoa",
+    "name": "Đại học Bách Khoa",
+    "region": "Miền Nam",
+    "majors": ["Kỹ thuật", "Công nghệ thông tin", "Cơ khí"],
+    "tuitionScore": 4,
+    "tuitionText": "Từ 15.000.000 VNĐ / học kỳ",
+    "admissionScoreRange": "24 - 28",
+    "image": "/images/bach-khoa-logo.jpg"
+  },
+  {
+    "id": "kinh-te-quoc-dan",
+    "name": "Đại học Kinh Tế Quốc Dân (NEU)",
+    "region": "Miền Bắc",
+    "majors": ["Kinh tế", "Quản trị kinh doanh", "Kế toán"],
+    "tuitionScore": 4,
+    "tuitionText": "Từ 16.000.000 - 22.000.000 VNĐ / học kỳ",
+    "admissionScoreRange": "25 - 28.5",
+    "image": "/images/neu-logo.jpg"
+  }
+]

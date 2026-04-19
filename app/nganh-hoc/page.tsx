@@ -1,6 +1,7 @@
 import FilterLayout from "../../components/Common/FilterLayout";
 import Link from "next/link";
 import styles from "./page.module.css";
+import { slugify } from "../../utils/slugify";
 
 export default function MajorList() {
   const majors = [
@@ -19,7 +20,7 @@ export default function MajorList() {
     >
       <div className={styles.grid}>
         {majors.map((major, idx) => (
-          <Link href={`/nganh-hoc/${major.category.toLowerCase().replace(/ \- /g, '-').replace(/ /g, '-')}/${major.title.toLowerCase().replace(/ /g, '-')}`} key={idx} className={styles.card}>
+          <Link href={`/nganh-hoc/${slugify(major.category)}/${slugify(major.title)}`} key={idx} className={styles.card}>
             <div className={styles.cardHeader}>
               <span className={styles.category}>{major.category}</span>
             </div>

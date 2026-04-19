@@ -1,6 +1,7 @@
 import FilterLayout from "../../components/Common/FilterLayout";
 import Link from "next/link";
 import styles from "../nganh-hoc/page.module.css";
+import { slugify } from "../../utils/slugify";
 
 export default function RegionList() {
   const regions = [
@@ -18,7 +19,7 @@ export default function RegionList() {
     >
       <div className={styles.grid}>
         {regions.map((region, idx) => (
-          <Link href={`/khu-vuc/${region.title.toLowerCase().replace(/khu vực /g, '').replace(/\./g, '').replace(/ /g, '-')}`} key={idx} className={styles.card}>
+          <Link href={`/khu-vuc/${slugify(region.title.replace(/khu vực /gi, ''))}`} key={idx} className={styles.card}>
             <div className={styles.cardHeader} style={{ fontSize: '3rem', textAlign: 'center' }}>
               {region.icon}
             </div>

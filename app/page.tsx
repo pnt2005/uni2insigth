@@ -1,6 +1,21 @@
 import Link from "next/link";
 import styles from "./Home.module.css";
 
+const FEATURED_MAJORS = [
+  { icon: '💻', name: 'CNTT', href: '/nganh-hoc/ky-thuat-cong-nghe/cong-nghe-thong-tin' },
+  { icon: '📊', name: 'Kinh Tế', href: '/nganh-hoc/kinh-doanh-quan-ly' },
+  { icon: '🏥', name: 'Y Dược', href: '/nganh-hoc/y-duoc' },
+  { icon: '🎨', name: 'Thiết Kế', href: '/nganh-hoc/nghe-thuat-thiet-ke' },
+  { icon: '🗣️', name: 'Ngôn Ngữ', href: '/nganh-hoc/ngon-ngu' }
+];
+
+const TOP_SCHOOLS = [
+  { name: 'Đại học FPT', id: 'fpt', reviews: 1250, rating: 4.8, type: 'Tư thục' },
+  { name: 'Đại học Bách Khoa HCM', id: 'bach-khoa', reviews: 980, rating: 4.9, type: 'Công lập' },
+  { name: 'Đại học Kinh tế Quốc dân', id: 'kinh-te-quoc-dan', reviews: 850, rating: 4.7, type: 'Công lập' },
+  { name: 'Đại học RMIT', id: 'rmit', reviews: 720, rating: 4.9, type: 'Quốc tế' },
+];
+
 export default function Home() {
   return (
     <>
@@ -34,13 +49,7 @@ export default function Home() {
         <section className={styles.quickAccess}>
           <h2 className={styles.sectionTitle}>Ngành Học Nổi Bật</h2>
           <div className={styles.iconGrid}>
-            {[
-              { icon: '💻', name: 'CNTT', href: '/nganh-hoc/ky-thuat-cong-nghe/cong-nghe-thong-tin' },
-              { icon: '📊', name: 'Kinh Tế', href: '/nganh-hoc/kinh-doanh-quan-ly' },
-              { icon: '🏥', name: 'Y Dược', href: '/nganh-hoc/y-duoc' },
-              { icon: '🎨', name: 'Thiết Kế', href: '/nganh-hoc/nghe-thuat-thiet-ke' },
-              { icon: '🗣️', name: 'Ngôn Ngữ', href: '/nganh-hoc/ngon-ngu' }
-            ].map((item, idx) => (
+            {FEATURED_MAJORS.map((item, idx) => (
               <Link href={item.href} key={idx} className={styles.iconCard}>
                 <div className={styles.iconWrapper}>{item.icon}</div>
                 <span className={styles.iconLabel}>{item.name}</span>
@@ -53,12 +62,7 @@ export default function Home() {
         <section className={styles.topSchools}>
           <h2 className={styles.sectionTitle}>Top Trường Được Quan Tâm Nhất</h2>
           <div className={styles.schoolGrid}>
-            {[
-              { name: 'Đại học FPT', id: 'fpt', reviews: 1250, rating: 4.8, type: 'Tư thục' },
-              { name: 'Đại học Bách Khoa HCM', id: 'bach-khoa', reviews: 980, rating: 4.9, type: 'Công lập' },
-              { name: 'Đại học Kinh tế Quốc dân', id: 'kinh-te-quoc-dan', reviews: 850, rating: 4.7, type: 'Công lập' },
-              { name: 'Đại học RMIT', id: 'rmit', reviews: 720, rating: 4.9, type: 'Quốc tế' },
-            ].map((school, idx) => (
+            {TOP_SCHOOLS.map((school, idx) => (
               <Link href={`/review/${school.id}`} key={idx} className={styles.schoolCard}>
                 <div className={styles.schoolImage}>🏫</div>
                 <div className={styles.schoolInfo}>

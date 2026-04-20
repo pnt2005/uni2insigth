@@ -6,10 +6,10 @@ import styles from "./Home.module.css";
 
 const FEATURED_MAJORS = [
   { icon: '💻', name: 'CNTT', href: '/nganh-hoc/ky-thuat-cong-nghe/cong-nghe-thong-tin' },
-  { icon: '📊', name: 'Kinh Tế', href: '/nganh-hoc/kinh-doanh-quan-ly' },
-  { icon: '🏥', name: 'Y Dược', href: '/nganh-hoc/y-duoc' },
-  { icon: '🎨', name: 'Thiết Kế', href: '/nganh-hoc/nghe-thuat-thiet-ke' },
-  { icon: '🗣️', name: 'Ngôn Ngữ', href: '/nganh-hoc/ngon-ngu' }
+  { icon: '📊', name: 'Kinh Tế', href: '/nganh-hoc/quan-tri-kinh-doanh' },
+  { icon: '🏥', name: 'Y Dược', href: '/nganh-hoc/y-khoa' },
+  { icon: '🎨', name: 'Thiết Kế', href: '/nganh-hoc/thiet-ke-do-hoa' },
+  { icon: '🗣️', name: 'Ngôn Ngữ', href: '/nganh-hoc/ngon-ngu-anh' }
 ];
 
 export default async function Home() {

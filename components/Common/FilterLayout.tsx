@@ -5,16 +5,19 @@ interface FilterLayoutProps {
   title: string;
   subtitle?: string;
   children: React.ReactNode;
+  filters?: React.ReactNode;
 }
 
-export default function FilterLayout({ title, subtitle, children }: FilterLayoutProps) {
+export default function FilterLayout({ title, subtitle, children, filters }: FilterLayoutProps) {
   return (
     <div className={`container ${styles.layout}`}>
       <aside className={styles.sidebar}>
         <div className={styles.filterBox}>
           <h3 className={styles.filterTitle}>Bộ Lọc</h3>
           
-          <div className={styles.filterGroup}>
+          {filters ? filters : (
+            <>
+              <div className={styles.filterGroup}>
             <label className={styles.filterLabel}>Khu Vực</label>
             <select className={styles.select}>
               <option value="">Tất cả</option>
@@ -47,6 +50,8 @@ export default function FilterLayout({ title, subtitle, children }: FilterLayout
               <span>100tr+</span>
             </div>
           </div>
+            </>
+          )}
 
           <button className={styles.applyBtn}>Áp dụng Bộ Lọc</button>
         </div>

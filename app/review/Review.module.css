@@ -66,6 +66,18 @@
   /* Khoảng cách giữa các đoạn văn */
 }
 
+.content a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.content a:hover {
+  text-decoration: underline;
+  color: var(--primary-hover);
+}
+
 .content ul,
 .content ol {
   /* Thêm ol để áp dụng cho cả danh sách đánh số */

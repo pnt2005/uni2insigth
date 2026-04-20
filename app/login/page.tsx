@@ -9,7 +9,7 @@ export default function LoginPage() {
       </h1>
       
       <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem', textAlign: 'center' }}>
-        Tính năng hệ thống thành viên của UniInsight hiện đang bảo trì. <br/>Vui lòng quay lại sau!
+        Tính năng hệ thống thành viên của Uni2Insight hiện đang bảo trì. <br/>Vui lòng quay lại sau!
       </p>
 
       <div style={{ display: 'flex', justifyContent: 'center' }}>

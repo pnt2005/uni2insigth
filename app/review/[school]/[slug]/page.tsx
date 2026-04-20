@@ -114,7 +114,7 @@ export default async function SubArticlePage({ params }: { params: Promise<{ sch
           Bài viết chi tiết đang được cập nhật
         </h1>
         <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '600px', margin: '0 auto', lineHeight: 1.6 }}>
-          Nội dung chuyên sâu về phân mục này cho {schoolName} hiện đang được đội ngũ ban biên tập UniInsight tổng hợp và sẽ ra mắt trong thời gian sớm nhất. 
+          Nội dung chuyên sâu về phân mục này cho {schoolName} hiện đang được đội ngũ ban biên tập Uni2Insight tổng hợp và sẽ ra mắt trong thời gian sớm nhất. 
         </p>
       </div>
     </article>

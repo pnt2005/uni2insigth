@@ -31,7 +31,7 @@ export default async function TraCuuFeaturePage({ params }: { params: Promise<{ 
       </h1>
       
       <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>
-        Công cụ <strong>{feature.title}</strong> hiện đang được đội ngũ UniInsight xây dựng và sẽ sớm ra mắt trong tương lai gần.
+        Công cụ <strong>{feature.title}</strong> hiện đang được đội ngũ Uni2Insight xây dựng và sẽ sớm ra mắt trong tương lai gần.
         <br/><br/>
         Mô tả tính năng: {feature.desc}.
       </p>

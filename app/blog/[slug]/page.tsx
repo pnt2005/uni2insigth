@@ -63,7 +63,7 @@ export default async function BlogDeepPage({ params }: { params: Promise<{ slug:
         </h1>
         
         <div className={styles.metaInfo}>
-          <span>Đăng lúc: {data.date || 'Cập nhật mới nhất 2026'}</span> • <span>Tác giả: {data.author || 'UniInsight Team'}</span>
+          <span>Đăng lúc: {data.date || 'Cập nhật mới nhất 2026'}</span> • <span>Tác giả: {data.author || 'Uni2Insight Team'}</span>
         </div>
 
         <div className={styles.content}>
@@ -113,7 +113,7 @@ export default async function BlogDeepPage({ params }: { params: Promise<{ slug:
       </h1>
       
       <div className={styles.metaInfo}>
-        <span>Đăng lúc: Cập nhật mới nhất 2026</span> • <span>Tác giả: UniInsight Team</span>
+        <span>Đăng lúc: Cập nhật mới nhất 2026</span> • <span>Tác giả: Uni2Insight Team</span>
       </div>
 
       <div className={styles.content}>
@@ -122,7 +122,7 @@ export default async function BlogDeepPage({ params }: { params: Promise<{ slug:
           Hiện tại tính năng Blog chi tiết đang trong giai đoạn phát triển nội dung và hệ thống CMS.
         </p>
         <p style={{ marginTop: '1rem' }}>
-          Đội ngũ nội dung của UniInsight sẽ sớm cập nhật bài viết này với những phân tích chuyên sâu về thị trường lao động, xu hướng ngành nghề, và các số liệu báo cáo tin cậy nhất. Vui lòng đón chờ!
+          Đội ngũ nội dung của Uni2Insight sẽ sớm cập nhật bài viết này với những phân tích chuyên sâu về thị trường lao động, xu hướng ngành nghề, và các số liệu báo cáo tin cậy nhất. Vui lòng đón chờ!
         </p>
       </div>
 

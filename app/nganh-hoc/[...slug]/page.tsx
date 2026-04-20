@@ -1,37 +1,131 @@
-import Link from "next/link";
-import styles from "../../nganh-hoc/page.module.css";
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { MDXRemote } from 'next-mdx-remote/rsc';
+import styles from './page.module.css';
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string[] }> }) {
+  const resolvedParams = await params;
+  const slugPaths = resolvedParams.slug;
+  const slug = slugPaths[slugPaths.length - 1];
+  
+  const mdxPath = path.join(process.cwd(), 'data/majors', `${slug}.mdx`);
+  if (fs.existsSync(mdxPath)) {
+    const fileContent = fs.readFileSync(mdxPath, 'utf8');
+    const { data } = matter(fileContent);
+    return { 
+      title: data.title || data.majorName || slug.replace(/-/g, ' ').toUpperCase(),
+      description: data.description,
+      keywords: data.keywords,
+    };
+  }
+
+  return { title: slug.replace(/-/g, ' ').toUpperCase() };
+}
 
 export default async function NganhHocDeepPage({ params }: { params: Promise<{ slug: string[] }> }) {
   const resolvedParams = await params;
   const slugPaths = resolvedParams.slug;
-  const titlePath = slugPaths[slugPaths.length - 1].replace(/-/g, ' ').toUpperCase();
+  const slug = slugPaths[slugPaths.length - 1];
+  const category = slugPaths.length > 1 ? slugPaths[0] : null;
+
+  const mdxPath = path.join(process.cwd(), 'data/majors', `${slug}.mdx`);
+
+  if (!fs.existsSync(mdxPath)) {
+    return notFound();
+  }
+
+  const fileContent = fs.readFileSync(mdxPath, 'utf8');
+  const { data, content } = matter(fileContent);
+  const remarkGfm = (await import('remark-gfm')).default;
 
   return (
-    <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '3rem 2rem' }}>
-      <div style={{ marginBottom: '2rem' }}>
-        <Link href="/nganh-hoc" style={{ display: 'inline-block', color: 'var(--primary-color)', textDecoration: 'none', fontWeight: 500 }}>
-          ← Quay lại Danh sách Ngành học
-        </Link>
-      </div>
+    <div className={styles.container}>
+      <article className={styles.article}>
+        <div style={{ marginBottom: '2rem' }}>
+          <Link href="/nganh-hoc" style={{ display: 'inline-block', color: 'var(--primary)', textDecoration: 'none', fontWeight: 500 }}>
+            ← Quay lại Danh sách Ngành học
+          </Link>
+        </div>
 
-      <h1 className={styles.title} style={{ textAlign: 'left', marginBottom: '1rem' }}>
-        Ngành: {titlePath}
-      </h1>
-      
-      <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>
-        Đang hiển thị tổng quan thông tin cho ngành học <strong>{titlePath}</strong> nằm trong chuyên mục <strong>{slugPaths[0].replace(/-/g, ' ').toUpperCase()}</strong>.
-        Trong tương lai, phần này sẽ hiển thị danh sách các bài đánh giá, điểm chuẩn, lộ trình nghề nghiệp riêng biệt cho ngành này.
-      </p>
+        <header className={styles.header}>
+          {category && (
+            <div className={styles.category}>
+              {category.replace(/-/g, ' ')}
+            </div>
+          )}
+          <h1 className={styles.title}>
+            {data.title || data.majorName || slug.replace(/-/g, ' ').toUpperCase()}
+          </h1>
+          {data.description && (
+            <p className={styles.description}>
+              {data.description}
+            </p>
+          )}
+          
+          {(data.salaryRange || data.schools) && (
+            <div className={styles.metaTags}>
+              {data.salaryRange && (
+                <div className={styles.metaItem}>
+                  <span className={styles.metaIcon}>💰</span>
+                  <div>
+                    <div className={styles.metaLabel}>Mức lương trung bình</div>
+                    <div className={styles.metaValue}>{data.salaryRange}</div>
+                  </div>
+                </div>
+              )}
+              {data.schools && (
+                <div className={styles.metaItem}>
+                  <span className={styles.metaIcon}>🏫</span>
+                  <div>
+                    <div className={styles.metaLabel}>Trường đào tạo</div>
+                    <div className={styles.metaValue}>{data.schools} trường</div>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </header>
 
-      <div style={{ background: '#f8fafc', padding: '2rem', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
-        <h3>Danh mục nội dung tương lai:</h3>
-        <ul style={{ marginTop: '1rem', paddingLeft: '1.5rem', lineHeight: 1.8 }}>
-          <li>Chi tiết chuẩn đầu ra và môn học</li>
-          <li>Top trường đào tạo {titlePath} tốt nhất</li>
-          <li>Phổ điểm chuẩn 3 năm gần nhất</li>
-          <li>Mức lương khởi điểm tham khảo</li>
-        </ul>
-      </div>
+        <div className={styles.content}>
+          <MDXRemote 
+            source={content} 
+            options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} 
+            components={{
+              img: (props: any) => (
+                <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '2rem 0' }}>
+                  <img {...props} style={{ maxWidth: '100%', height: 'auto', borderRadius: 'var(--radius-md)', display: 'block' }} />
+                  {props.alt && (
+                    <em style={{ display: 'block', textAlign: 'center', fontSize: '0.9rem', color: 'var(--text-secondary)', marginTop: '0.75rem' }}>
+                      {props.alt}
+                    </em>
+                  )}
+                </span>
+              )
+            }}
+          />
+        </div>
+
+        {data.faq && data.faq.length > 0 && (
+          <div className={styles.faqSection}>
+            <h2>Câu hỏi thường gặp (FAQ)</h2>
+            <div className={styles.faqList}>
+              {data.faq.map((item: any, idx: number) => (
+                <div key={idx} className={styles.faqItem}>
+                  <h4 className={styles.faqQuestion}>
+                    Q: {item.question}
+                  </h4>
+                  <p className={styles.faqAnswer}>
+                    A: {item.answer}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </article>
     </div>
   );
 }

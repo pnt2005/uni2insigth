@@ -19,7 +19,7 @@ export default async function Home() {
     const unisContent = fs.readFileSync(unisPath, 'utf8');
     const parsedUnis = JSON.parse(unisContent);
     // Lấy 4 trường đầu tiên làm Top Schools
-    topSchools = parsedUnis.slice(0, 4).map((u: any) => ({
+    topSchools = parsedUnis.slice(0, 9).map((u: any) => ({
       id: u.id,
       name: u.name || "Tên Trường",
       type: u.name.includes("Quốc gia") || u.name.includes("Bách Khoa") ? "Công lập" : "Tư thục/Quốc tế",

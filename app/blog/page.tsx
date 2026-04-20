@@ -2,6 +2,7 @@ import FilterLayout from "../../components/Common/FilterLayout";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "../nganh-hoc/page.module.css";
+import filterStyles from "../../components/Common/FilterLayout.module.css";
 
 import fs from 'fs';
 import path from 'path';
@@ -23,7 +24,7 @@ export default async function BlogList() {
         return {
           slug: filename.replace(/\.mdx?$/, ''),
           title: data.title || "Bài Viết Blog",
-          author: data.author || "UniInsight Team",
+          author: data.author || "Uni2Insight Team",
           date: data.date || "Cập nhật mới",
           category: data.category || "Tin Tức",
           thumbnail: data.thumbnail || null
@@ -32,10 +33,37 @@ export default async function BlogList() {
   } catch (error) {
     console.error("Lỗi khi đọc file blog", error);
   }
+  const customFilters = (
+    <>
+      <div className={filterStyles.filterGroup}>
+        <label className={filterStyles.filterLabel}>Chuyên Mục</label>
+        <select className={filterStyles.select}>
+          <option value="">Tất cả chuyên mục</option>
+          <option value="tu-van">Tư vấn chọn trường</option>
+          <option value="huong-nghiep">Định hướng nghề nghiệp</option>
+          <option value="doi-song">Đời sống sinh viên</option>
+        </select>
+      </div>
+
+      <div className={filterStyles.filterGroup}>
+        <label className={filterStyles.filterLabel}>Sắp Xếp Dữ Liệu</label>
+        <div className={filterStyles.checkboxGroup}>
+          <label className={filterStyles.checkboxLabel}>
+            <input type="radio" name="sort" defaultChecked /> Mới nhất
+          </label>
+          <label className={filterStyles.checkboxLabel}>
+            <input type="radio" name="sort" /> Xem nhiều nhất
+          </label>
+        </div>
+      </div>
+    </>
+  );
+
   return (
     <FilterLayout
       title="Blog & Hướng Nghiệp"
       subtitle="Các bài viết chia sẻ kinh nghiệm, định hướng nghề nghiệp và đời sống sinh viên."
+      filters={customFilters}
     >
       <div className={styles.grid}>
         {blogs.map((blog, idx) => (

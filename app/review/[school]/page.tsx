@@ -100,13 +100,7 @@ export default async function SchoolReviewPage({ params }: { params: Promise<{ s
         />
 
         {/* You can still insert dynamic InternalLink statically if MDX doesn't have it, or modify MDX to allow custom components */}
-        <h2 id="co-hoi">Cơ hội việc làm</h2>
-        <p>Sinh viên được hỗ trợ giới thiệu việc làm sau tốt nghiệp thông qua mạng lưới doanh nghiệp đối tác lớn.</p>
-        <InternalLink href={`/review/${school}/co-hoi-viec-lam`} text={`Định hướng nghề nghiệp và việc làm ${schoolName}`} />
-
-        <h2 id="hoc-phi">Học phí</h2>
-        <p>Học phí tại {schoolName} hiện tại: <strong>{tuitionText}</strong>, có lộ trình tăng học phí rõ ràng hàng năm.</p>
-        <InternalLink href={`/review/${school}/hoc-phi`} text={`Bảng học phí ${schoolName} năm 2026`} />
+      
 
         {data.faq && data.faq.length > 0 && (
           <div className={`${styles.faqSection}`} id="faq">

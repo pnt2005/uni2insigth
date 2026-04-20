@@ -27,7 +27,7 @@ export default async function Home() {
       reviews: Math.floor(Math.random() * 500) + 500, // Sinh số ngẫu nhiên demo
       rating: (Math.random() * 0.5 + 4.5).toFixed(1) // 4.5 -> 5.0
     }));
-  } catch(e) {}
+  } catch (e) { }
 
   return (
     <>
@@ -38,10 +38,10 @@ export default async function Home() {
             Tìm kiếm trường đại học, ngành học, điểm chuẩn và đánh giá thực tế từ sinh viên
           </p>
           <div className={styles.searchBar}>
-            <input 
-              type="text" 
-              className={styles.searchInput} 
-              placeholder="Nhập tên trường, mã trường hoặc ngành học..." 
+            <input
+              type="text"
+              className={styles.searchInput}
+              placeholder="Nhập tên trường, mã trường hoặc ngành học..."
             />
             <button className={styles.searchButton}>Tìm kiếm</button>
           </div>
@@ -51,7 +51,7 @@ export default async function Home() {
       <div className="container">
         {/* News Ticker */}
         <div className={styles.newsTicker}>
-          <span className={styles.newsLabel}>Tin Mới</span>
+          {/* <span className={styles.newsLabel}>Tin Mới</span> */}
           <div className={styles.tickerContent}>
             🔥 Bộ GD&ĐT công bố quy chế tuyển sinh 2026 | 🌟 ĐH Bách Khoa HCM mở thêm 3 ngành mới | 💡 Học bổng 100% từ RMIT đang mở đơn
           </div>
@@ -77,7 +77,7 @@ export default async function Home() {
             {topSchools.map((school, idx) => (
               <Link href={`/review/${school.id}`} key={idx} className={styles.schoolCard}>
                 <div className={styles.schoolImage} style={{ position: 'relative', overflow: 'hidden' }}>
-                  <Image 
+                  <Image
                     src={school.image}
                     alt={`Hình ảnh ${school.name}`}
                     fill

@@ -1,28 +1,122 @@
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
 import Link from "next/link";
-import styles from "../../nganh-hoc/page.module.css";
+import styles from "./page.module.css";
+import { notFound } from "next/navigation";
+import { MDXRemote } from 'next-mdx-remote/rsc';
+
+export async function generateStaticParams() {
+  const blogDir = path.join(process.cwd(), 'data/blog');
+  let filenames: string[] = [];
+  try {
+    filenames = fs.readdirSync(blogDir);
+  } catch (error) {
+    return [];
+  }
+
+  return filenames
+    .filter((filename) => filename.endsWith('.mdx'))
+    .map((filename) => ({
+      slug: filename.replace(/\.mdx$/, ''),
+    }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params;
+  const { slug } = resolvedParams;
+  
+  const mdxPath = path.join(process.cwd(), 'data/blog', `${slug}.mdx`);
+  if (fs.existsSync(mdxPath)) {
+    const fileContent = fs.readFileSync(mdxPath, 'utf8');
+    const { data } = matter(fileContent);
+    if (data.title) return { title: data.title };
+  }
+
+  return { title: slug.replace(/-/g, ' ').toUpperCase() };
+}
 
 export default async function BlogDeepPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
   const { slug } = resolvedParams;
   const titlePath = slug.replace(/-/g, ' ').toUpperCase();
 
+  const mdxPath = path.join(process.cwd(), 'data/blog', `${slug}.mdx`);
+
+  // NẾU CÓ BÀI VIẾT .MDX CỤ THỂ -> RENDER NÓ
+  if (fs.existsSync(mdxPath)) {
+    const fileContent = fs.readFileSync(mdxPath, 'utf8');
+    const { data, content } = matter(fileContent);
+    const remarkGfm = (await import('remark-gfm')).default;
+
+    return (
+      <div className={styles.container}>
+        <article className={styles.article}>
+        <div style={{ marginBottom: '2rem' }}>
+          <Link href="/blog" style={{ display: 'inline-block', color: 'var(--primary)', textDecoration: 'none', fontWeight: 500 }}>
+            ← Quay lại Blog Danh mục
+          </Link>
+        </div>
+
+        <h1 className={styles.title}>
+          {data.title || titlePath}
+        </h1>
+        
+        <div className={styles.metaInfo}>
+          <span>Đăng lúc: {data.date || 'Cập nhật mới nhất 2026'}</span> • <span>Tác giả: {data.author || 'UniInsight Team'}</span>
+        </div>
+
+        <div className={styles.content}>
+          <MDXRemote 
+            source={content} 
+            options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} 
+            components={{
+              img: (props: any) => (
+                <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '1.5rem 0' }}>
+                  <img {...props} style={{ maxWidth: '100%', height: 'auto', borderRadius: 'var(--radius-md)', display: 'block' }} />
+                  {props.alt && (
+                    <em style={{ display: 'block', textAlign: 'center', fontSize: '0.9rem', color: 'var(--text-secondary)', marginTop: '0.5rem' }}>
+                      {props.alt}
+                    </em>
+                  )}
+                </span>
+              )
+            }}
+          />
+        </div>
+
+        <div className={styles.subscribeBox}>
+          <h3>Đăng ký nhận thông báo</h3>
+          <p>Nhận bài viết phân tích ngành mới nhất qua email.</p>
+          <div className={styles.subscribeForm}>
+            <input type="email" placeholder="Email của bạn..." className={styles.subscribeInput} />
+            <button className={styles.subscribeBtn}>Đăng ký</button>
+          </div>
+        </div>
+      </article>
+      </div>
+    );
+  }
+
+  // NẾU CHƯA CÓ BÀI VIẾT .MDX
   return (
-    <div style={{ maxWidth: '800px', margin: '0 auto', padding: '3rem 2rem' }}>
+    <div className={styles.container}>
+      <article className={styles.article}>
       <div style={{ marginBottom: '2rem' }}>
-        <Link href="/blog" style={{ display: 'inline-block', color: 'var(--primary-color)', textDecoration: 'none', fontWeight: 500 }}>
+        <Link href="/blog" style={{ display: 'inline-block', color: 'var(--primary)', textDecoration: 'none', fontWeight: 500 }}>
           ← Quay lại Blog Danh mục
         </Link>
       </div>
 
-      <h1 className={styles.title} style={{ textAlign: 'left', marginBottom: '1rem', fontSize: '2.5rem' }}>
+      <h1 className={styles.title}>
         {titlePath}
       </h1>
       
-      <div style={{ color: 'var(--text-secondary)', marginBottom: '2rem', fontSize: '0.9rem' }}>
+      <div className={styles.metaInfo}>
         <span>Đăng lúc: Cập nhật mới nhất 2026</span> • <span>Tác giả: UniInsight Team</span>
       </div>
 
-      <div style={{ lineHeight: 1.8, fontSize: '1.1rem', color: '#334155' }}>
+      <div className={styles.content}>
         <p>
           Xin chào! Bạn đang truy cập bài viết <strong>{titlePath}</strong>. 
           Hiện tại tính năng Blog chi tiết đang trong giai đoạn phát triển nội dung và hệ thống CMS.
@@ -32,14 +126,15 @@ export default async function BlogDeepPage({ params }: { params: Promise<{ slug:
         </p>
       </div>
 
-      <div style={{ marginTop: '3rem', padding: '2rem', background: '#f8fafc', borderRadius: '12px', textAlign: 'center' }}>
-        <h3 style={{ color: '#0f172a', marginBottom: '0.5rem' }}>Đăng ký nhận thông báo</h3>
-        <p style={{ color: '#64748b', marginBottom: '1.5rem', fontSize: '0.95rem' }}>Nhận bài viết phân tích ngành mới nhất qua email.</p>
-        <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center' }}>
-          <input type="email" placeholder="Email của bạn..." style={{ padding: '0.6rem 1rem', borderRadius: '6px', border: '1px solid #cbd5e1', width: '250px' }} />
-          <button style={{ padding: '0.6rem 1.5rem', background: 'var(--primary-color)', color: '#fff', border: 'none', borderRadius: '6px', fontWeight: 500 }}>Đăng ký</button>
+      <div className={styles.subscribeBox}>
+        <h3>Đăng ký nhận thông báo</h3>
+        <p>Nhận bài viết phân tích ngành mới nhất qua email.</p>
+        <div className={styles.subscribeForm}>
+          <input type="email" placeholder="Email của bạn..." className={styles.subscribeInput} />
+          <button className={styles.subscribeBtn}>Đăng ký</button>
         </div>
       </div>
+    </article>
     </div>
   );
 }

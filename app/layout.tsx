@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "UniInsight - Tương lai của bạn",
+  title: "Uni2Insight - Tương lai của bạn",
   description: "Trang tra cứu thông tin trường đại học, ngành học, điểm chuẩn, học phí",
 };
 

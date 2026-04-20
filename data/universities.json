@@ -74,5 +74,335 @@
     "tuitionText": "Từ 16.900.000 - 62.200.000 VNĐ / năm",
     "admissionScoreRange": "22 - 28.5",
     "image": "https://huongnghiep.hocmai.vn/wp-content/uploads/2025/10/de-an-tuyen-sinh-dai-hoc-y-ha-noi-2023.jpeg"
+  },
+  {
+    "id": "bach-khoa-hcm",
+    "name": "Đại học Bách Khoa - ĐHQG TP.HCM (HCMUT)",
+    "region": "Miền Nam",
+    "city": "TP. Hồ Chí Minh",
+    "majors": [
+      "Kỹ thuật",
+      "Công nghệ thông tin",
+      "Điện - Điện tử"
+    ],
+    "tuitionScore": 4,
+    "tuitionText": "Từ 14.000.000 - 30.000.000 VNĐ / học kỳ",
+    "admissionScoreRange": "24 - 28",
+    "image": "https://tse2.mm.bing.net/th/id/OIP.6QpyquiIYszTpjXtz9baAgHaE5?rs=1&pid=ImgDetMain&o=7&rm=3"
+  },
+  {
+    "id": "uit",
+    "name": "Đại học Công nghệ Thông tin - ĐHQG TP.HCM (UIT)",
+    "region": "Miền Nam",
+    "city": "TP. Hồ Chí Minh",
+    "majors": [
+      "Công nghệ thông tin",
+      "Trí tuệ nhân tạo",
+      "Khoa học dữ liệu"
+    ],
+    "tuitionScore": 3,
+    "tuitionText": "Từ 12.000.000 - 20.000.000 VNĐ / học kỳ",
+    "admissionScoreRange": "25 - 28.5",
+    "image": "https://th.bing.com/th/id/R.0397d9bae79c03cb3311319b490b12d1?rik=BYM6iuqNVzXfFA&riu=http%3a%2f%2fthongtintuyensinh247.com%2fwp-content%2fuploads%2f2023%2f07%2ftruong-dai-hoc-cong-nghe-thong-tin-tphcm.jpg&ehk=IkgrMVRUlHOjnnC3a9Kw1dfkVREJQXMw2nMvgiApUCs%3d&risl=&pid=ImgRaw&r=0"
+  },
+  {
+    "id": "spkt-hcm",
+    "name": "Đại học Sư phạm Kỹ thuật TP.HCM (HCMUTE)",
+    "region": "Miền Nam",
+    "city": "TP. Hồ Chí Minh",
+    "majors": [
+      "Cơ khí",
+      "Ô tô",
+      "Điện - Điện tử"
+    ],
+    "tuitionScore": 3,
+    "tuitionText": "Từ 10.000.000 - 18.000.000 VNĐ / học kỳ",
+    "admissionScoreRange": "22 - 27",
+    "image": "https://tse4.mm.bing.net/th/id/OIP.Gk4VQHOzzrlNXXuJYzu6DAHaFj?rs=1&pid=ImgDetMain&o=7&rm=3"
+  },
+  {
+    "id": "ptit",
+    "name": "Học viện Công nghệ Bưu chính Viễn thông (PTIT)",
+    "region": "Miền Bắc",
+    "city": "Hà Nội",
+    "majors": [
+      "Công nghệ thông tin",
+      "Viễn thông",
+      "An toàn thông tin"
+    ],
+    "tuitionScore": 3,
+    "tuitionText": "Từ 12.000.000 - 20.000.000 VNĐ / học kỳ",
+    "admissionScoreRange": "23 - 27",
+    "image": "https://tse4.mm.bing.net/th/id/OIP.iNL0vZLgv87Fxj0jgsCzVQHaEd?rs=1&pid=ImgDetMain&o=7&rm=3"
+  },
+  {
+    "id": "ftu",
+    "name": "Đại học Ngoại thương (FTU)",
+    "region": "Miền Bắc",
+    "city": "Hà Nội",
+    "majors": [
+      "Kinh tế quốc tế",
+      "Kinh doanh quốc tế",
+      "Tài chính"
+    ],
+    "tuitionScore": 4,
+    "tuitionText": "Từ 18.000.000 - 25.000.000 VNĐ / học kỳ",
+    "admissionScoreRange": "26 - 28.5",
+    "image": "https://th.bing.com/th/id/OIP.oPpwnMlbjgFj5A3XO1IZngHaE7?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3"
+  },
+  {
+    "id": "ueh",
+    "name": "Đại học Kinh tế TP.HCM (UEH)",
+    "region": "Miền Nam",
+    "city": "TP. Hồ Chí Minh",
+    "majors": [
+      "Kinh tế",
+      "Quản trị kinh doanh",
+      "Marketing"
+    ],
+    "tuitionScore": 4,
+    "tuitionText": "Từ 15.000.000 - 30.000.000 VNĐ / học kỳ",
+    "admissionScoreRange": "24 - 27.5",
+    "image": "https://phongvu.vn/cong-nghe/wp-content/uploads/2025/05/hinh-anh-ngoi-truong-ueh-1392x870.jpg"
+  },
+  {
+    "id": "luat-hn",
+    "name": "Đại học Luật Hà Nội (HLU)",
+    "region": "Miền Bắc",
+    "city": "Hà Nội",
+    "majors": [
+      "Luật",
+      "Luật kinh tế",
+      "Luật quốc tế"
+    ],
+    "tuitionScore": 3,
+    "tuitionText": "Từ 10.000.000 - 18.000.000 VNĐ / học kỳ",
+    "admissionScoreRange": "23 - 27",
+    "image": "https://th.bing.com/th/id/OIP.IA-hNGZiPbH4NDET9-xGWAHaEw?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3"
+  },
+  {
+    "id": "luat-hcm",
+    "name": "Đại học Luật TP.HCM (ULAW)",
+    "region": "Miền Nam",
+    "city": "TP. Hồ Chí Minh",
+    "majors": [
+      "Luật",
+      "Luật thương mại",
+      "Luật quốc tế"
+    ],
+    "tuitionScore": 3,
+    "tuitionText": "Từ 12.000.000 - 22.000.000 VNĐ / học kỳ",
+    "admissionScoreRange": "24 - 27.5",
+    "image": "https://th.bing.com/th/id/R.e1d2f1b315a900e1122b27fd9dfd2ecb?rik=ABisSN0S7bhAnA&pid=ImgRaw&r=0"
+  },
+  {
+    "id": "aof",
+    "name": "Học viện Tài chính (AOF)",
+    "region": "Miền Bắc",
+    "city": "Hà Nội",
+    "majors": [
+      "Tài chính",
+      "Kế toán",
+      "Kiểm toán"
+    ],
+    "tuitionScore": 3,
+    "tuitionText": "Từ 10.000.000 - 18.000.000 VNĐ / học kỳ",
+    "admissionScoreRange": "23 - 27",
+    "image": "https://hocvientaichinh.com.vn/wp-content/uploads/2013/10/1143_hYc_viYn_tai_chinh.jpg"
+  },
+  {
+    "id": "banking-academy",
+    "name": "Học viện Ngân hàng (BA)",
+    "region": "Miền Bắc",
+    "city": "Hà Nội",
+    "majors": [
+      "Ngân hàng",
+      "Tài chính",
+      "Kế toán"
+    ],
+    "tuitionScore": 3,
+    "tuitionText": "Từ 10.000.000 - 20.000.000 VNĐ / học kỳ",
+    "admissionScoreRange": "23 - 26.5",
+    "image": "https://tse3.mm.bing.net/th/id/OIP.uQVG9A8nkefSgtURT8kAKgHaEl?rs=1&pid=ImgDetMain&o=7&rm=3"
+  },
+  {
+    "id": "hnue",
+    "name": "Đại học Sư phạm Hà Nội (HNUE)",
+    "region": "Miền Bắc",
+    "city": "Hà Nội",
+    "majors": [
+      "Sư phạm",
+      "Giáo dục",
+      "Tâm lý học"
+    ],
+    "tuitionScore": 2,
+    "tuitionText": "Từ 8.000.000 - 15.000.000 VNĐ / học kỳ",
+    "admissionScoreRange": "22 - 27",
+    "image": "https://xdcs.cdnchinhphu.vn/446259493575335936/2023/1/20/sp-1674180928283979325020.jpg"
+  },
+  {
+    "id": "hanu",
+    "name": "Đại học Hà Nội (HANU)",
+    "region": "Miền Bắc",
+    "city": "Hà Nội",
+    "majors": [
+      "Ngôn ngữ Anh",
+      "Ngôn ngữ Nhật",
+      "Ngôn ngữ Hàn"
+    ],
+    "tuitionScore": 3,
+    "tuitionText": "Từ 15.000.000 - 25.000.000 VNĐ / học kỳ",
+    "admissionScoreRange": "24 - 27.5",
+    "image": "https://th.bing.com/th/id/R.b7dd2be1217a916561cdb3c6b17a8744?rik=qiK1VHmtUrcIkA&pid=ImgRaw&r=0"
+  },
+  {
+    "id": "ulis",
+    "name": "Đại học Ngoại ngữ - ĐHQG Hà Nội (ULIS)",
+    "region": "Miền Bắc",
+    "city": "Hà Nội",
+    "majors": [
+      "Ngôn ngữ",
+      "Sư phạm ngoại ngữ",
+      "Biên phiên dịch"
+    ],
+    "tuitionScore": 3,
+    "tuitionText": "Từ 12.000.000 - 20.000.000 VNĐ / học kỳ",
+    "admissionScoreRange": "24 - 27.5",
+    "image": "https://tse3.mm.bing.net/th/id/OIP.dxutBYr4f5Bl5xAj37bH5QHaEK?rs=1&pid=ImgDetMain&o=7&rm=3"
+  },
+  {
+    "id": "dav",
+    "name": "Học viện Ngoại giao (DAV)",
+    "region": "Miền Bắc",
+    "city": "Hà Nội",
+    "majors": [
+      "Quan hệ quốc tế",
+      "Kinh tế quốc tế",
+      "Luật quốc tế"
+    ],
+    "tuitionScore": 4,
+    "tuitionText": "Từ 18.000.000 - 30.000.000 VNĐ / học kỳ",
+    "admissionScoreRange": "26 - 28.5",
+    "image": "https://reviewedu.net/wp-content/uploads/2023/01/hoc-vien-ngoai-giao.jpg"
+  },
+  {
+    "id": "ajc",
+    "name": "Học viện Báo chí và Tuyên truyền (AJC)",
+    "region": "Miền Bắc",
+    "city": "Hà Nội",
+    "majors": [
+      "Báo chí",
+      "Truyền thông",
+      "Quan hệ công chúng"
+    ],
+    "tuitionScore": 3,
+    "tuitionText": "Từ 10.000.000 - 18.000.000 VNĐ / học kỳ",
+    "admissionScoreRange": "23 - 27",
+    "image": "https://thongtintuyensinh.net/wp-content/uploads/2020/07/hoc-vien-bao-chi-tuyen-truyen-duoc-quy-hoach-hien-dai-voi-nhieu-cay-xanh1568860454.jpg"
+  },
+  {
+    "id": "vinuni",
+    "name": "Đại học VinUni",
+    "region": "Miền Bắc",
+    "city": "Hà Nội",
+    "majors": [
+      "Kinh doanh",
+      "Kỹ thuật",
+      "Y khoa"
+    ],
+    "tuitionScore": 5,
+    "tuitionText": "Từ 120.000.000 VNĐ / học kỳ",
+    "admissionScoreRange": "Tuyển sinh riêng",
+    "image": "https://tse3.mm.bing.net/th/id/OIP.8rJK_bvr2Vy99f1kunyi8wHaE7?rs=1&pid=ImgDetMain&o=7&rm=3"
+  },
+  {
+    "id": "tdtu",
+    "name": "Đại học Tôn Đức Thắng (TDTU)",
+    "region": "Miền Nam",
+    "city": "TP. Hồ Chí Minh",
+    "majors": [
+      "Kinh tế",
+      "Kỹ thuật",
+      "Công nghệ thông tin"
+    ],
+    "tuitionScore": 3,
+    "tuitionText": "Từ 12.000.000 - 25.000.000 VNĐ / học kỳ",
+    "admissionScoreRange": "22 - 26.5",
+    "image": "https://www.tdtu.edu.vn/sites/www/files/articles/2022/Apr/Nha-trang/NT-0.jpg"
+  },
+  {
+    "id": "phenikaa",
+    "name": "Đại học Phenikaa",
+    "region": "Miền Bắc",
+    "city": "Hà Nội",
+    "majors": [
+      "Công nghệ thông tin",
+      "Kỹ thuật",
+      "Y dược"
+    ],
+    "tuitionScore": 3,
+    "tuitionText": "Từ 15.000.000 - 30.000.000 VNĐ / học kỳ",
+    "admissionScoreRange": "21 - 26",
+    "image": "https://tse3.mm.bing.net/th/id/OIP.RfhfkS199dr4JLXtOJlGDAHaE8?rs=1&pid=ImgDetMain&o=7&rm=3"
+  },
+  {
+    "id": "y-duoc-hcm",
+    "name": "Đại học Y Dược TP.HCM (UMP)",
+    "region": "Miền Nam",
+    "city": "TP. Hồ Chí Minh",
+    "majors": [
+      "Y khoa",
+      "Dược học",
+      "Răng Hàm Mặt"
+    ],
+    "tuitionScore": 4,
+    "tuitionText": "Từ 30.000.000 - 70.000.000 VNĐ / năm",
+    "admissionScoreRange": "23 - 28.5",
+    "image": "https://topchuyengia.vn/uploads/images/original_images/truong-dai-hoc-y-duoc-tphcm-1-5779.jpeg"
+  },
+  {
+    "id": "pham-ngoc-thach",
+    "name": "Đại học Y khoa Phạm Ngọc Thạch (PNTU)",
+    "region": "Miền Nam",
+    "city": "TP. Hồ Chí Minh",
+    "majors": [
+      "Y khoa",
+      "Điều dưỡng",
+      "Xét nghiệm"
+    ],
+    "tuitionScore": 4,
+    "tuitionText": "Từ 40.000.000 - 55.000.000 VNĐ / năm",
+    "admissionScoreRange": "22 - 27",
+    "image": "https://toplist.vn/images/800px/dai-hoc-y-khoa-pham-ngoc-thach-1096456.jpg"
+  },
+  {
+    "id": "hcmus",
+    "name": "Đại học Khoa học Tự nhiên - ĐHQG TP.HCM (HCMUS)",
+    "region": "Miền Nam",
+    "city": "TP. Hồ Chí Minh",
+    "majors": [
+      "Công nghệ thông tin",
+      "Toán",
+      "Vật lý"
+    ],
+    "tuitionScore": 3,
+    "tuitionText": "Từ 10.000.000 - 20.000.000 VNĐ / học kỳ",
+    "admissionScoreRange": "23 - 27.5",
+    "image": "https://tse4.mm.bing.net/th/id/OIP.3DUoSzfgKGqJN2vNxKTBfwHaEK?rs=1&pid=ImgDetMain&o=7&rm=3"
+  },
+  {
+    "id": "ussh-hcm",
+    "name": "Đại học Khoa học Xã hội và Nhân văn - ĐHQG TP.HCM (HCMUSSH)",
+    "region": "Miền Nam",
+    "city": "TP. Hồ Chí Minh",
+    "majors": [
+      "Truyền thông",
+      "Quan hệ quốc tế",
+      "Ngôn ngữ học"
+    ],
+    "tuitionScore": 3,
+    "tuitionText": "Từ 10.000.000 - 18.000.000 VNĐ / học kỳ",
+    "admissionScoreRange": "22 - 26.5",
+    "image": "https://tse4.mm.bing.net/th/id/OIP.n4FPW1PsBnLBYFq_H2J0FQHaE8?rs=1&pid=ImgDetMain&o=7&rm=3"
   }
 ]

@@ -5,6 +5,7 @@ import styles from "../../Review.module.css";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import InternalLink from '../../../../components/InternalLink/InternalLink';
 
 export async function generateStaticParams() {
   const reviewsDir = path.join(process.cwd(), 'data/reviews');
@@ -94,6 +95,7 @@ export default async function SubArticlePage({ params }: { params: Promise<{ sch
             source={content}
             options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
             components={{
+              InternalLink,
               img: (props: any) => (
                 <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '2rem 0', width: '100%' }}>
                   <img {...props} style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', display: 'block', objectFit: 'contain' }} />

@@ -3,30 +3,28 @@
   display: flex;
 }
 
-.ctaButton {
+.link {
   display: inline-flex;
   align-items: center;
-  padding: 0.8rem 1.2rem;
-  background-color: var(--primary-color, #0f172a);
-  color: #fff;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.2s ease-in-out;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  color: var(--primary-color, #2563eb);
+  text-decoration: none !important;
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: all 0.2s ease;
 }
 
-.ctaButton:hover {
-  transform: translateY(-2px);
-  background-color: var(--primary-hover, #1e293b);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+.link:hover {
+  color: var(--primary-hover, #1d4ed8);
+  text-decoration: underline !important;
+  text-underline-offset: 4px;
 }
 
-.icon {
-  margin-right: 0.5rem;
+.arrow {
+  margin-left: 0.35rem;
   font-size: 1.1rem;
+  transition: transform 0.2s ease;
 }
 
-.text {
-  font-size: 0.95rem;
+.link:hover .arrow {
+  transform: translateX(4px);
 }

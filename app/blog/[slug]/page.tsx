@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "./page.module.css";
 import { notFound } from "next/navigation";
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import InternalLink from '../../../components/InternalLink/InternalLink';
 
 export async function generateStaticParams() {
   const blogDir = path.join(process.cwd(), 'data/blog');
@@ -71,6 +72,7 @@ export default async function BlogDeepPage({ params }: { params: Promise<{ slug:
             source={content} 
             options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} 
             components={{
+              InternalLink,
               img: (props: any) => (
                 <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '1.5rem 0', width: '100%' }}>
                   <img {...props} style={{ maxWidth: '100%', height: 'auto', borderRadius: 'var(--radius-md)', display: 'block', objectFit: 'contain' }} />

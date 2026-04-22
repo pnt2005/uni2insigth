@@ -98,6 +98,7 @@ export default async function SchoolReviewPage({ params }: { params: Promise<{ s
           source={content} 
           options={{ mdxOptions: { remarkPlugins: [(await import('remark-gfm')).default] } }} 
           components={{
+            InternalLink,
             img: (props: any) => (
               <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '2rem 0', width: '100%' }}>
                 <img {...props} style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', display: 'block', objectFit: 'contain' }} />

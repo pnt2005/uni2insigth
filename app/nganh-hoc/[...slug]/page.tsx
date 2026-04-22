@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import styles from './page.module.css';
+import InternalLink from '../../../components/InternalLink/InternalLink';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string[] }> }) {
   const resolvedParams = await params;
@@ -94,6 +95,7 @@ export default async function NganhHocDeepPage({ params }: { params: Promise<{ s
             source={content} 
             options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} 
             components={{
+              InternalLink,
               img: (props: any) => (
                 <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '2rem 0', width: '100%' }}>
                   <img {...props} style={{ maxWidth: '100%', height: 'auto', borderRadius: 'var(--radius-md)', display: 'block', objectFit: 'contain' }} />

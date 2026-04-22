@@ -108,25 +108,6 @@ export default async function NganhHocDeepPage({ params }: { params: Promise<{ s
               )
             }}
           />
-        </div>
-
-        {data.faq && data.faq.length > 0 && (
-          <div className={styles.faqSection}>
-            <h2>Câu hỏi thường gặp (FAQ)</h2>
-            <div className={styles.faqList}>
-              {data.faq.map((item: any, idx: number) => (
-                <div key={idx} className={styles.faqItem}>
-                  <h4 className={styles.faqQuestion}>
-                    Q: {item.question}
-                  </h4>
-                  <p className={styles.faqAnswer}>
-                    A: {item.answer}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </article>
     </div>
   );

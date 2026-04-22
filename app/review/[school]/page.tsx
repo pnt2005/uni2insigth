@@ -115,17 +115,6 @@ export default async function SchoolReviewPage({ params }: { params: Promise<{ s
         {/* You can still insert dynamic InternalLink statically if MDX doesn't have it, or modify MDX to allow custom components */}
       
 
-        {data.faq && data.faq.length > 0 && (
-          <div className={`${styles.faqSection}`} id="faq">
-            <h2>Câu hỏi thường gặp (FAQ)</h2>
-            {data.faq.map((item: any, idx: number) => (
-              <div className={styles.faqItem} key={idx}>
-                <div className={styles.faqQuestion}>{item.question}</div>
-                <div className={styles.faqAnswer}>{item.answer}</div>
-              </div>
-            ))}
-          </div>
-        )}
       </div>
     </article>
   );

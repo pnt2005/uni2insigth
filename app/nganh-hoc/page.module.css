@@ -1,3 +1,102 @@
+/* --- BIẾN CSS ĐỀ XUẤT (NẾU CHƯA CÓ) --- */
+:root {
+  --surface: #ffffff;
+  --background: #f3f4f6;
+  --border: #e5e7eb;
+  --primary: #3b82f6;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --radius-lg: 0.75rem;
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --transition: all 0.2s ease-in-out;
+}
+
+/* --- GRID CHỨA DANH SÁCH NGÀNH HỌC --- */
+.program-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+/* --- BLOCK: PROGRAM CARD --- */
+.program-card {
+  /* 1. Layout & Box Model */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+
+  /* 2. Visual */
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+
+  /* 3. Animation */
+  transition: var(--transition);
+}
+
+.program-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-lg);
+}
+
+/* --- ELEMENTS TRONG PROGRAM CARD --- */
+
+.program-card__category {
+  /* Layout & Box Model */
+  align-self: flex-start;
+  /* Tránh thẻ bị kéo dài toàn chiều ngang */
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+
+  /* Visual */
+  background-color: var(--background);
+
+  /* Typography */
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.program-card__title {
+  /* Box Model */
+  margin: 0;
+
+  /* Typography */
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.program-card__meta {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: auto;
+  /* Tự động đẩy phần meta xuống cuối cùng của thẻ */
+
+  /* Typography */
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.program-card__meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.program-card__icon {
+  flex-shrink: 0;
+  /* Ngăn không cho icon bị bóp méo khi text quá dài */
+  font-size: 1.1rem;
+}
+
+/* --- LEGACY SHARED FOR OTHER PAGES (Blog, Review, Tra cứu...) --- */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -35,6 +134,7 @@
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--text-primary);
+  margin: 0;
 }
 
 .meta {

@@ -6,10 +6,10 @@ import styles from "./Home.module.css";
 
 const FEATURED_MAJORS = [
   { icon: '💻', name: 'CNTT', href: '/nganh-hoc/ky-thuat-cong-nghe/cong-nghe-thong-tin' },
-  { icon: '📊', name: 'Kinh Tế', href: '/nganh-hoc/kinh-doanh-quan-ly' },
-  { icon: '🏥', name: 'Y Dược', href: '/nganh-hoc/y-duoc' },
-  { icon: '🎨', name: 'Thiết Kế', href: '/nganh-hoc/nghe-thuat-thiet-ke' },
-  { icon: '🗣️', name: 'Ngôn Ngữ', href: '/nganh-hoc/ngon-ngu' }
+  { icon: '📊', name: 'Kinh Tế', href: '/nganh-hoc/quan-tri-kinh-doanh' },
+  { icon: '🏥', name: 'Y Dược', href: '/nganh-hoc/y-khoa' },
+  { icon: '🎨', name: 'Thiết Kế', href: '/nganh-hoc/thiet-ke-do-hoa' },
+  { icon: '🗣️', name: 'Ngôn Ngữ', href: '/nganh-hoc/ngon-ngu-anh' }
 ];
 
 export default async function Home() {
@@ -19,7 +19,7 @@ export default async function Home() {
     const unisContent = fs.readFileSync(unisPath, 'utf8');
     const parsedUnis = JSON.parse(unisContent);
     // Lấy 4 trường đầu tiên làm Top Schools
-    topSchools = parsedUnis.slice(0, 4).map((u: any) => ({
+    topSchools = parsedUnis.slice(0, 9).map((u: any) => ({
       id: u.id,
       name: u.name || "Tên Trường",
       type: u.name.includes("Quốc gia") || u.name.includes("Bách Khoa") ? "Công lập" : "Tư thục/Quốc tế",

@@ -12,32 +12,74 @@
   box-shadow: var(--shadow-sm);
 }
 
+.header {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.category {
+  text-transform: uppercase;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+  display: inline-block;
+  background: var(--background);
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+}
+
 .title {
   font-size: 2.25rem;
   font-weight: 800;
   color: var(--text-primary);
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
   line-height: 1.3;
+}
+
+.description {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
 }
 
 .metaTags {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid var(--border);
+  gap: 2rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
 }
 
-.tag {
-  background: var(--background);
-  color: var(--primary);
-  padding: 0.4rem 0.8rem;
-  border-radius: 999px;
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.metaIcon {
+  font-size: 1.5rem;
+}
+
+.metaLabel {
   font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.metaValue {
   font-weight: 600;
+  color: var(--text-primary);
+  font-size: 1rem;
 }
 
 /* Typography styles for Content */
+.content {
+  line-height: 1.8;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
 .content h2 {
   font-size: 1.5rem;
   font-weight: 700;
@@ -56,9 +98,9 @@
 }
 
 .content p {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--text-primary);
-  line-height: 1.6;
+  line-height: 1.7;
   margin-bottom: 1.25rem;
 }
 
@@ -86,47 +128,21 @@
 .content ol {
   list-style: disc;
   padding-left: 1.5rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
   color: var(--text-primary);
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 1.1rem;
+  line-height: 1.7;
 }
 
 .content li {
   margin-bottom: 0.5rem;
 }
 
-/* FAQ section */
-.faqSection {
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px dashed var(--border);
-}
-
-.faqItem {
-  margin-bottom: 1.5rem;
-}
-
-.faqQuestion {
-  font-weight: 700;
-  color: var(--text-primary);
-  font-size: 1.125rem;
-  margin-bottom: 0.5rem;
-  line-height: 1.4;
-}
-
-.faqAnswer {
-  font-size: 1rem;
-  color: var(--text-primary);
-  line-height: 1.6;
-}
-
-/* ---------------- Table Styles for MDX ---------------- */
 .content table {
   width: 100%;
   border-collapse: collapse;
   margin: 1.5rem 0;
-  font-size: 0.95rem;
+  font-size: 1rem;
   background-color: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -156,75 +172,45 @@
   font-weight: 700;
 }
 
-.content tbody tr:last-child td {
-  border-bottom: none;
-}
-
-.content tbody tr:nth-child(even) {
-  background-color: rgba(0, 0, 0, 0.015);
-}
-
-.content tbody tr:hover {
-  background-color: rgba(0, 0, 0, 0.03);
-}
-
-/* Thông tin ngày cấp, tác giả */
-.metaInfo {
-  color: var(--text-secondary);
-  margin-bottom: 2rem;
-  font-size: 0.9rem;
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-}
-
-.metaInfo span {
-  display: flex;
-  align-items: center;
-}
-
-/* Đăng ký nhận thông báo */
-.subscribeBox {
+/* FAQ section */
+.faqSection {
   margin-top: 3rem;
-  padding: 2rem;
+  padding: 2.5rem;
   background: var(--background);
   border-radius: var(--radius-xl);
-  text-align: center;
   border: 1px solid var(--border);
 }
 
-.subscribeBox h3 {
+.faqSection h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 0.5rem;
-}
-
-.subscribeBox p {
-  color: var(--text-secondary);
   margin-bottom: 1.5rem;
-  font-size: 0.95rem;
 }
 
-.subscribeForm {
+.faqList {
   display: flex;
-  gap: 0.5rem;
-  justify-content: center;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
-.subscribeInput {
-  padding: 0.6rem 1rem;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border);
-  width: 250px;
+.faqItem {
   background: var(--surface);
-  color: var(--text-primary);
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
 
-.subscribeBtn {
-  padding: 0.6rem 1.5rem;
-  background: var(--primary-color, var(--primary));
-  color: #fff;
-  border: none;
-  border-radius: var(--radius-md);
-  font-weight: 500;
-  cursor: pointer;
+.faqQuestion {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 1.125rem;
+  margin-bottom: 0.75rem;
+}
+
+.faqAnswer {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
 }

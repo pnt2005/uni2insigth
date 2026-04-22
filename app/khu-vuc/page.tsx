@@ -1,6 +1,7 @@
 import FilterLayout from "../../components/Common/FilterLayout";
 import Link from "next/link";
 import styles from "../nganh-hoc/page.module.css";
+import filterStyles from "../../components/Common/FilterLayout.module.css";
 import { slugify } from "../../utils/slugify";
 
 import fs from 'fs';
@@ -48,10 +49,40 @@ export default async function RegionList() {
     };
   });
 
+  const customFilters = (
+    <>
+      <div className={filterStyles.filterGroup}>
+        <label className={filterStyles.filterLabel}>Phân Loại Vùng Miền</label>
+        <select className={filterStyles.select}>
+          <option value="">Tất cả vùng miền</option>
+          <option value="mb">Miền Bắc</option>
+          <option value="mt">Miền Trung</option>
+          <option value="mn">Miền Nam</option>
+        </select>
+      </div>
+
+      <div className={filterStyles.filterGroup}>
+        <label className={filterStyles.filterLabel}>Mật Độ Trường Đại Học</label>
+        <div className={filterStyles.checkboxGroup}>
+          <label className={filterStyles.checkboxLabel}>
+            <input type="checkbox" /> Nhiều nhất ({'>'} 50 trường)
+          </label>
+          <label className={filterStyles.checkboxLabel}>
+            <input type="checkbox" /> Trung bình (10 - 50 trường)
+          </label>
+          <label className={filterStyles.checkboxLabel}>
+            <input type="checkbox" /> Ít nhất ({'<'} 10 trường)
+          </label>
+        </div>
+      </div>
+    </>
+  );
+
   return (
     <FilterLayout 
       title="Tra Cứu Theo Khu Vực" 
       subtitle="Tìm kiếm cụm trường đại học, cao đẳng theo tỉnh thành phố."
+      filters={customFilters}
     >
       <div className={styles.grid}>
         {regions.map((region, idx) => (

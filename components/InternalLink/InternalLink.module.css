@@ -1,30 +1,31 @@
 .container {
   margin: 1.5rem 0;
-  display: flex;
 }
 
 .link {
   display: inline-flex;
   align-items: center;
-  color: var(--primary-color, #2563eb);
-  text-decoration: none !important;
-  font-weight: 600;
-  font-size: 1.05rem;
+  color: var(--text-color);
   transition: all 0.2s ease;
 }
 
 .link:hover {
-  color: var(--primary-hover, #1d4ed8);
-  text-decoration: underline !important;
+  color: var(--primary-color, #2563eb);
+  text-decoration: underline;
   text-underline-offset: 4px;
 }
 
 .arrow {
   margin-left: 0.35rem;
-  font-size: 1.1rem;
   transition: transform 0.2s ease;
 }
 
 .link:hover .arrow {
   transform: translateX(4px);
+}
+
+.text {
+  font-weight: 600;
+  font-size: 1.05rem;
+  text-decoration: none !important;
 }

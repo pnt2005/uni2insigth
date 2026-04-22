@@ -9,8 +9,9 @@ interface InternalLinkProps {
 export default function InternalLink({ href, text }: InternalLinkProps) {
   return (
     <div className={styles.container}>
+      Xem thêm:
       <Link href={href} className={styles.link}>
-        Xem thêm: {text} <span className={styles.arrow}>→</span>
+        {text} <span className={styles.arrow}>→</span>
       </Link>
     </div>
   );

@@ -95,8 +95,8 @@ export default async function NganhHocDeepPage({ params }: { params: Promise<{ s
             options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} 
             components={{
               img: (props: any) => (
-                <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '2rem 0' }}>
-                  <img {...props} style={{ maxWidth: '100%', height: 'auto', borderRadius: 'var(--radius-md)', display: 'block' }} />
+                <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '2rem 0', width: '100%' }}>
+                  <img {...props} style={{ maxWidth: '100%', height: 'auto', borderRadius: 'var(--radius-md)', display: 'block', objectFit: 'contain' }} />
                   {props.alt && (
                     <em style={{ display: 'block', textAlign: 'center', fontSize: '0.9rem', color: 'var(--text-secondary)', marginTop: '0.75rem' }}>
                       {props.alt}

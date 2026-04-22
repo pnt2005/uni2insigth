@@ -24,13 +24,13 @@ export async function generateStaticParams() {
 
   for (const school of schools) {
     const schoolDir = path.join(reviewsDir, school);
-    
+
     // Đọc tất cả các file MDX nếu trường đã tạo thư mục con
     if (fs.existsSync(schoolDir) && fs.statSync(schoolDir).isDirectory()) {
       const slugs = fs.readdirSync(schoolDir)
         .filter(f => f.endsWith('.mdx') || f.endsWith('.md'))
         .map(f => f.replace(/\.mdx?$/, ''));
-      
+
       for (const slug of slugs) {
         params.push({ school, slug });
       }
@@ -48,7 +48,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ school: string, slug: string }> }) {
   const resolvedParams = await params;
   const { school, slug } = resolvedParams;
-  
+
   const mdxPath = path.join(process.cwd(), 'data/reviews', school, `${slug}.mdx`);
   if (fs.existsSync(mdxPath)) {
     const fileContent = fs.readFileSync(mdxPath, 'utf8');
@@ -85,14 +85,26 @@ export default async function SubArticlePage({ params }: { params: Promise<{ sch
       <article className={styles.article}>
         <div style={{ marginBottom: '2rem' }}>
           <Link href={`/review/${school}`} style={{ display: 'inline-block', color: 'var(--primary-color)', textDecoration: 'none', fontWeight: 500 }}>
-            ← Quay lại bài review {data.schoolName || schoolName}
+            ← Quay lại bài review {data.name || schoolName}
           </Link>
         </div>
         <h1 className={styles.title}>{data.title}</h1>
         <div className={styles.content}>
-          <MDXRemote 
-            source={content} 
-            options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} 
+          <MDXRemote
+            source={content}
+            options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+            components={{
+              img: (props: any) => (
+                <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '2rem 0', width: '100%' }}>
+                  <img {...props} style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', display: 'block', objectFit: 'contain' }} />
+                  {props.alt && (
+                    <em style={{ display: 'block', textAlign: 'center', fontSize: '0.9rem', color: 'var(--text-secondary)', marginTop: '0.75rem' }}>
+                      {props.alt}
+                    </em>
+                  )}
+                </span>
+              )
+            }}
           />
         </div>
       </article>
@@ -114,7 +126,7 @@ export default async function SubArticlePage({ params }: { params: Promise<{ sch
           Bài viết chi tiết đang được cập nhật
         </h1>
         <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '600px', margin: '0 auto', lineHeight: 1.6 }}>
-          Nội dung chuyên sâu về phân mục này cho {schoolName} hiện đang được đội ngũ ban biên tập Uni2Insight tổng hợp và sẽ ra mắt trong thời gian sớm nhất. 
+          Nội dung chuyên sâu về phân mục này cho {schoolName} hiện đang được đội ngũ ban biên tập Uni2Insight tổng hợp và sẽ ra mắt trong thời gian sớm nhất.
         </p>
       </div>
     </article>

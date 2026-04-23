@@ -108,6 +108,7 @@ export default async function NganhHocDeepPage({ params }: { params: Promise<{ s
               )
             }}
           />
+        </div>
       </article>
     </div>
   );

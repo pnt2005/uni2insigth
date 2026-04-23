@@ -74,7 +74,7 @@ export default async function ReviewLayout({
             </ul>
           </nav>
 
-          <nav className={styles.toc} aria-label="Mục lục bài viết">
+          {/* <nav className={styles.toc} aria-label="Mục lục bài viết">
             <h3 className={styles.sidebarTitle}>Mục Lục (TOC)</h3>
             <ul className={styles.tocList}>
               <li><a href="#gioi-thieu">1. Giới thiệu chung</a></li>
@@ -82,7 +82,7 @@ export default async function ReviewLayout({
               <li><a href="#co-hoi">3. Cơ hội việc làm</a></li>
               <li><a href="#faq">4. Câu hỏi thường gặp (FAQ)</a></li>
             </ul>
-          </nav>
+          </nav> */}
         </div>
       </aside>
     </div>

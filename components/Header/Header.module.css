@@ -78,3 +78,41 @@
   box-shadow: var(--shadow-md);
   transform: translateY(-1px);
 }
+
+.loginBtnDesktop {
+  background-color: var(--primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.loginBtnDesktop:hover {
+  background-color: var(--primary-hover);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.menuBtn {
+  display: block;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: var(--transition);
+}
+
+.menuBtn:hover {
+  color: var(--primary);
+  background-color: rgba(var(--primary), 0.1);
+  border-radius: var(--radius-full);
+}
+
+@media (min-width: 1024px) {
+  .menuBtn {
+    display: none;
+  }
+}

@@ -1,3 +1,52 @@
+/* =============================================
+   SearchBar.module.css
+   Desktop: full search panel luôn hiện
+   Mobile:  chỉ hiện icon, expand khi bấm
+   ============================================= */
+
+/* Container bọc ngoài */
+.searchContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Icon button (mobile only) ── */
+.iconOnly {
+  display: none; /* Ẩn mặc định trên desktop */
+}
+
+.iconHidden {
+  display: none !important;
+}
+
+.searchIconBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.searchIconBtn:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+/* ── Panel wrapper ── */
+.panelWrapper {
+  /* Desktop: luôn hiện */
+}
+
+/* ── Search Wrapper (panel bên trong) ── */
 .searchWrapper {
   position: relative;
   display: flex;
@@ -11,9 +60,10 @@
 
 .searchWrapper:focus-within {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.15);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
 }
 
+/* ── Type selector ── */
 .typeSelectorContainer {
   position: relative;
   display: flex;
@@ -37,6 +87,7 @@
   align-items: center;
   gap: 0.4rem;
   font-family: inherit;
+  white-space: nowrap;
 }
 
 .typeSelectBtn:hover {
@@ -55,9 +106,9 @@
   left: 0;
   background: white;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   border: 1px solid var(--border);
-  min-width: 120px;
+  min-width: 110px;
   z-index: 1001;
   overflow: hidden;
   animation: slideDown 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -85,38 +136,62 @@
 
 .activeType {
   color: var(--primary);
-  background: rgba(0, 112, 243, 0.05);
+  background: rgba(79, 70, 229, 0.05);
 }
 
+/* ── Search Input ── */
 .searchInput {
-  padding: 0.6rem 1.2rem;
-  padding-right: 2.5rem;
+  padding: 0.6rem 2.5rem 0.6rem 1rem;
   border: none;
   background: transparent;
   outline: none;
   font-size: 0.95rem;
-  width: 200px;
+  width: 180px;
   color: var(--text-primary);
   border-radius: 0 999px 999px 0;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .searchInput:focus {
-  width: 250px;
+  width: 220px;
 }
 
+/* ── Icons ── */
 .searchIcon {
   position: absolute;
-  right: 14px;
+  right: 38px; /* Nhường chỗ cho nút close */
   color: #888;
   pointer-events: none;
   transition: color 0.3s ease;
 }
 
-.searchInput:focus + .searchIcon {
+.searchInput:focus ~ .searchIcon {
   color: var(--primary);
 }
 
+/* Nút đóng — chỉ hiện trên mobile khi expanded */
+.searchCloseBtn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  margin-right: 0.25rem;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.searchCloseBtn:hover {
+  background: var(--background);
+  color: var(--text-primary);
+}
+
+/* ── Dropdown kết quả ── */
 .dropdown {
   position: absolute;
   top: calc(100% + 10px);
@@ -124,7 +199,7 @@
   right: 0;
   background: white;
   border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
   border: 1px solid var(--border);
   max-height: 450px;
   overflow-y: auto;
@@ -189,7 +264,7 @@
 .matchHighlight {
   color: var(--primary);
   font-weight: 500;
-  background: rgba(0, 112, 243, 0.1);
+  background: rgba(79, 70, 229, 0.1);
   padding: 2px 6px;
   border-radius: 4px;
   display: inline-block;
@@ -203,8 +278,68 @@
   font-size: 0.95rem;
 }
 
-@media (max-width: 768px) {
-  .searchInput, .searchInput:focus {
-    width: 200px;
+/* =============================================
+   RESPONSIVE — Mobile Breakpoints
+   ============================================= */
+
+@media (max-width: 767px) {
+  /* Icon button hiện trên mobile */
+  .iconOnly {
+    display: flex;
+  }
+
+  /* Panel ẩn mặc định trên mobile */
+  .panelWrapper {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Khi expanded — hiện panel full-width overlay */
+  .panelExpanded {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Khi mobile, search wrapper chiếm toàn bộ chiều ngang */
+  .panelExpanded .searchWrapper {
+    flex: 1;
+  }
+
+  /* Input chiếm toàn bộ khoảng trống còn lại */
+  .panelExpanded .searchInput,
+  .panelExpanded .searchInput:focus {
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* Hiện nút đóng trên mobile */
+  .panelExpanded .searchCloseBtn {
+    display: flex;
+  }
+
+  /* Điều chỉnh vị trí search icon khi có close btn */
+  .panelExpanded .searchIcon {
+    right: 10px;
+  }
+
+  /* Dropdown chiếm full màn hình */
+  .panelExpanded .dropdown {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    border-radius: 0 0 16px 16px;
+    max-height: calc(100vh - 80px);
   }
 }

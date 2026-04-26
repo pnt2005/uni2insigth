@@ -6,6 +6,13 @@
   box-shadow: var(--shadow-sm);
 }
 
+@media (max-width: 768px) {
+  .article {
+    padding: 1.25rem 1rem;
+    border-radius: var(--radius-lg);
+  }
+}
+
 .title {
   font-size: 2.25rem;
   /* Giảm từ 2.5rem để tiêu đề gọn gàng hơn */
@@ -16,9 +23,16 @@
   /* Chuẩn line-height cho tiêu đề lớn */
 }
 
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.5rem;
+  }
+}
+
 .metaTags {
   display: flex;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   margin-bottom: 2rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid var(--border);
@@ -126,6 +140,7 @@
 }
 
 /* ---------------- Table Styles for MDX ---------------- */
+/* Bọc ngoài để scroll ngang trên mobile — xem Review layout */
 .content table {
   width: 100%;
   border-collapse: collapse;
@@ -135,6 +150,21 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   overflow: hidden; /* Đảm bảo border-radius hoạt động với thead/tbody */
+}
+
+@media (max-width: 768px) {
+  .content table {
+    font-size: 0.85rem;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .content th,
+  .content td {
+    padding: 0.75rem 0.625rem;
+    min-width: 100px;
+  }
 }
 
 .content th,

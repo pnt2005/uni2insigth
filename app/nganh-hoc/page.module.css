@@ -66,9 +66,15 @@
 
   /* Typography */
   color: var(--text-primary);
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 700;
   line-height: 1.4;
+}
+
+@media (max-width: 640px) {
+  .program-card__title {
+    font-size: 1rem;
+  }
 }
 
 .program-card__meta {
@@ -131,10 +137,16 @@
 }
 
 .title {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--text-primary);
   margin: 0;
+}
+
+@media (max-width: 640px) {
+  .title {
+    font-size: 1rem;
+  }
 }
 
 .meta {

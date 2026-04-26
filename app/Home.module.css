@@ -7,6 +7,15 @@
   margin-bottom: 4rem;
 }
 
+/* ── Responsive overrides (xem thêm app/responsive.css) ── */
+@media (max-width: 768px) {
+  .hero {
+    padding: 3.5rem 1rem;
+    margin-bottom: 2.5rem;
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  }
+}
+
 .heroTitle {
   font-size: 3rem;
   font-weight: 800;
@@ -14,11 +23,30 @@
   line-height: 1.2;
 }
 
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 1.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 1.5rem;
+  }
+}
+
 .heroSubtitle {
   font-size: 1.25rem;
   opacity: 0.9;
   max-width: 600px;
   margin: 0 auto 2.5rem;
+}
+
+@media (max-width: 768px) {
+  .heroSubtitle {
+    font-size: 0.95rem;
+    margin-bottom: 1.75rem;
+  }
 }
 
 .searchBar {
@@ -32,6 +60,15 @@
   animation: slideUp 0.5s ease-out;
 }
 
+@media (max-width: 640px) {
+  .searchBar {
+    flex-direction: column;
+    border-radius: 1rem;
+    padding: 0.75rem;
+    gap: 0.5rem;
+  }
+}
+
 .searchInput {
   flex: 1;
   border: none;
@@ -40,6 +77,15 @@
   border-radius: 999px 0 0 999px;
   outline: none;
   color: var(--text-primary);
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .searchInput {
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    padding: 0.875rem 1rem;
+  }
 }
 
 .searchButton {
@@ -52,6 +98,15 @@
   font-size: 1.125rem;
   cursor: pointer;
   transition: var(--transition);
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .searchButton {
+    border-radius: 0.75rem;
+    padding: 0.875rem;
+    font-size: 1rem;
+  }
 }
 
 .searchButton:hover {
@@ -64,6 +119,12 @@
   margin-bottom: 5rem;
 }
 
+@media (max-width: 640px) {
+  .quickAccess {
+    margin-bottom: 3rem;
+  }
+}
+
 .sectionTitle {
   font-size: 2rem;
   font-weight: 700;
@@ -72,11 +133,25 @@
   color: var(--text-primary);
 }
 
+@media (max-width: 640px) {
+  .sectionTitle {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
 .iconGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 2rem;
   justify-items: center;
+}
+
+@media (max-width: 640px) {
+  .iconGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
 }
 
 .iconCard {
@@ -122,10 +197,23 @@
   margin-bottom: 5rem;
 }
 
+@media (max-width: 640px) {
+  .topSchools {
+    margin-bottom: 3rem;
+  }
+}
+
 .schoolGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
+}
+
+@media (max-width: 640px) {
+  .schoolGrid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
 }
 
 .schoolCard {
@@ -195,6 +283,12 @@
   border: 1px solid var(--border);
   margin-bottom: 2rem;
   overflow: hidden;
+}
+
+@media (max-width: 480px) {
+  .newsTicker {
+    display: none;
+  }
 }
 
 .newsLabel {

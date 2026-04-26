@@ -1,0 +1,404 @@
+/*
+ * ============================================================
+ *  RESPONSIVE.CSS — Cấu hình Responsive tập trung
+ *  Toàn bộ media query của website được đặt tại đây để dễ
+ *  theo dõi và chỉnh sửa.
+ *
+ *  Breakpoints:
+ *    Mobile  : max-width: 640px
+ *    Tablet  : max-width: 768px
+ *    Laptop  : max-width: 1024px
+ *    Desktop : min-width: 1025px (default — không cần query)
+ * ============================================================
+ */
+
+/* ============================================================
+   1. GLOBALS — Container, Body
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+/* ============================================================
+   2. HEADER — Navigation & Search Bar
+   ============================================================ */
+
+/* Ẩn nút Login trên mobile (đã có trong mobile menu) */
+@media (max-width: 767px) {
+  .header-login-desktop {
+    display: none !important;
+  }
+}
+
+/* Thu nhỏ search input trên mobile */
+@media (max-width: 640px) {
+  /* SearchBar trong Header — giảm chiều rộng để vừa màn hình */
+  .header-searchbar-input,
+  .header-searchbar-input:focus {
+    width: 120px !important;
+  }
+
+  .header-searchbar-type-btn {
+    padding: 0.5rem 0.6rem 0.5rem 0.8rem !important;
+    font-size: 0.8rem !important;
+  }
+}
+
+/* ============================================================
+   3. HERO SECTION — Trang chủ
+   ============================================================ */
+
+@media (max-width: 768px) {
+  /* Hero title nhỏ hơn trên mobile */
+  .hero-title-responsive {
+    font-size: 2rem !important;
+  }
+
+  .hero-subtitle-responsive {
+    font-size: 1rem !important;
+  }
+
+  /* Search bar trang chủ — stack dọc trên mobile */
+  .home-searchbar-responsive {
+    flex-direction: column !important;
+    border-radius: 1rem !important;
+    padding: 0.75rem !important;
+    gap: 0.5rem !important;
+  }
+
+  .home-searchbar-responsive input {
+    border-radius: 0.75rem !important;
+    font-size: 1rem !important;
+    width: 100% !important;
+  }
+
+  .home-searchbar-responsive button {
+    border-radius: 0.75rem !important;
+    padding: 0.75rem !important;
+    width: 100% !important;
+    font-size: 1rem !important;
+  }
+}
+
+/* ============================================================
+   4. QUICK ACCESS — Icon Grid (Ngành học nổi bật)
+   ============================================================ */
+
+@media (max-width: 640px) {
+  .icon-grid-responsive {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 1rem !important;
+  }
+
+  .icon-card-responsive {
+    padding: 1.25rem 0.75rem !important;
+  }
+
+  .icon-wrapper-responsive {
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 1.5rem !important;
+  }
+
+  .icon-label-responsive {
+    font-size: 0.8rem !important;
+  }
+}
+
+/* ============================================================
+   5. SCHOOL GRID — Top Trường Được Quan Tâm
+   ============================================================ */
+
+@media (max-width: 640px) {
+  .school-grid-responsive {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1023px) {
+  .school-grid-responsive {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* ============================================================
+   6. NEWS TICKER
+   ============================================================ */
+
+@media (max-width: 640px) {
+  .news-ticker-responsive {
+    padding: 0.75rem !important;
+    font-size: 0.875rem !important;
+  }
+}
+
+/* ============================================================
+   7. FILTER LAYOUT — Sidebar + Main Content (Ngành học, Blog, Khu vực)
+   ============================================================ */
+
+@media (max-width: 1023px) {
+  /* Sidebar bộ lọc — thu gọn thành accordion button trên mobile */
+  .filter-sidebar-responsive {
+    position: relative !important;
+    top: auto !important;
+  }
+}
+
+/* ============================================================
+   8. REVIEW LAYOUT — Trang chi tiết trường (2 cột)
+   ============================================================ */
+
+@media (max-width: 1023px) {
+  /* Sidebar TOC ẩn trên mobile, chỉ show main content */
+  .review-sidebar-mobile-hide {
+    display: none !important;
+  }
+}
+
+/* ============================================================
+   9. ARTICLE / BLOG — Trang bài viết
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .article-responsive {
+    padding: 1.5rem 1rem !important;
+    border-radius: 0.75rem !important;
+  }
+
+  .article-title-responsive {
+    font-size: 1.625rem !important;
+  }
+
+  .article-meta-tags-responsive {
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+  }
+
+  /* Bảng trong MDX — cho phép scroll ngang trên mobile */
+  .content-table-wrapper {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  /* Subscribe box form — stack dọc */
+  .subscribe-form-responsive {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .subscribe-input-responsive {
+    width: 100% !important;
+  }
+}
+
+/* ============================================================
+   10. FOOTER
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .footer-top-responsive {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 2.5rem 2rem !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-top-responsive {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  .footer-bottom-responsive {
+    flex-direction: column-reverse !important;
+    gap: 1rem !important;
+    text-align: center !important;
+  }
+}
+
+/* ============================================================
+   11. SECTION TITLES
+   ============================================================ */
+
+@media (max-width: 640px) {
+  .section-title-responsive {
+    font-size: 1.5rem !important;
+    margin-bottom: 2rem !important;
+  }
+}
+
+/* ============================================================
+   12. NGANH HOC — Program Grid
+   ============================================================ */
+
+@media (max-width: 640px) {
+  .program-grid-responsive {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ============================================================
+   13. MOBILE NAV DRAWER — Overlay menu khi bấm hamburger
+   ============================================================ */
+
+.mobile-nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 100;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  animation: fadeInOverlay 0.2s ease;
+}
+
+.mobile-nav-overlay.open {
+  display: block;
+}
+
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.mobile-nav-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 280px;
+  max-width: 85vw;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 101;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.12);
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-nav-drawer.open {
+  transform: translateX(0);
+}
+
+.mobile-nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.mobile-nav-logo {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--primary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mobile-nav-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+  padding: 0.25rem;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.mobile-nav-close:hover {
+  color: var(--text-primary);
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link:active {
+  background: var(--background);
+  color: var(--primary);
+  padding-left: 1.25rem;
+}
+
+.mobile-nav-link-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.mobile-nav-footer {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.mobile-nav-login-btn {
+  display: block;
+  width: 100%;
+  padding: 0.875rem;
+  background: var(--primary);
+  color: white;
+  text-align: center;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.mobile-nav-login-btn:hover {
+  background: var(--primary-hover);
+}
+
+/* Hamburger button — chỉ hiện trên mobile */
+.hamburger-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-primary);
+  border-radius: var(--radius-md);
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.hamburger-btn:hover {
+  background: var(--background);
+}
+
+@media (max-width: 767px) {
+  .hamburger-btn {
+    display: flex;
+  }
+}

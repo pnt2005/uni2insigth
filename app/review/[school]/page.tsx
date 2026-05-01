@@ -87,6 +87,11 @@ export default async function SchoolReviewPage({ params }: { params: Promise<{ s
     "url": `https://uni2insight.com/review/${school}`,
     "image": universityData?.image || "https://uni2insight.com/favicon.ico",
     "description": data.description || `Thông tin review trường ${universityData?.name || schoolName}`,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Việt Nam",
+      "streetAddress": universityData?.address || data.address || "Đang cập nhật địa chỉ"
+    }
   };
 
   return (

@@ -3,6 +3,13 @@ import Image from "next/image";
 import fs from "fs";
 import path from "path";
 import styles from "./Home.module.css";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/',
+  },
+};
 
 const FEATURED_MAJORS = [
   { icon: '💻', name: 'CNTT', href: '/nganh-hoc/ky-thuat-cong-nghe/cong-nghe-thong-tin' },

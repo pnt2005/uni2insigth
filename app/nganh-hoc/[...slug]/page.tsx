@@ -20,10 +20,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: data.title || data.majorName || slug.replace(/-/g, ' ').toUpperCase(),
       description: data.description,
       keywords: data.keywords,
+      alternates: {
+        canonical: `/nganh-hoc/${slugPaths.join('/')}`,
+      },
     };
   }
 
-  return { title: slug.replace(/-/g, ' ').toUpperCase() };
+  return { 
+    title: slug.replace(/-/g, ' ').toUpperCase(),
+    alternates: {
+      canonical: `/nganh-hoc/${slugPaths.join('/')}`,
+    },
+  };
 }
 
 export default async function NganhHocDeepPage({ params }: { params: Promise<{ slug: string[] }> }) {

@@ -54,7 +54,14 @@ export async function generateMetadata({ params }: { params: Promise<{ school: s
   if (fs.existsSync(mdxPath)) {
     const fileContent = fs.readFileSync(mdxPath, 'utf8');
     const { data } = matter(fileContent);
-    if (data.title) return { title: data.title };
+    if (data.title) {
+      return { 
+        title: data.title,
+        alternates: {
+          canonical: `/review/${school}/${slug}`,
+        },
+      };
+    }
   }
 
   const schoolName = "Đại học " + school.replace(/-/g, ' ').toUpperCase();
@@ -64,7 +71,12 @@ export async function generateMetadata({ params }: { params: Promise<{ school: s
   else if (slug === 'co-hoi-viec-lam') title = `Cơ hội việc làm ${schoolName}`;
   else if (slug === 'diem-chuan') title = `Điểm chuẩn ${schoolName}`;
 
-  return { title };
+  return { 
+    title,
+    alternates: {
+      canonical: `/review/${school}/${slug}`,
+    },
+  };
 }
 
 export default async function SubArticlePage({ params }: { params: Promise<{ school: string, slug: string }> }) {

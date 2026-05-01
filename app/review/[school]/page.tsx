@@ -33,6 +33,9 @@ export async function generateMetadata({ params }: { params: Promise<{ school: s
       title: data.title,
       description: data.description,
       keywords: data.keywords,
+      alternates: {
+        canonical: `/review/${school}`,
+      },
     };
   } catch (error) {
     return {

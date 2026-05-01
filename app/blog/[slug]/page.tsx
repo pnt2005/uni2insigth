@@ -31,10 +31,22 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (fs.existsSync(mdxPath)) {
     const fileContent = fs.readFileSync(mdxPath, 'utf8');
     const { data } = matter(fileContent);
-    if (data.title) return { title: data.title };
+    if (data.title) {
+      return { 
+        title: data.title,
+        alternates: {
+          canonical: `/blog/${slug}`,
+        },
+      };
+    }
   }
 
-  return { title: slug.replace(/-/g, ' ').toUpperCase() };
+  return { 
+    title: slug.replace(/-/g, ' ').toUpperCase(),
+    alternates: {
+      canonical: `/blog/${slug}`,
+    },
+  };
 }
 
 export default async function BlogDeepPage({ params }: { params: Promise<{ slug: string }> }) {

@@ -6,6 +6,7 @@ import styles from "./page.module.css";
 import { notFound } from "next/navigation";
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import InternalLink from '../../../components/InternalLink/InternalLink';
+import Script from "next/script";
 
 export async function generateStaticParams() {
   const blogDir = path.join(process.cwd(), 'data/blog');
@@ -34,6 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     if (data.title) {
       return { 
         title: data.title,
+        description: data.description,
         alternates: {
           canonical: `/blog/${slug}`,
         },
@@ -62,8 +64,26 @@ export default async function BlogDeepPage({ params }: { params: Promise<{ slug:
     const { data, content } = matter(fileContent);
     const remarkGfm = (await import('remark-gfm')).default;
 
+    const articleSchema = {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": data.title || titlePath,
+      "description": data.description || "",
+      "author": {
+        "@type": "Person",
+        "name": data.author || "Uni2Insight Team"
+      },
+      "datePublished": data.date || "2026-01-01",
+      "image": data.image || "https://uni2insight.com/favicon.ico"
+    };
+
     return (
       <div className={styles.container}>
+        <Script 
+          id="schema-article"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        />
         <article className={styles.article}>
         <div style={{ marginBottom: '2rem' }}>
           <Link href="/blog" style={{ display: 'inline-block', color: 'var(--primary)', textDecoration: 'none', fontWeight: 500 }}>

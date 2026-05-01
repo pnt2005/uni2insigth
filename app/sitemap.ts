@@ -35,6 +35,34 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
   );
 
+  let blogUrls: MetadataRoute.Sitemap = [];
+  try {
+    const blogDir = path.join(process.cwd(), 'data/blog');
+    const blogFiles = fs.readdirSync(blogDir);
+    blogUrls = blogFiles
+      .filter((filename) => filename.endsWith('.mdx'))
+      .map((filename) => ({
+        url: `${baseUrl}/blog/${filename.replace(/\.mdx$/, '')}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly',
+        priority: 0.8,
+      }));
+  } catch (e) {}
+
+  let majorUrls: MetadataRoute.Sitemap = [];
+  try {
+    const majorsDir = path.join(process.cwd(), 'data/majors');
+    const majorFiles = fs.readdirSync(majorsDir);
+    majorUrls = majorFiles
+      .filter((filename) => filename.endsWith('.mdx'))
+      .map((filename) => ({
+        url: `${baseUrl}/nganh-hoc/${filename.replace(/\.mdx$/, '')}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly',
+        priority: 0.8,
+      }));
+  } catch (e) {}
+
   return [
     {
       url: baseUrl,
@@ -68,5 +96,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     ...schoolUrls,
     ...subArticleUrls,
+    ...blogUrls,
+    ...majorUrls,
   ];
 }

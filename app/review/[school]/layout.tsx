@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Script from "next/script";
 import styles from "./layout.module.css";
 // Giả sử file json của bạn để ở thư mục /data/schools.json
 import schoolsData from "@/data/universities.json";
@@ -16,14 +17,42 @@ export default async function ReviewLayout({
   // 1. Tìm object trường trong file JSON dựa trên slug
   const currentSchool = schoolsData.find((school) => school.id === schoolSlug);
 
-  // 2. Lấy name. Nếu vì lý do nào đó không tìm thấy trong JSON, 
-  // ta fallback (dự phòng) bằng cách format lại slug để giao diện không bị lỗi trống.
   const schoolName = currentSchool
     ? currentSchool.name
     : schoolSlug.replace(/-/g, ' ').toUpperCase();
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Trang chủ",
+        "item": "https://uni2insight.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Review Trường",
+        "item": "https://uni2insight.com/review"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": schoolName,
+        "item": `https://uni2insight.com/review/${schoolSlug}`
+      }
+    ]
+  };
+
   return (
     <div className={`container ${styles.reviewLayout}`}>
+      <Script 
+        id="schema-breadcrumb"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <main className={styles.mainContent}>
         <nav className={styles.breadcrumbs} aria-label="Breadcrumb">
           <ol className={styles.breadcrumbList}>

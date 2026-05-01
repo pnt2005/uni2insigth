@@ -80,12 +80,26 @@ export default async function SchoolReviewPage({ params }: { params: Promise<{ s
     }))
   };
 
+  const collegeSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollegeOrUniversity",
+    "name": universityData?.name || schoolName || data.title,
+    "url": `https://uni2insight.com/review/${school}`,
+    "image": universityData?.image || "https://uni2insight.com/favicon.ico",
+    "description": data.description || `Thông tin review trường ${universityData?.name || schoolName}`,
+  };
+
   return (
     <article className={styles.article}>
       <Script 
         id="faq-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <Script 
+        id="college-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collegeSchema) }}
       />
       
       <h1 className={styles.title}>{data.title}</h1>

@@ -12,6 +12,13 @@
   box-shadow: var(--shadow-sm);
 }
 
+@media (max-width: 768px) {
+  .article {
+    padding: 1.25rem 1rem;
+    border-radius: var(--radius-lg);
+  }
+}
+
 .title {
   font-size: 2.25rem;
   font-weight: 800;
@@ -20,9 +27,16 @@
   line-height: 1.3;
 }
 
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.5rem;
+  }
+}
+
 .metaTags {
   display: flex;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   margin-bottom: 2rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid var(--border);
@@ -133,6 +147,21 @@
   overflow: hidden;
 }
 
+@media (max-width: 768px) {
+  .content table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    font-size: 0.85rem;
+  }
+
+  .content th,
+  .content td {
+    padding: 0.75rem 0.625rem;
+    min-width: 100px;
+  }
+}
+
 .content th,
 .content td {
   padding: 1rem;
@@ -210,6 +239,13 @@
   justify-content: center;
 }
 
+@media (max-width: 640px) {
+  .subscribeForm {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
 .subscribeInput {
   padding: 0.6rem 1rem;
   border-radius: var(--radius-md);
@@ -217,6 +253,12 @@
   width: 250px;
   background: var(--surface);
   color: var(--text-primary);
+}
+
+@media (max-width: 640px) {
+  .subscribeInput {
+    width: 100%;
+  }
 }
 
 .subscribeBtn {

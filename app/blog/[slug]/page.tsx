@@ -5,6 +5,8 @@ import Link from "next/link";
 import styles from "./page.module.css";
 import { notFound } from "next/navigation";
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import InternalLink from '../../../components/InternalLink/InternalLink';
+import Script from "next/script";
 
 export async function generateStaticParams() {
   const blogDir = path.join(process.cwd(), 'data/blog');
@@ -30,10 +32,23 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (fs.existsSync(mdxPath)) {
     const fileContent = fs.readFileSync(mdxPath, 'utf8');
     const { data } = matter(fileContent);
-    if (data.title) return { title: data.title };
+    if (data.title) {
+      return { 
+        title: data.title,
+        description: data.description,
+        alternates: {
+          canonical: `/blog/${slug}`,
+        },
+      };
+    }
   }
 
-  return { title: slug.replace(/-/g, ' ').toUpperCase() };
+  return { 
+    title: slug.replace(/-/g, ' ').toUpperCase(),
+    alternates: {
+      canonical: `/blog/${slug}`,
+    },
+  };
 }
 
 export default async function BlogDeepPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -49,8 +64,26 @@ export default async function BlogDeepPage({ params }: { params: Promise<{ slug:
     const { data, content } = matter(fileContent);
     const remarkGfm = (await import('remark-gfm')).default;
 
+    const articleSchema = {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": data.title || titlePath,
+      "description": data.description || "",
+      "author": {
+        "@type": "Person",
+        "name": data.author || "Uni2Insight Team"
+      },
+      "datePublished": data.date || "2026-01-01",
+      "image": data.image || "https://uni2insight.com/favicon.ico"
+    };
+
     return (
       <div className={styles.container}>
+        <Script 
+          id="schema-article"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        />
         <article className={styles.article}>
         <div style={{ marginBottom: '2rem' }}>
           <Link href="/blog" style={{ display: 'inline-block', color: 'var(--primary)', textDecoration: 'none', fontWeight: 500 }}>
@@ -71,9 +104,10 @@ export default async function BlogDeepPage({ params }: { params: Promise<{ slug:
             source={content} 
             options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} 
             components={{
+              InternalLink,
               img: (props: any) => (
-                <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '1.5rem 0' }}>
-                  <img {...props} style={{ maxWidth: '100%', height: 'auto', borderRadius: 'var(--radius-md)', display: 'block' }} />
+                <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '1.5rem 0', width: '100%' }}>
+                  <img {...props} style={{ maxWidth: '100%', height: 'auto', borderRadius: 'var(--radius-md)', display: 'block', objectFit: 'contain' }} />
                   {props.alt && (
                     <em style={{ display: 'block', textAlign: 'center', fontSize: '0.9rem', color: 'var(--text-secondary)', marginTop: '0.5rem' }}>
                       {props.alt}

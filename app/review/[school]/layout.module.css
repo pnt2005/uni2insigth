@@ -21,6 +21,13 @@
   }
 }
 
+@media (max-width: 640px) {
+  .reviewLayout {
+    padding: 1rem 0.75rem;
+    gap: 1.5rem;
+  }
+}
+
 /* Cột Nội dung chính */
 .mainContent {
   flex: 1;
@@ -75,6 +82,13 @@
   .sidebar {
     width: 320px;
     flex-shrink: 0;
+  }
+}
+
+/* Ẩn sidebar TOC trên mobile — chỉ hiện content chính */
+@media (max-width: 1023px) {
+  .sidebar {
+    display: none;
   }
 }
 

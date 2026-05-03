@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import styles from './page.module.css';
+import InternalLink from '../../../components/InternalLink/InternalLink';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string[] }> }) {
   const resolvedParams = await params;
@@ -19,10 +20,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: data.title || data.majorName || slug.replace(/-/g, ' ').toUpperCase(),
       description: data.description,
       keywords: data.keywords,
+      alternates: {
+        canonical: `/nganh-hoc/${slugPaths.join('/')}`,
+      },
     };
   }
 
-  return { title: slug.replace(/-/g, ' ').toUpperCase() };
+  return { 
+    title: slug.replace(/-/g, ' ').toUpperCase(),
+    alternates: {
+      canonical: `/nganh-hoc/${slugPaths.join('/')}`,
+    },
+  };
 }
 
 export default async function NganhHocDeepPage({ params }: { params: Promise<{ slug: string[] }> }) {
@@ -94,9 +103,10 @@ export default async function NganhHocDeepPage({ params }: { params: Promise<{ s
             source={content} 
             options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} 
             components={{
+              InternalLink,
               img: (props: any) => (
-                <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '2rem 0' }}>
-                  <img {...props} style={{ maxWidth: '100%', height: 'auto', borderRadius: 'var(--radius-md)', display: 'block' }} />
+                <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '2rem 0', width: '100%' }}>
+                  <img {...props} style={{ maxWidth: '100%', height: 'auto', borderRadius: 'var(--radius-md)', display: 'block', objectFit: 'contain' }} />
                   {props.alt && (
                     <em style={{ display: 'block', textAlign: 'center', fontSize: '0.9rem', color: 'var(--text-secondary)', marginTop: '0.75rem' }}>
                       {props.alt}
@@ -107,24 +117,6 @@ export default async function NganhHocDeepPage({ params }: { params: Promise<{ s
             }}
           />
         </div>
-
-        {data.faq && data.faq.length > 0 && (
-          <div className={styles.faqSection}>
-            <h2>Câu hỏi thường gặp (FAQ)</h2>
-            <div className={styles.faqList}>
-              {data.faq.map((item: any, idx: number) => (
-                <div key={idx} className={styles.faqItem}>
-                  <h4 className={styles.faqQuestion}>
-                    Q: {item.question}
-                  </h4>
-                  <p className={styles.faqAnswer}>
-                    A: {item.answer}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </article>
     </div>
   );

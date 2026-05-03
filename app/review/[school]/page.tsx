@@ -33,6 +33,9 @@ export async function generateMetadata({ params }: { params: Promise<{ school: s
       title: data.title,
       description: data.description,
       keywords: data.keywords,
+      alternates: {
+        canonical: `/review/${school}`,
+      },
     };
   } catch (error) {
     return {
@@ -77,12 +80,31 @@ export default async function SchoolReviewPage({ params }: { params: Promise<{ s
     }))
   };
 
+  const collegeSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollegeOrUniversity",
+    "name": universityData?.name || schoolName || data.title,
+    "url": `https://uni2insight.com/review/${school}`,
+    "image": universityData?.image || "https://uni2insight.com/favicon.ico",
+    "description": data.description || `Thông tin review trường ${universityData?.name || schoolName}`,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Việt Nam",
+      "streetAddress": universityData?.address || data.address || "Đang cập nhật địa chỉ"
+    }
+  };
+
   return (
     <article className={styles.article}>
       <Script 
         id="faq-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <Script 
+        id="college-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collegeSchema) }}
       />
       
       <h1 className={styles.title}>{data.title}</h1>
@@ -97,22 +119,24 @@ export default async function SchoolReviewPage({ params }: { params: Promise<{ s
         <MDXRemote 
           source={content} 
           options={{ mdxOptions: { remarkPlugins: [(await import('remark-gfm')).default] } }} 
+          components={{
+            InternalLink,
+            img: (props: any) => (
+              <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '2rem 0', width: '100%' }}>
+                <img {...props} style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', display: 'block', objectFit: 'contain' }} />
+                {props.alt && (
+                  <em style={{ display: 'block', textAlign: 'center', fontSize: '0.9rem', color: 'var(--text-secondary)', marginTop: '0.75rem' }}>
+                    {props.alt}
+                  </em>
+                )}
+              </span>
+            )
+          }}
         />
 
         {/* You can still insert dynamic InternalLink statically if MDX doesn't have it, or modify MDX to allow custom components */}
       
 
-        {data.faq && data.faq.length > 0 && (
-          <div className={`${styles.faqSection}`} id="faq">
-            <h2>Câu hỏi thường gặp (FAQ)</h2>
-            {data.faq.map((item: any, idx: number) => (
-              <div className={styles.faqItem} key={idx}>
-                <div className={styles.faqQuestion}>{item.question}</div>
-                <div className={styles.faqAnswer}>{item.answer}</div>
-              </div>
-            ))}
-          </div>
-        )}
       </div>
     </article>
   );

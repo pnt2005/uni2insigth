@@ -12,7 +12,8 @@
     "tuitionScore": 5,
     "tuitionText": "Từ 28.700.000 VNĐ / học kỳ",
     "admissionScoreRange": "21 - 25",
-    "image": "https://rmep.vn/wp-content/uploads/2024/06/z5503795221847_32de2d1145b3d58dba3c7c10de7885c0.jpg"
+    "image": "https://rmep.vn/wp-content/uploads/2024/06/z5503795221847_32de2d1145b3d58dba3c7c10de7885c0.jpg",
+    "address": "Khu Công nghệ cao, Phường Long Thạnh Mỹ, TP Thủ Đức, TP Hồ Chí Minh"
   },
   {
     "id": "bach-khoa-hn",
@@ -27,7 +28,8 @@
     "tuitionScore": 4,
     "tuitionText": "Từ 15.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "24 - 28",
-    "image": "https://dlcorp.com.vn/wp-content/uploads/2021/09/Ba%CC%81ch-Khoa-768x385.png"
+    "image": "https://dlcorp.com.vn/wp-content/uploads/2021/09/Ba%CC%81ch-Khoa-768x385.png",
+    "address": "Trụ sở chính tại Hà Nội"
   },
   {
     "id": "kinh-te-quoc-dan",
@@ -42,7 +44,8 @@
     "tuitionScore": 4,
     "tuitionText": "Từ 16.000.000 - 22.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "25 - 28.5",
-    "image": "https://cdn-media.sforum.vn/storage/app/media/ngocmy/truong-dai-hoc-kinh-te-quoc-dan-neu/truong-dai-hoc-kinh-te-quoc-dan-neu-1.jpg"
+    "image": "https://cdn-media.sforum.vn/storage/app/media/ngocmy/truong-dai-hoc-kinh-te-quoc-dan-neu/truong-dai-hoc-kinh-te-quoc-dan-neu-1.jpg",
+    "address": "Trụ sở chính tại Hà Nội"
   },
   {
     "id": "rmit",
@@ -57,7 +60,8 @@
     "tuitionScore": 5,
     "tuitionText": "Từ 100.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "Tuyển sinh riêng",
-    "image": "https://baoxinviec.shop/wp-content/uploads/2020/04/bang-dai-hoc-rmit-co-tot-khong_optimized.jpeg"
+    "image": "https://baoxinviec.shop/wp-content/uploads/2020/04/bang-dai-hoc-rmit-co-tot-khong_optimized.jpeg",
+    "address": "702 Nguyễn Văn Linh, Tân Hưng, Quận 7, TP Hồ Chí Minh"
   },
   {
     "id": "y-ha-noi",
@@ -73,7 +77,8 @@
     "tuitionScore": 4,
     "tuitionText": "Từ 16.900.000 - 62.200.000 VNĐ / năm",
     "admissionScoreRange": "22 - 28.5",
-    "image": "https://huongnghiep.hocmai.vn/wp-content/uploads/2025/10/de-an-tuyen-sinh-dai-hoc-y-ha-noi-2023.jpeg"
+    "image": "https://huongnghiep.hocmai.vn/wp-content/uploads/2025/10/de-an-tuyen-sinh-dai-hoc-y-ha-noi-2023.jpeg",
+    "address": "Trụ sở chính tại Hà Nội"
   },
   {
     "id": "bach-khoa-hcm",
@@ -88,7 +93,8 @@
     "tuitionScore": 4,
     "tuitionText": "Từ 14.000.000 - 30.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "24 - 28",
-    "image": "https://tse2.mm.bing.net/th/id/OIP.6QpyquiIYszTpjXtz9baAgHaE5?rs=1&pid=ImgDetMain&o=7&rm=3"
+    "image": "https://tse2.mm.bing.net/th/id/OIP.6QpyquiIYszTpjXtz9baAgHaE5?rs=1&pid=ImgDetMain&o=7&rm=3",
+    "address": "268 Lý Thường Kiệt, Phường 14, Quận 10, TP Hồ Chí Minh"
   },
   {
     "id": "uit",
@@ -103,7 +109,8 @@
     "tuitionScore": 3,
     "tuitionText": "Từ 12.000.000 - 20.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "25 - 28.5",
-    "image": "https://th.bing.com/th/id/R.0397d9bae79c03cb3311319b490b12d1?rik=BYM6iuqNVzXfFA&riu=http%3a%2f%2fthongtintuyensinh247.com%2fwp-content%2fuploads%2f2023%2f07%2ftruong-dai-hoc-cong-nghe-thong-tin-tphcm.jpg&ehk=IkgrMVRUlHOjnnC3a9Kw1dfkVREJQXMw2nMvgiApUCs%3d&risl=&pid=ImgRaw&r=0"
+    "image": "https://th.bing.com/th/id/R.0397d9bae79c03cb3311319b490b12d1?rik=BYM6iuqNVzXfFA&riu=http%3a%2f%2fthongtintuyensinh247.com%2fwp-content%2fuploads%2f2023%2f07%2ftruong-dai-hoc-cong-nghe-thong-tin-tphcm.jpg&ehk=IkgrMVRUlHOjnnC3a9Kw1dfkVREJQXMw2nMvgiApUCs%3d&risl=&pid=ImgRaw&r=0",
+    "address": "Trụ sở chính tại TP. Hồ Chí Minh"
   },
   {
     "id": "spkt-hcm",
@@ -118,7 +125,8 @@
     "tuitionScore": 3,
     "tuitionText": "Từ 10.000.000 - 18.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "22 - 27",
-    "image": "https://tse4.mm.bing.net/th/id/OIP.Gk4VQHOzzrlNXXuJYzu6DAHaFj?rs=1&pid=ImgDetMain&o=7&rm=3"
+    "image": "https://tse4.mm.bing.net/th/id/OIP.Gk4VQHOzzrlNXXuJYzu6DAHaFj?rs=1&pid=ImgDetMain&o=7&rm=3",
+    "address": "Trụ sở chính tại TP. Hồ Chí Minh"
   },
   {
     "id": "ptit",
@@ -133,7 +141,8 @@
     "tuitionScore": 3,
     "tuitionText": "Từ 12.000.000 - 20.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "23 - 27",
-    "image": "https://tse4.mm.bing.net/th/id/OIP.iNL0vZLgv87Fxj0jgsCzVQHaEd?rs=1&pid=ImgDetMain&o=7&rm=3"
+    "image": "https://tse4.mm.bing.net/th/id/OIP.iNL0vZLgv87Fxj0jgsCzVQHaEd?rs=1&pid=ImgDetMain&o=7&rm=3",
+    "address": "Trụ sở chính tại Hà Nội"
   },
   {
     "id": "ftu",
@@ -148,7 +157,8 @@
     "tuitionScore": 4,
     "tuitionText": "Từ 18.000.000 - 25.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "26 - 28.5",
-    "image": "https://th.bing.com/th/id/OIP.oPpwnMlbjgFj5A3XO1IZngHaE7?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3"
+    "image": "https://th.bing.com/th/id/OIP.oPpwnMlbjgFj5A3XO1IZngHaE7?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "address": "Trụ sở chính tại Hà Nội"
   },
   {
     "id": "ueh",
@@ -163,7 +173,8 @@
     "tuitionScore": 4,
     "tuitionText": "Từ 15.000.000 - 30.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "24 - 27.5",
-    "image": "https://phongvu.vn/cong-nghe/wp-content/uploads/2025/05/hinh-anh-ngoi-truong-ueh-1392x870.jpg"
+    "image": "https://phongvu.vn/cong-nghe/wp-content/uploads/2025/05/hinh-anh-ngoi-truong-ueh-1392x870.jpg",
+    "address": "59C Nguyễn Đình Chiểu, Phường 6, Quận 3, TP Hồ Chí Minh"
   },
   {
     "id": "luat-hn",
@@ -178,7 +189,8 @@
     "tuitionScore": 3,
     "tuitionText": "Từ 10.000.000 - 18.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "23 - 27",
-    "image": "https://th.bing.com/th/id/OIP.IA-hNGZiPbH4NDET9-xGWAHaEw?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3"
+    "image": "https://th.bing.com/th/id/OIP.IA-hNGZiPbH4NDET9-xGWAHaEw?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "address": "Trụ sở chính tại Hà Nội"
   },
   {
     "id": "luat-hcm",
@@ -193,7 +205,8 @@
     "tuitionScore": 3,
     "tuitionText": "Từ 12.000.000 - 22.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "24 - 27.5",
-    "image": "https://th.bing.com/th/id/R.e1d2f1b315a900e1122b27fd9dfd2ecb?rik=ABisSN0S7bhAnA&pid=ImgRaw&r=0"
+    "image": "https://th.bing.com/th/id/R.e1d2f1b315a900e1122b27fd9dfd2ecb?rik=ABisSN0S7bhAnA&pid=ImgRaw&r=0",
+    "address": "Trụ sở chính tại TP. Hồ Chí Minh"
   },
   {
     "id": "aof",
@@ -208,7 +221,8 @@
     "tuitionScore": 3,
     "tuitionText": "Từ 10.000.000 - 18.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "23 - 27",
-    "image": "https://hocvientaichinh.com.vn/wp-content/uploads/2013/10/1143_hYc_viYn_tai_chinh.jpg"
+    "image": "https://hocvientaichinh.com.vn/wp-content/uploads/2013/10/1143_hYc_viYn_tai_chinh.jpg",
+    "address": "Trụ sở chính tại Hà Nội"
   },
   {
     "id": "banking-academy",
@@ -223,7 +237,8 @@
     "tuitionScore": 3,
     "tuitionText": "Từ 10.000.000 - 20.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "23 - 26.5",
-    "image": "https://tse3.mm.bing.net/th/id/OIP.uQVG9A8nkefSgtURT8kAKgHaEl?rs=1&pid=ImgDetMain&o=7&rm=3"
+    "image": "https://tse3.mm.bing.net/th/id/OIP.uQVG9A8nkefSgtURT8kAKgHaEl?rs=1&pid=ImgDetMain&o=7&rm=3",
+    "address": "Trụ sở chính tại Hà Nội"
   },
   {
     "id": "hnue",
@@ -238,7 +253,8 @@
     "tuitionScore": 2,
     "tuitionText": "Từ 8.000.000 - 15.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "22 - 27",
-    "image": "https://xdcs.cdnchinhphu.vn/446259493575335936/2023/1/20/sp-1674180928283979325020.jpg"
+    "image": "https://xdcs.cdnchinhphu.vn/446259493575335936/2023/1/20/sp-1674180928283979325020.jpg",
+    "address": "Trụ sở chính tại Hà Nội"
   },
   {
     "id": "hanu",
@@ -253,7 +269,8 @@
     "tuitionScore": 3,
     "tuitionText": "Từ 15.000.000 - 25.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "24 - 27.5",
-    "image": "https://th.bing.com/th/id/R.b7dd2be1217a916561cdb3c6b17a8744?rik=qiK1VHmtUrcIkA&pid=ImgRaw&r=0"
+    "image": "https://th.bing.com/th/id/R.b7dd2be1217a916561cdb3c6b17a8744?rik=qiK1VHmtUrcIkA&pid=ImgRaw&r=0",
+    "address": "Km 9, Đường Nguyễn Trãi, Nam Từ Liêm, Hà Nội"
   },
   {
     "id": "ulis",
@@ -268,7 +285,8 @@
     "tuitionScore": 3,
     "tuitionText": "Từ 12.000.000 - 20.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "24 - 27.5",
-    "image": "https://tse3.mm.bing.net/th/id/OIP.dxutBYr4f5Bl5xAj37bH5QHaEK?rs=1&pid=ImgDetMain&o=7&rm=3"
+    "image": "https://tse3.mm.bing.net/th/id/OIP.dxutBYr4f5Bl5xAj37bH5QHaEK?rs=1&pid=ImgDetMain&o=7&rm=3",
+    "address": "Trụ sở chính tại Hà Nội"
   },
   {
     "id": "dav",
@@ -283,7 +301,8 @@
     "tuitionScore": 4,
     "tuitionText": "Từ 18.000.000 - 30.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "26 - 28.5",
-    "image": "https://reviewedu.net/wp-content/uploads/2023/01/hoc-vien-ngoai-giao.jpg"
+    "image": "https://reviewedu.net/wp-content/uploads/2023/01/hoc-vien-ngoai-giao.jpg",
+    "address": "Trụ sở chính tại Hà Nội"
   },
   {
     "id": "ajc",
@@ -298,7 +317,8 @@
     "tuitionScore": 3,
     "tuitionText": "Từ 10.000.000 - 18.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "23 - 27",
-    "image": "https://thongtintuyensinh.net/wp-content/uploads/2020/07/hoc-vien-bao-chi-tuyen-truyen-duoc-quy-hoach-hien-dai-voi-nhieu-cay-xanh1568860454.jpg"
+    "image": "https://thongtintuyensinh.net/wp-content/uploads/2020/07/hoc-vien-bao-chi-tuyen-truyen-duoc-quy-hoach-hien-dai-voi-nhieu-cay-xanh1568860454.jpg",
+    "address": "Trụ sở chính tại Hà Nội"
   },
   {
     "id": "vinuni",
@@ -313,7 +333,8 @@
     "tuitionScore": 5,
     "tuitionText": "Từ 120.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "Tuyển sinh riêng",
-    "image": "https://tse3.mm.bing.net/th/id/OIP.8rJK_bvr2Vy99f1kunyi8wHaE7?rs=1&pid=ImgDetMain&o=7&rm=3"
+    "image": "https://tse3.mm.bing.net/th/id/OIP.8rJK_bvr2Vy99f1kunyi8wHaE7?rs=1&pid=ImgDetMain&o=7&rm=3",
+    "address": "Trụ sở chính tại Hà Nội"
   },
   {
     "id": "tdtu",
@@ -328,7 +349,8 @@
     "tuitionScore": 3,
     "tuitionText": "Từ 12.000.000 - 25.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "22 - 26.5",
-    "image": "https://www.tdtu.edu.vn/sites/www/files/articles/2022/Apr/Nha-trang/NT-0.jpg"
+    "image": "https://www.tdtu.edu.vn/sites/www/files/articles/2022/Apr/Nha-trang/NT-0.jpg",
+    "address": "Trụ sở chính tại TP. Hồ Chí Minh"
   },
   {
     "id": "phenikaa",
@@ -343,7 +365,8 @@
     "tuitionScore": 3,
     "tuitionText": "Từ 15.000.000 - 30.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "21 - 26",
-    "image": "https://tse3.mm.bing.net/th/id/OIP.RfhfkS199dr4JLXtOJlGDAHaE8?rs=1&pid=ImgDetMain&o=7&rm=3"
+    "image": "https://tse3.mm.bing.net/th/id/OIP.RfhfkS199dr4JLXtOJlGDAHaE8?rs=1&pid=ImgDetMain&o=7&rm=3",
+    "address": "Phường Yên Nghĩa, Quận Hà Đông, Hà Nội"
   },
   {
     "id": "y-duoc-hcm",
@@ -358,7 +381,8 @@
     "tuitionScore": 4,
     "tuitionText": "Từ 30.000.000 - 70.000.000 VNĐ / năm",
     "admissionScoreRange": "23 - 28.5",
-    "image": "https://topchuyengia.vn/uploads/images/original_images/truong-dai-hoc-y-duoc-tphcm-1-5779.jpeg"
+    "image": "https://topchuyengia.vn/uploads/images/original_images/truong-dai-hoc-y-duoc-tphcm-1-5779.jpeg",
+    "address": "217 Hồng Bàng, Phường 11, Quận 5, TP Hồ Chí Minh"
   },
   {
     "id": "pham-ngoc-thach",
@@ -373,7 +397,8 @@
     "tuitionScore": 4,
     "tuitionText": "Từ 40.000.000 - 55.000.000 VNĐ / năm",
     "admissionScoreRange": "22 - 27",
-    "image": "https://toplist.vn/images/800px/dai-hoc-y-khoa-pham-ngoc-thach-1096456.jpg"
+    "image": "https://toplist.vn/images/800px/dai-hoc-y-khoa-pham-ngoc-thach-1096456.jpg",
+    "address": "Trụ sở chính tại TP. Hồ Chí Minh"
   },
   {
     "id": "hcmus",
@@ -388,7 +413,8 @@
     "tuitionScore": 3,
     "tuitionText": "Từ 10.000.000 - 20.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "23 - 27.5",
-    "image": "https://tse4.mm.bing.net/th/id/OIP.3DUoSzfgKGqJN2vNxKTBfwHaEK?rs=1&pid=ImgDetMain&o=7&rm=3"
+    "image": "https://tse4.mm.bing.net/th/id/OIP.3DUoSzfgKGqJN2vNxKTBfwHaEK?rs=1&pid=ImgDetMain&o=7&rm=3",
+    "address": "Trụ sở chính tại TP. Hồ Chí Minh"
   },
   {
     "id": "ussh-hcm",
@@ -403,6 +429,7 @@
     "tuitionScore": 3,
     "tuitionText": "Từ 10.000.000 - 18.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "22 - 26.5",
-    "image": "https://tse4.mm.bing.net/th/id/OIP.n4FPW1PsBnLBYFq_H2J0FQHaE8?rs=1&pid=ImgDetMain&o=7&rm=3"
+    "image": "https://tse4.mm.bing.net/th/id/OIP.n4FPW1PsBnLBYFq_H2J0FQHaE8?rs=1&pid=ImgDetMain&o=7&rm=3",
+    "address": "Trụ sở chính tại TP. Hồ Chí Minh"
   }
 ]

@@ -9,9 +9,9 @@ interface InternalLinkProps {
 export default function InternalLink({ href, text }: InternalLinkProps) {
   return (
     <div className={styles.container}>
-      <Link href={href} className={styles.ctaButton}>
-        <span className={styles.icon}>👉</span>
-        <span className={styles.text}>Xem chi tiết: {text}</span>
+      Xem thêm:
+      <Link href={href} className={styles.link}>
+        {text} <span className={styles.arrow}>→</span>
       </Link>
     </div>
   );

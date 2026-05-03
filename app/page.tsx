@@ -3,6 +3,14 @@ import Image from "next/image";
 import fs from "fs";
 import path from "path";
 import styles from "./Home.module.css";
+import { Metadata } from "next";
+import Script from "next/script";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/',
+  },
+};
 
 const FEATURED_MAJORS = [
   { icon: '💻', name: 'CNTT', href: '/nganh-hoc/ky-thuat-cong-nghe/cong-nghe-thong-tin' },
@@ -29,8 +37,39 @@ export default async function Home() {
     }));
   } catch (e) { }
 
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Uni2Insight",
+    "url": "https://uni2insight.com",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://uni2insight.com/tra-cuu/tim-kiem?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  };
+
+  const orgSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Uni2Insight",
+    "url": "https://uni2insight.com",
+    "logo": "https://uni2insight.com/favicon.ico",
+    "description": "Nền tảng review và tra cứu thông tin trường đại học, ngành học hàng đầu Việt Nam"
+  };
+
   return (
     <>
+      <Script 
+        id="schema-website"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+      <Script 
+        id="schema-org"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+      />
       <section className={styles.hero}>
         <div className="container">
           <h1 className={styles.heroTitle}>Khám phá tương lai của bạn</h1>

@@ -121,15 +121,11 @@ export default async function SchoolReviewPage({ params }: { params: Promise<{ s
           options={{ mdxOptions: { remarkPlugins: [(await import('remark-gfm')).default] } }} 
           components={{
             InternalLink,
+            figure: (props: any) => (
+              <figure {...props} style={{ textAlign: 'center', margin: '2rem 0' }} />
+            ),
             img: (props: any) => (
-              <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '2rem 0', width: '100%' }}>
-                <img {...props} style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', display: 'block', objectFit: 'contain' }} />
-                {props.alt && (
-                  <em style={{ display: 'block', textAlign: 'center', fontSize: '0.9rem', color: 'var(--text-secondary)', marginTop: '0.75rem' }}>
-                    {props.alt}
-                  </em>
-                )}
-              </span>
+              <img {...props} style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', display: 'block', margin: '0 auto', objectFit: 'contain' }} />
             )
           }}
         />

@@ -19,7 +19,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return { 
       title: data.title || data.majorName || slug.replace(/-/g, ' ').toUpperCase(),
       description: data.description,
-      keywords: data.keywords,
       alternates: {
         canonical: `/nganh-hoc/${slugPaths.join('/')}`,
       },

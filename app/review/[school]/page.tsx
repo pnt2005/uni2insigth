@@ -32,7 +32,6 @@ export async function generateMetadata({ params }: { params: Promise<{ school: s
     return {
       title: data.title,
       description: data.description,
-      keywords: data.keywords,
       alternates: {
         canonical: `/review/${school}`,
       },
@@ -94,6 +93,40 @@ export default async function SchoolReviewPage({ params }: { params: Promise<{ s
     }
   };
 
+  // Rehype plugin: unwrap <summary> nodes that remark incorrectly wraps in <p>
+  // remark treats raw <summary> as inline HTML → injects <p> → React hydration error
+  // Robust version: handles cases where remark puts extra text children alongside <summary>
+  function rehypeUnwrapSummary() {
+    return (tree: any) => {
+      function walk(node: any) {
+        if (!node.children) return;
+        for (let i = 0; i < node.children.length; i++) {
+          const child = node.children[i];
+          if (child.type === 'element' && child.tagName === 'p' && child.children) {
+            const summaryIdx = child.children.findIndex(
+              (c: any) => c.type === 'element' && c.tagName === 'summary'
+            );
+            if (summaryIdx !== -1) {
+              const summaryNode = child.children[summaryIdx];
+              const rest = child.children.filter(
+                (_: any, idx: number) => idx !== summaryIdx
+              ).filter((c: any) => !(c.type === 'text' && c.value.trim() === ''));
+
+              const replacements: any[] = [summaryNode];
+              if (rest.length > 0) {
+                replacements.push({ type: 'element', tagName: 'p', properties: {}, children: rest });
+              }
+              node.children.splice(i, 1, ...replacements);
+              i += replacements.length - 1;
+            }
+          }
+          walk(child);
+        }
+      }
+      walk(tree);
+    };
+  }
+
   return (
     <article className={styles.article}>
       <Script 
@@ -118,7 +151,10 @@ export default async function SchoolReviewPage({ params }: { params: Promise<{ s
       <div className={styles.content}>
         <MDXRemote 
           source={content} 
-          options={{ mdxOptions: { remarkPlugins: [(await import('remark-gfm')).default] } }} 
+          options={{ mdxOptions: { 
+            remarkPlugins: [(await import('remark-gfm')).default],
+            rehypePlugins: [rehypeUnwrapSummary],
+          }}} 
           components={{
             InternalLink,
             figure: (props: any) => (
@@ -129,10 +165,6 @@ export default async function SchoolReviewPage({ params }: { params: Promise<{ s
             )
           }}
         />
-
-        {/* You can still insert dynamic InternalLink statically if MDX doesn't have it, or modify MDX to allow custom components */}
-      
-
       </div>
     </article>
   );

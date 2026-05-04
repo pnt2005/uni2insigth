@@ -77,6 +77,48 @@ export default async function BlogDeepPage({ params }: { params: Promise<{ slug:
       "image": data.image || "https://uni2insight.com/favicon.ico"
     };
 
+    function rehypeImageToFigure() {
+      return (tree: any) => {
+        function walk(node: any) {
+          if (!node.children) return;
+          for (let i = 0; i < node.children.length; i++) {
+            const child = node.children[i];
+            if (child.type === 'element' && child.tagName === 'p') {
+              const realChildren = child.children.filter(
+                (c: any) => !(c.type === 'text' && c.value.trim() === '')
+              );
+              if (
+                realChildren.length === 1 &&
+                realChildren[0].type === 'element' &&
+                realChildren[0].tagName === 'img'
+              ) {
+                const imgNode = realChildren[0];
+                const title = imgNode.properties?.title;
+                const figureChildren: any[] = [imgNode];
+                if (title) {
+                  figureChildren.push({
+                    type: 'element',
+                    tagName: 'figcaption',
+                    properties: {},
+                    children: [{ type: 'text', value: title }],
+                  });
+                  delete imgNode.properties.title;
+                }
+                node.children[i] = {
+                  type: 'element',
+                  tagName: 'figure',
+                  properties: {},
+                  children: figureChildren,
+                };
+              }
+            }
+            walk(child);
+          }
+        }
+        walk(tree);
+      };
+    }
+
     return (
       <div className={styles.container}>
         <Script 
@@ -102,19 +144,18 @@ export default async function BlogDeepPage({ params }: { params: Promise<{ slug:
         <div className={styles.content}>
           <MDXRemote 
             source={content} 
-            options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} 
+            options={{ mdxOptions: { remarkPlugins: [remarkGfm], rehypePlugins: [rehypeImageToFigure] } }} 
             components={{
               InternalLink,
+              figure: ({ style, ...props }: any) => (
+                <figure {...props} style={{ textAlign: 'center', margin: '1.5rem 0', ...style }} />
+              ),
+              figcaption: (props: any) => (
+                <figcaption {...props} style={{ fontSize: '0.85rem', color: '#666', marginTop: '0.5rem', fontStyle: 'italic' }} />
+              ),
               img: (props: any) => (
-                <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '1.5rem 0', width: '100%' }}>
-                  <img {...props} style={{ maxWidth: '100%', height: 'auto', borderRadius: 'var(--radius-md)', display: 'block', objectFit: 'contain' }} />
-                  {props.alt && (
-                    <em style={{ display: 'block', textAlign: 'center', fontSize: '0.9rem', color: 'var(--text-secondary)', marginTop: '0.5rem' }}>
-                      {props.alt}
-                    </em>
-                  )}
-                </span>
-              )
+                <img {...props} style={{ maxWidth: '100%', height: 'auto', borderRadius: 'var(--radius-md)', display: 'block', margin: '0 auto', objectFit: 'contain' }} />
+              ),
             }}
           />
         </div>

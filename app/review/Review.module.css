@@ -78,6 +78,7 @@
   /* Chuẩn line-height để dễ đọc nhất (1.8 hơi thưa) */
   margin-bottom: 1.25rem;
   /* Khoảng cách giữa các đoạn văn */
+  text-align: justify;
 }
 
 .content a {

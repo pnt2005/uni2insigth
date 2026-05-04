@@ -96,6 +96,42 @@ export default async function SubArticlePage({ params }: { params: Promise<{ sch
     // Bắt buộc khai báo GFM ngay trong scope nếu next-mdx-remote version 6 bắt import động hoặc để an toàn
     const remarkGfm = (await import('remark-gfm')).default;
 
+    // Rehype plugin: unwrap <summary> nodes that remark incorrectly wraps in <p>
+    // remark treats raw <summary> as inline HTML → injects <p> → React hydration error
+    // Robust version: handles cases where remark puts extra text children alongside <summary>
+    function rehypeUnwrapSummary() {
+      return (tree: any) => {
+        function walk(node: any) {
+          if (!node.children) return;
+          for (let i = 0; i < node.children.length; i++) {
+            const child = node.children[i];
+            if (child.type === 'element' && child.tagName === 'p' && child.children) {
+              const summaryIdx = child.children.findIndex(
+                (c: any) => c.type === 'element' && c.tagName === 'summary'
+              );
+              if (summaryIdx !== -1) {
+                const summaryNode = child.children[summaryIdx];
+                // Collect any siblings that are not the summary and not empty whitespace
+                const rest = child.children.filter(
+                  (_: any, idx: number) => idx !== summaryIdx
+                ).filter((c: any) => !(c.type === 'text' && c.value.trim() === ''));
+
+                const replacements: any[] = [summaryNode];
+                if (rest.length > 0) {
+                  // Wrap remaining siblings back in a <p>
+                  replacements.push({ type: 'element', tagName: 'p', properties: {}, children: rest });
+                }
+                node.children.splice(i, 1, ...replacements);
+                i += replacements.length - 1;
+              }
+            }
+            walk(child);
+          }
+        }
+        walk(tree);
+      };
+    }
+
     const articleSchema = {
       "@context": "https://schema.org",
       "@type": "Article",
@@ -125,7 +161,7 @@ export default async function SubArticlePage({ params }: { params: Promise<{ sch
         <div className={styles.content}>
           <MDXRemote
             source={content}
-            options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+            options={{ mdxOptions: { remarkPlugins: [remarkGfm], rehypePlugins: [rehypeUnwrapSummary] } }}
             components={{
               InternalLink,
               img: (props: any) => (

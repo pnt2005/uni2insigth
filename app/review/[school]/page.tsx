@@ -94,8 +94,6 @@ export default async function SchoolReviewPage({ params }: { params: Promise<{ s
   };
 
   // Rehype plugin: unwrap <summary> nodes that remark incorrectly wraps in <p>
-  // remark treats raw <summary> as inline HTML → injects <p> → React hydration error
-  // Robust version: handles cases where remark puts extra text children alongside <summary>
   function rehypeUnwrapSummary() {
     return (tree: any) => {
       function walk(node: any) {
@@ -111,13 +109,58 @@ export default async function SchoolReviewPage({ params }: { params: Promise<{ s
               const rest = child.children.filter(
                 (_: any, idx: number) => idx !== summaryIdx
               ).filter((c: any) => !(c.type === 'text' && c.value.trim() === ''));
-
               const replacements: any[] = [summaryNode];
               if (rest.length > 0) {
                 replacements.push({ type: 'element', tagName: 'p', properties: {}, children: rest });
               }
               node.children.splice(i, 1, ...replacements);
               i += replacements.length - 1;
+            }
+          }
+          walk(child);
+        }
+      }
+      walk(tree);
+    };
+  }
+
+  // Rehype plugin: transform <p><img title="caption"></p> → <figure><img><figcaption>caption</figcaption></figure>
+  // Fixes hydration error caused by remark wrapping inline images in <p> tags.
+  function rehypeImageToFigure() {
+    return (tree: any) => {
+      function walk(node: any) {
+        if (!node.children) return;
+        for (let i = 0; i < node.children.length; i++) {
+          const child = node.children[i];
+          if (child.type === 'element' && child.tagName === 'p') {
+            const realChildren = child.children.filter(
+              (c: any) => !(c.type === 'text' && c.value.trim() === '')
+            );
+            // <p> contains only a single <img>
+            if (
+              realChildren.length === 1 &&
+              realChildren[0].type === 'element' &&
+              realChildren[0].tagName === 'img'
+            ) {
+              const imgNode = realChildren[0];
+              const title = imgNode.properties?.title;
+              const figureChildren: any[] = [imgNode];
+              if (title) {
+                figureChildren.push({
+                  type: 'element',
+                  tagName: 'figcaption',
+                  properties: {},
+                  children: [{ type: 'text', value: title }],
+                });
+                // Remove title from img so it doesn't render as tooltip
+                delete imgNode.properties.title;
+              }
+              node.children[i] = {
+                type: 'element',
+                tagName: 'figure',
+                properties: {},
+                children: figureChildren,
+              };
             }
           }
           walk(child);
@@ -153,16 +196,19 @@ export default async function SchoolReviewPage({ params }: { params: Promise<{ s
           source={content} 
           options={{ mdxOptions: { 
             remarkPlugins: [(await import('remark-gfm')).default],
-            rehypePlugins: [rehypeUnwrapSummary],
+            rehypePlugins: [rehypeUnwrapSummary, rehypeImageToFigure],
           }}} 
           components={{
             InternalLink,
-            figure: (props: any) => (
-              <figure {...props} style={{ textAlign: 'center', margin: '2rem 0' }} />
+            figure: ({ style, ...props }: any) => (
+              <figure {...props} style={{ textAlign: 'center', margin: '2rem 0', ...style }} />
+            ),
+            figcaption: (props: any) => (
+              <figcaption {...props} style={{ fontSize: '0.85rem', color: '#666', marginTop: '0.5rem', fontStyle: 'italic' }} />
             ),
             img: (props: any) => (
               <img {...props} style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', display: 'block', margin: '0 auto', objectFit: 'contain' }} />
-            )
+            ),
           }}
         />
       </div>

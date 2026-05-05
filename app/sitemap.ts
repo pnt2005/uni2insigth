@@ -2,101 +2,96 @@ import { MetadataRoute } from 'next';
 import fs from 'fs';
 import path from 'path';
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://uni2insight.com';
-  const reviewsDir = path.join(process.cwd(), 'data/reviews');
+const BASE_URL = 'https://uni2insight.com';
 
-  let schools: string[] = [];
+/**
+ * Helper: Lấy thời gian sửa file. 
+ * Nếu không thấy file, trả về thời gian build hiện tại.
+ */
+function getFileTime(relativeFilePath: string): Date {
   try {
-    const filenames = fs.readdirSync(reviewsDir);
-    schools = filenames
-      .filter((filename) => filename.endsWith('.mdx'))
-      .map((filename) => filename.replace(/\.mdx$/, ''));
-  } catch (error) {
-    console.error("Could not read reviews directory", error);
-  }
+    const fullPath = path.join(process.cwd(), relativeFilePath);
+    if (fs.existsSync(fullPath)) {
+      return fs.statSync(fullPath).mtime;
+    }
+  } catch (e) { }
+  return new Date();
+}
 
-  // Danh sách các bài phụ (sub-articles) mà mỗi trường có
-  const subArticles = ['hoc-phi', 'chuong-trinh', 'co-hoi-viec-lam', 'diem-chuan'];
+function getValidSlugs(dir: string) {
+  const fullPath = path.join(process.cwd(), dir);
+  if (!fs.existsSync(fullPath)) return [];
 
-  const schoolUrls: MetadataRoute.Sitemap = schools.map((school) => ({
-    url: `${baseUrl}/review/${school}`,
-    lastModified: new Date(),
+  return fs.readdirSync(fullPath).filter((file) =>
+    file.endsWith('.mdx') && !file.startsWith('_')
+  );
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  // --- 1. XỬ LÝ REVIEWS & SUB-ARTICLES ---
+  const reviewsDir = 'data/reviews';
+  const schoolFiles = getValidSlugs(reviewsDir);
+
+  const reviewEntries: MetadataRoute.Sitemap = [];
+
+  schoolFiles.forEach((filename) => {
+    const id = filename.replace(/\.mdx$/, '');
+    const schoolFilePath = path.join(reviewsDir, filename);
+
+    // Trang Review chính (Trường học)
+    reviewEntries.push({
+      url: `${BASE_URL}/review/${id}`,
+      lastModified: getFileTime(schoolFilePath),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    });
+
+    // Các bài viết phụ (Chỉ add nếu file mdx tồn tại trong sub-folder)
+    const subArticles = ['hoc-phi', 'chuong-trinh', 'co-hoi-viec-lam', 'diem-chuan'];
+    subArticles.forEach((sub) => {
+      const subPath = path.join(reviewsDir, id, `${sub}.mdx`);
+      if (fs.existsSync(path.join(process.cwd(), subPath))) {
+        reviewEntries.push({
+          url: `${BASE_URL}/review/${id}/${sub}`,
+          lastModified: getFileTime(subPath),
+          changeFrequency: 'weekly',
+          priority: 0.7,
+        });
+      }
+    });
+  });
+
+  // --- 2. XỬ LÝ BLOG ---
+  const blogFiles = getValidSlugs('data/blog');
+  const blogEntries: MetadataRoute.Sitemap = blogFiles.map((f) => ({
+    url: `${BASE_URL}/blog/${f.replace(/\.mdx$/, '')}`,
+    lastModified: getFileTime(path.join('data/blog', f)),
     changeFrequency: 'weekly',
-    priority: 0.9,
+    priority: 0.8,
   }));
 
-  const subArticleUrls: MetadataRoute.Sitemap = schools.flatMap((school) =>
-    subArticles.map((sub) => ({
-      url: `${baseUrl}/review/${school}/${sub}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    }))
-  );
+  // --- 3. XỬ LÝ NGÀNH HỌC ---
+  const majorFiles = getValidSlugs('data/majors');
+  const majorEntries: MetadataRoute.Sitemap = majorFiles.map((f) => ({
+    url: `${BASE_URL}/nganh-hoc/${f.replace(/\.mdx$/, '')}`,
+    lastModified: getFileTime(path.join('data/majors', f)),
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  }));
 
-  let blogUrls: MetadataRoute.Sitemap = [];
-  try {
-    const blogDir = path.join(process.cwd(), 'data/blog');
-    const blogFiles = fs.readdirSync(blogDir);
-    blogUrls = blogFiles
-      .filter((filename) => filename.endsWith('.mdx'))
-      .map((filename) => ({
-        url: `${baseUrl}/blog/${filename.replace(/\.mdx$/, '')}`,
-        lastModified: new Date(),
-        changeFrequency: 'weekly',
-        priority: 0.8,
-      }));
-  } catch (e) {}
-
-  let majorUrls: MetadataRoute.Sitemap = [];
-  try {
-    const majorsDir = path.join(process.cwd(), 'data/majors');
-    const majorFiles = fs.readdirSync(majorsDir);
-    majorUrls = majorFiles
-      .filter((filename) => filename.endsWith('.mdx'))
-      .map((filename) => ({
-        url: `${baseUrl}/nganh-hoc/${filename.replace(/\.mdx$/, '')}`,
-        lastModified: new Date(),
-        changeFrequency: 'monthly',
-        priority: 0.8,
-      }));
-  } catch (e) {}
+  // --- 4. TRANG TĨNH ---
+  const staticPages: MetadataRoute.Sitemap = [
+    { url: BASE_URL, lastModified: new Date(), changeFrequency: 'daily', priority: 1 },
+    { url: `${BASE_URL}/khu-vuc`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/nganh-hoc`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/tra-cuu`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/blog`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.8 },
+  ];
 
   return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/khu-vuc`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/nganh-hoc`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tra-cuu`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.8,
-    },
-    ...schoolUrls,
-    ...subArticleUrls,
-    ...blogUrls,
-    ...majorUrls,
+    ...staticPages,
+    ...reviewEntries,
+    ...blogEntries,
+    ...majorEntries,
   ];
 }

@@ -1,6 +1,15 @@
+import { Metadata } from "next";
 import FilterLayout from "../../components/Common/FilterLayout";
 import Link from "next/link";
 import styles from "../nganh-hoc/page.module.css";
+
+export const metadata: Metadata = {
+  title: 'Tra Cứu Nhanh | Uni2Insight',
+  description: 'Sử dụng các công cụ tra cứu tự động để lấy thông tin nhanh và chính xác nhất.',
+  alternates: {
+    canonical: '/tra-cuu',
+  },
+};
 
 export default function SearchHub() {
   const tools = [

@@ -1,6 +1,15 @@
+import { Metadata } from "next";
 import FilterLayout from "../../components/Common/FilterLayout";
 import Link from "next/link";
 import styles from "../nganh-hoc/page.module.css";
+
+export const metadata: Metadata = {
+  title: 'Tra Cứu Khu Vực | Uni2Insight',
+  description: 'Tìm kiếm cụm trường đại học, cao đẳng theo tỉnh thành phố.',
+  alternates: {
+    canonical: '/khu-vuc',
+  },
+};
 import filterStyles from "../../components/Common/FilterLayout.module.css";
 import { slugify } from "../../utils/slugify";
 

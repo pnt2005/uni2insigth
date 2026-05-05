@@ -1,6 +1,15 @@
+import { Metadata } from "next";
 import FilterLayout from "../../components/Common/FilterLayout";
 import Link from "next/link";
 import styles from "./page.module.css";
+
+export const metadata: Metadata = {
+  title: 'Danh Mục Ngành Học | Uni2Insight',
+  description: 'Khám phá và tìm hiểu chi tiết về các ngành học phổ biến nhất hiện nay.',
+  alternates: {
+    canonical: '/nganh-hoc',
+  },
+};
 import filterStyles from "../../components/Common/FilterLayout.module.css";
 import { slugify } from "../../utils/slugify";
 

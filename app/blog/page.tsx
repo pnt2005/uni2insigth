@@ -1,6 +1,15 @@
+import { Metadata } from "next";
 import FilterLayout from "../../components/Common/FilterLayout";
 import Link from "next/link";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: 'Blog & Hướng Nghiệp | Uni2Insight',
+  description: 'Các bài viết chia sẻ kinh nghiệm, định hướng nghề nghiệp và đời sống sinh viên.',
+  alternates: {
+    canonical: '/blog',
+  },
+};
 import styles from "../nganh-hoc/page.module.css";
 import filterStyles from "../../components/Common/FilterLayout.module.css";
 

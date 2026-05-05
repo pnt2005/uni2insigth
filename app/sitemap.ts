@@ -4,94 +4,144 @@ import path from 'path';
 
 const BASE_URL = 'https://uni2insight.com';
 
-/**
- * Helper: Lấy thời gian sửa file. 
- * Nếu không thấy file, trả về thời gian build hiện tại.
- */
-function getFileTime(relativeFilePath: string): Date {
+// ===== CONFIG =====
+const MIN_CONTENT_LENGTH = 300; // filter content mỏng
+const ENABLE_SUB_PAGES = false;
+
+// ===== HELPER =====
+function getFileTime(relativePath: string): Date | undefined {
   try {
-    const fullPath = path.join(process.cwd(), relativeFilePath);
+    const fullPath = path.join(process.cwd(), relativePath);
     if (fs.existsSync(fullPath)) {
       return fs.statSync(fullPath).mtime;
     }
-  } catch (e) { }
-  return new Date();
+  } catch { }
+  return undefined;
 }
 
-function getValidSlugs(dir: string) {
+function getFiles(dir: string): string[] {
   const fullPath = path.join(process.cwd(), dir);
   if (!fs.existsSync(fullPath)) return [];
-
-  return fs.readdirSync(fullPath).filter((file) =>
-    file.endsWith('.mdx') && !file.startsWith('_')
+  return fs.readdirSync(fullPath).filter(
+    (f) => f.endsWith('.mdx') && !f.startsWith('_')
   );
 }
 
+// ===== PARSE FRONTMATTER =====
+function parseFrontmatter(content: string) {
+  const match = content.match(/---([\s\S]*?)---/);
+  if (!match) return {};
+
+  const lines = match[1].split('\n');
+  const data: any = {};
+
+  lines.forEach((line) => {
+    const [key, ...rest] = line.split(':');
+    if (!key) return;
+    data[key.trim()] = rest.join(':').trim();
+  });
+
+  return data;
+}
+
+// ===== QUALITY FILTER =====
+function isHighQuality(filePath: string): boolean {
+  try {
+    const fullPath = path.join(process.cwd(), filePath);
+    const content = fs.readFileSync(fullPath, 'utf-8');
+
+    // 1. length check
+    if (content.length < MIN_CONTENT_LENGTH) return false;
+
+    // 2. frontmatter check
+    const meta = parseFrontmatter(content);
+
+    if (meta.noindex === 'true') return false;
+    if (meta.published === 'false') return false;
+
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+// ===== MAIN =====
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // --- 1. XỬ LÝ REVIEWS & SUB-ARTICLES ---
-  const reviewsDir = 'data/reviews';
-  const schoolFiles = getValidSlugs(reviewsDir);
+  const urls: MetadataRoute.Sitemap = [];
 
-  const reviewEntries: MetadataRoute.Sitemap = [];
+  // ===== STATIC =====
+  const staticPages = [
+    '',
+    '/khu-vuc',
+    '/nganh-hoc',
+    '/tra-cuu',
+    '/blog',
+  ];
 
-  schoolFiles.forEach((filename) => {
-    const id = filename.replace(/\.mdx$/, '');
-    const schoolFilePath = path.join(reviewsDir, filename);
-
-    // Trang Review chính (Trường học)
-    reviewEntries.push({
-      url: `${BASE_URL}/review/${id}`,
-      lastModified: getFileTime(schoolFilePath),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    });
-
-    // Các bài viết phụ (Chỉ add nếu file mdx tồn tại trong sub-folder)
-    const subArticles = ['hoc-phi', 'chuong-trinh', 'co-hoi-viec-lam', 'diem-chuan'];
-    subArticles.forEach((sub) => {
-      const subPath = path.join(reviewsDir, id, `${sub}.mdx`);
-      if (fs.existsSync(path.join(process.cwd(), subPath))) {
-        reviewEntries.push({
-          url: `${BASE_URL}/review/${id}/${sub}`,
-          lastModified: getFileTime(subPath),
-          changeFrequency: 'weekly',
-          priority: 0.7,
-        });
-      }
+  staticPages.forEach((p) => {
+    urls.push({
+      url: `${BASE_URL}${p}`,
+      lastModified: new Date(),
     });
   });
 
-  // --- 2. XỬ LÝ BLOG ---
-  const blogFiles = getValidSlugs('data/blog');
-  const blogEntries: MetadataRoute.Sitemap = blogFiles.map((f) => ({
-    url: `${BASE_URL}/blog/${f.replace(/\.mdx$/, '')}`,
-    lastModified: getFileTime(path.join('data/blog', f)),
-    changeFrequency: 'weekly',
-    priority: 0.8,
-  }));
+  // ===== REVIEWS =====
+  const reviewFiles = getFiles('data/reviews');
 
-  // --- 3. XỬ LÝ NGÀNH HỌC ---
-  const majorFiles = getValidSlugs('data/majors');
-  const majorEntries: MetadataRoute.Sitemap = majorFiles.map((f) => ({
-    url: `${BASE_URL}/nganh-hoc/${f.replace(/\.mdx$/, '')}`,
-    lastModified: getFileTime(path.join('data/majors', f)),
-    changeFrequency: 'monthly',
-    priority: 0.8,
-  }));
+  reviewFiles.forEach((file) => {
+    const id = file.replace('.mdx', '');
+    const filePath = `data/reviews/${file}`;
 
-  // --- 4. TRANG TĨNH ---
-  const staticPages: MetadataRoute.Sitemap = [
-    { url: BASE_URL, lastModified: new Date(), changeFrequency: 'daily', priority: 1 },
-    { url: `${BASE_URL}/khu-vuc`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${BASE_URL}/nganh-hoc`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${BASE_URL}/tra-cuu`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${BASE_URL}/blog`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.8 },
-  ];
+    if (!isHighQuality(filePath)) return;
 
-  return [
-    ...staticPages,
-    ...reviewEntries,
-    ...blogEntries,
-    ...majorEntries,
-  ];
+    urls.push({
+      url: `${BASE_URL}/review/${id}`,
+      lastModified: getFileTime(filePath),
+    });
+
+    // 🔥 SUB PAGES (OPTIONAL)
+    if (ENABLE_SUB_PAGES) {
+      const subs = ['hoc-phi', 'chuong-trinh', 'co-hoi-viec-lam', 'diem-chuan'];
+
+      subs.forEach((sub) => {
+        const subPath = `data/reviews/${id}/${sub}.mdx`;
+
+        if (!fs.existsSync(path.join(process.cwd(), subPath))) return;
+        if (!isHighQuality(subPath)) return;
+
+        urls.push({
+          url: `${BASE_URL}/review/${id}/${sub}`,
+          lastModified: getFileTime(subPath),
+        });
+      });
+    }
+  });
+
+  // ===== BLOG =====
+  const blogFiles = getFiles('data/blog');
+
+  blogFiles.forEach((file) => {
+    const filePath = `data/blog/${file}`;
+    if (!isHighQuality(filePath)) return;
+
+    urls.push({
+      url: `${BASE_URL}/blog/${file.replace('.mdx', '')}`,
+      lastModified: getFileTime(filePath),
+    });
+  });
+
+  // ===== MAJORS =====
+  const majorFiles = getFiles('data/majors');
+
+  majorFiles.forEach((file) => {
+    const filePath = `data/majors/${file}`;
+    if (!isHighQuality(filePath)) return;
+
+    urls.push({
+      url: `${BASE_URL}/nganh-hoc/${file.replace('.mdx', '')}`,
+      lastModified: getFileTime(filePath),
+    });
+  });
+
+  return urls;
 }

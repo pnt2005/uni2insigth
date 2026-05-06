@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
+  verification: {
+    google: 'rAZCVDkJ5EB2KKZGcv2_wTO8AdF3SPfersuYl55X0Eg',
+  },
 };
 
 const FEATURED_MAJORS = [

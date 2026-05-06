@@ -17,7 +17,7 @@ export default function Footer() {
                 <path d="M30 18V25" stroke="white" strokeWidth="2" strokeLinecap="round" />
                 <defs>
                   <linearGradient id="logo-grad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#2563eb" />
+                    <stop offset="0" stopColor="#2563eb" />
                     <stop offset="1" stopColor="#60a5fa" />
                   </linearGradient>
                 </defs>

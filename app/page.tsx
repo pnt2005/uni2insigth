@@ -60,12 +60,12 @@ export default async function Home() {
 
   return (
     <>
-      <Script 
+      <Script
         id="schema-website"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
-      <Script 
+      <Script
         id="schema-org"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}

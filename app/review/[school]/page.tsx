@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ school: s
   const resolvedParams = await params;
   const { school } = resolvedParams;
   const filePath = path.join(process.cwd(), 'data/reviews', `${school}.mdx`);
-  
+
   try {
     const fileContent = fs.readFileSync(filePath, 'utf8');
     const { data } = matter(fileContent);
@@ -62,10 +62,10 @@ export default async function SchoolReviewPage({ params }: { params: Promise<{ s
   try {
     const unisContent = fs.readFileSync(path.join(process.cwd(), 'data/universities.json'), 'utf8');
     universityData = JSON.parse(unisContent).find((u: any) => u.id === school);
-  } catch (e) {}
+  } catch (e) { }
 
   const tuitionText = universityData?.tuitionText || "Liên hệ để biết thêm chi tiết";
-  
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -172,19 +172,19 @@ export default async function SchoolReviewPage({ params }: { params: Promise<{ s
 
   return (
     <article className={styles.article}>
-      <Script 
+      <Script
         id="faq-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <Script 
+      <Script
         id="college-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(collegeSchema) }}
       />
-      
+
       <h1 className={styles.title}>{data.title}</h1>
-      
+
       <div className={styles.metaTags}>
         <span className={styles.tag}>Đánh giá sinh viên</span>
         <span className={styles.tag}>Hướng nghiệp</span>
@@ -192,12 +192,14 @@ export default async function SchoolReviewPage({ params }: { params: Promise<{ s
       </div>
 
       <div className={styles.content}>
-        <MDXRemote 
-          source={content} 
-          options={{ mdxOptions: { 
-            remarkPlugins: [(await import('remark-gfm')).default],
-            rehypePlugins: [rehypeUnwrapSummary, rehypeImageToFigure],
-          }}} 
+        <MDXRemote
+          source={content}
+          options={{
+            mdxOptions: {
+              remarkPlugins: [(await import('remark-gfm')).default],
+              rehypePlugins: [rehypeUnwrapSummary, rehypeImageToFigure],
+            }
+          }}
           components={{
             InternalLink,
             figure: ({ style, ...props }: any) => (

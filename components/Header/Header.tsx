@@ -6,11 +6,11 @@ import SearchBar from './SearchBar';
 import styles from './Header.module.css';
 
 const NAV_LINKS = [
-  { href: '/nganh-hoc', label: 'Ngành Học',  icon: '📚' },
-  { href: '/khu-vuc',   label: 'Cụm Trường', icon: '🗺️' },
-  { href: '/review',    label: 'Review',      icon: '⭐' },
-  { href: '/tra-cuu',   label: 'Tra Cứu',     icon: '🔍' },
-  { href: '/blog',      label: 'Blog',         icon: '📰' },
+  { href: '/nganh-hoc', label: 'Ngành Học', icon: '📚' },
+  { href: '/khu-vuc', label: 'Cụm Trường', icon: '🗺️' },
+  { href: '/review', label: 'Review', icon: '⭐' },
+  { href: '/tra-cuu', label: 'Tra Cứu', icon: '🔍' },
+  { href: '/blog', label: 'Blog', icon: '📰' },
 ];
 
 export default function Header() {
@@ -67,7 +67,7 @@ export default function Header() {
               ) : (
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                  <line x1="3" y1="6"  x2="21" y2="6"  />
+                  <line x1="3" y1="6" x2="21" y2="6" />
                   <line x1="3" y1="12" x2="21" y2="12" />
                   <line x1="3" y1="18" x2="21" y2="18" />
                 </svg>

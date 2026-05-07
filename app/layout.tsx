@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import "./responsive.css";
 import Header from "../components/Header/Header";
@@ -36,6 +37,22 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-KZ32GY64BW"
+        />
+        <Script
+          id="gtag-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-KZ32GY64BW');
+            `,
+          }}
+        />
       </body>
     </html>
   );

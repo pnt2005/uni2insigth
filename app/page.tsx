@@ -134,9 +134,6 @@ export default async function Home() {
                     <span>•</span>
                     <span>{school.reviews} Reviews</span>
                   </div>
-                  <div className={styles.schoolRating}>
-                    ★ {school.rating}/5.0
-                  </div>
                 </div>
               </Link>
             ))}

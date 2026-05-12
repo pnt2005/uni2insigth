@@ -63,10 +63,6 @@ export default function FilterLayout({ title, subtitle, children, filters }: Fil
             <h1 className={styles.pageTitle}>{title}</h1>
             {subtitle && <p className={styles.pageSubtitle}>{subtitle}</p>}
           </div>
-          <div className={styles.viewToggle}>
-            <button className={`${styles.toggleBtn} ${styles.active}`}>Lưới</button>
-            <button className={styles.toggleBtn}>Bảng</button>
-          </div>
         </div>
 
         {children}

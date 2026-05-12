@@ -5,6 +5,9 @@ import path from "path";
 import styles from "./Home.module.css";
 import { Metadata } from "next";
 import Script from "next/script";
+import { Monitor, BarChart2, Stethoscope, Pen, Languages } from "lucide-react";
+import HeroSearch from "@/components/HeroSearch/HeroSearch";
+import HeroVisual from "@/components/HeroVisual/HeroVisual";
 
 export const metadata: Metadata = {
   alternates: {
@@ -16,11 +19,36 @@ export const metadata: Metadata = {
 };
 
 const FEATURED_MAJORS = [
-  { icon: '💻', name: 'CNTT', href: '/nganh-hoc/ky-thuat-cong-nghe/cong-nghe-thong-tin' },
-  { icon: '📊', name: 'Kinh Tế', href: '/nganh-hoc/quan-tri-kinh-doanh' },
-  { icon: '🏥', name: 'Y Dược', href: '/nganh-hoc/y-khoa' },
-  { icon: '🎨', name: 'Thiết Kế', href: '/nganh-hoc/thiet-ke-do-hoa' },
-  { icon: '🗣️', name: 'Ngôn Ngữ', href: '/nganh-hoc/ngon-ngu-anh' }
+  {
+    Icon: Monitor,
+    name: 'Công Nghệ TT',
+    href: '/nganh-hoc/ky-thuat-cong-nghe/cong-nghe-thong-tin',
+    badge: 'Hot',
+  },
+  {
+    Icon: BarChart2,
+    name: 'Kinh Tế',
+    href: '/nganh-hoc/quan-tri-kinh-doanh',
+    badge: 'Phổ biến',
+  },
+  {
+    Icon: Stethoscope,
+    name: 'Y Dược',
+    href: '/nganh-hoc/y-khoa',
+    badge: 'Mới',
+  },
+  {
+    Icon: Pen,
+    name: 'Thiết Kế',
+    href: '/nganh-hoc/thiet-ke-do-hoa',
+    badge: 'Sáng tạo',
+  },
+  {
+    Icon: Languages,
+    name: 'Ngôn Ngữ',
+    href: '/nganh-hoc/ngon-ngu-anh',
+    badge: 'Quốc tế',
+  },
 ];
 
 export default async function Home() {
@@ -34,7 +62,7 @@ export default async function Home() {
       id: u.id,
       name: u.name || "Tên Trường",
       type: u.name.includes("Quốc gia") || u.name.includes("Bách Khoa") ? "Công lập" : "Tư thục/Quốc tế",
-      image: u.image || "/images/fpt-logo.svg",
+      image: u.image || "/images/beauty_img.jpg",
       reviews: Math.floor(Math.random() * 500) + 500, // Sinh số ngẫu nhiên demo
       rating: (Math.random() * 0.5 + 4.5).toFixed(1) // 4.5 -> 5.0
     }));
@@ -47,7 +75,7 @@ export default async function Home() {
     "url": "https://uni2insight.com",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://uni2insight.com/tra-cuu/tim-kiem?q={search_term_string}",
+      "target": "https://uni2insight.com/search-hub?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   };
@@ -74,26 +102,29 @@ export default async function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
       />
       <section className={styles.hero}>
-        <div className="container">
-          <h1 className={styles.heroTitle}>Khám phá tương lai của bạn</h1>
-          <p className={styles.heroSubtitle}>
-            Tìm kiếm trường đại học, ngành học, điểm chuẩn và đánh giá thực tế từ sinh viên
-          </p>
-          <div className={styles.searchBar}>
-            <input
-              type="text"
-              className={styles.searchInput}
-              placeholder="Nhập tên trường, mã trường hoặc ngành học..."
-            />
-            <button className={styles.searchButton}>Tìm kiếm</button>
+        <div className={styles.heroInner}>
+          <div className={styles.heroContent}>
+            <h1 className={styles.heroTitle}>
+              Khám phá <span className={styles.heroTitleGradient}>tương lai</span> của bạn
+            </h1>
+            <p className={styles.heroSubtitle}>
+              Tìm kiếm trường đại học, ngành học, điểm chuẩn và đánh giá thực tế từ sinh viên
+            </p>
+            <HeroSearch />
+            <div className={styles.quickTags}>
+              <span className={styles.quickTag}>Công nghệ thông tin</span>
+              <span className={styles.quickTag}>Kinh tế</span>
+              <span className={styles.quickTag}>Đại học Bách Khoa</span>
+            </div>
           </div>
+
+          <HeroVisual />
         </div>
       </section>
 
-      <div className="container">
+      <div className="container" style={{ marginTop: '3rem' }}>
         {/* News Ticker */}
         <div className={styles.newsTicker}>
-          {/* <span className={styles.newsLabel}>Tin Mới</span> */}
           <div className={styles.tickerContent}>
             🔥 Bộ GD&ĐT công bố quy chế tuyển sinh 2026 | 🌟 ĐH Bách Khoa HCM mở thêm 3 ngành mới | 💡 Học bổng 100% từ RMIT đang mở đơn
           </div>
@@ -101,11 +132,18 @@ export default async function Home() {
 
         {/* Quick Access */}
         <section className={styles.quickAccess}>
-          <h2 className={styles.sectionTitle}>Ngành Học Nổi Bật</h2>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>Ngành Học Nổi Bật</h2>
+            <p className={styles.sectionSubtitle}>Khám phá các ngành học đang được quan tâm nhất hiện nay</p>
+          </div>
           <div className={styles.iconGrid}>
             {FEATURED_MAJORS.map((item, idx) => (
               <Link href={item.href} key={idx} className={styles.iconCard}>
-                <div className={styles.iconWrapper}>{item.icon}</div>
+                <div style={{ position: 'relative', alignSelf: 'flex-start', marginBottom: '1rem' }}>
+                  <div className={styles.iconWrapper}>
+                    <item.Icon size={24} strokeWidth={1.75} />
+                  </div>
+                </div>
                 <span className={styles.iconLabel}>{item.name}</span>
               </Link>
             ))}
@@ -114,11 +152,14 @@ export default async function Home() {
 
         {/* Top Schools */}
         <section className={styles.topSchools}>
-          <h2 className={styles.sectionTitle}>Top Trường Được Quan Tâm Nhất</h2>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>Top Trường Được Quan Tâm Nhất</h2>
+            <p className={styles.sectionSubtitle}>Danh sách các trường đại học hàng đầu dựa trên đánh giá của sinh viên</p>
+          </div>
           <div className={styles.schoolGrid}>
             {topSchools.map((school, idx) => (
               <Link href={`/review/${school.id}`} key={idx} className={styles.schoolCard}>
-                <div className={styles.schoolImage} style={{ position: 'relative', overflow: 'hidden' }}>
+                <div className={styles.schoolImage}>
                   <Image
                     src={school.image}
                     alt={`Hình ảnh ${school.name}`}

@@ -1,0 +1,83 @@
+/* ================================================================
+   PRIVACY PAGE — Light Theme
+   ================================================================ */
+
+.pageHeader {
+  background: var(--bg-muted);
+  border-bottom: 1px solid var(--border);
+  padding: 3rem 1.5rem 2.5rem;
+}
+
+.pageHeaderInner {
+  max-width: var(--max-content);
+  margin: 0 auto;
+}
+
+.pageHeaderInner h1 {
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.updatedAt {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.downloadBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  background: var(--bg-white);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.downloadBtn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.tldrWrap {
+  max-width: var(--max-content);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ── Footer actions ── */
+.pageFooter {
+  border-top: 1px solid var(--border);
+  padding: 2rem 1.5rem;
+  background: var(--bg-muted);
+}
+
+.pageFooterInner {
+  max-width: var(--max-content);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.footerLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footerLink:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}

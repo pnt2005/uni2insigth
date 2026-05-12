@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import styles from "../../tra-cuu/tim-kiem/search.module.css";
+import styles from "./region.module.css";
 import fs from "fs";
 import path from "path";
 import { slugify } from "../../../utils/slugify";

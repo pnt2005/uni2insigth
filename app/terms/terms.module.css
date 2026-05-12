@@ -1,0 +1,140 @@
+/* ================================================================
+   TERMS PAGE — Light Theme
+   ================================================================ */
+
+.pageHeader {
+  background: var(--bg-muted);
+  border-bottom: 1px solid var(--border);
+  padding: 3rem 1.5rem 2.5rem;
+}
+
+.pageHeaderInner {
+  max-width: var(--max-content);
+  margin: 0 auto;
+}
+
+.pageHeaderInner h1 {
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.version {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.changelogLink {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.changelogLink:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+.tldrWrap {
+  max-width: var(--max-content);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ── Changelog accordion ── */
+.changelogList {
+  margin-top: 1rem;
+}
+
+.changelogItem {
+  border-top: 1px solid var(--border);
+}
+
+.changelogSummary {
+  padding: 1rem 0;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-primary);
+  transition: color 0.2s;
+  user-select: none;
+}
+
+.changelogSummary::-webkit-details-marker {
+  display: none;
+}
+
+.changelogSummary svg {
+  flex-shrink: 0;
+  color: var(--text-secondary);
+  transition: transform 0.25s ease;
+}
+
+.changelogItem[open] > .changelogSummary {
+  color: var(--primary);
+}
+
+.changelogItem[open] > .changelogSummary svg {
+  transform: rotate(180deg);
+}
+
+.changelogBody {
+  padding: 0 0 1rem;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.changelogBody ul {
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+.changelogBody li {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.35rem;
+  line-height: 1.6;
+}
+
+/* ── Footer actions ── */
+.pageFooter {
+  border-top: 1px solid var(--border);
+  padding: 2rem 1.5rem;
+  background: var(--bg-muted);
+}
+
+.pageFooterInner {
+  max-width: var(--max-content);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.footerLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footerLink:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+/* Print button styles are in PrintButton/PrintButton.module.css */

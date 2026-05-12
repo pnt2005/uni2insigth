@@ -2,21 +2,39 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import SearchBar from './SearchBar';
 import styles from './Header.module.css';
 
 const NAV_LINKS = [
-  { href: '/nganh-hoc', label: 'Ngành Học', icon: '📚' },
-  { href: '/khu-vuc', label: 'Cụm Trường', icon: '🗺️' },
-  { href: '/review', label: 'Review', icon: '⭐' },
-  { href: '/tra-cuu', label: 'Tra Cứu', icon: '🔍' },
-  { href: '/blog', label: 'Blog', icon: '📰' },
+  { href: '/nganh-hoc',  label: 'Ngành Học',   icon: '📚' },
+  { href: '/khu-vuc',    label: 'Cụm Trường',   icon: '🗺️' },
+  { href: '/review',     label: 'Review',        icon: '⭐' },
+  { href: '/search-hub', label: 'Tra Cứu',       icon: '🔍' },
+  { href: '/blog',       label: 'Blog',          icon: '📰' },
 ];
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
-  // Khóa scroll body khi drawer mở
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Auto-close mobile menu on desktop resize
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 1024) setMenuOpen(false);
+    };
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
@@ -24,92 +42,83 @@ export default function Header() {
 
   const closeMenu = () => setMenuOpen(false);
 
+  if (pathname.startsWith('/auth')) return null;
+
   return (
     <>
-      <header className={`${styles.header} glass`}>
-        <div className={`container ${styles.headerContainer}`}>
-          {/* Logo */}
-          <Link href="/" className={styles.logo} onClick={closeMenu}>
-            <span className={styles.logoIcon}>🎓</span>
-            <span className={styles.logoText}>Uni2Insight</span>
-          </Link>
+      <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
+        <div className={styles.headerContainer}>
 
-          {/* Desktop Nav */}
-          <nav className={styles.nav} aria-label="Menu chính">
-            {NAV_LINKS.map((link) => (
-              <Link key={link.href} href={link.href} className={styles.navLink}>
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Desktop Actions */}
-          <div className={styles.actions}>
-            <SearchBar />
-            {/* Login button — ẩn trên mobile (đã có trong drawer) */}
-            <Link href="/login" className={`${styles.loginBtn} header-login-desktop`}>
-              Đăng Nhập
+          {/* LEFT — Logo */}
+          <div className={styles.navLeft}>
+            <Link href="/" className={styles.logo} onClick={closeMenu}>
+              <span className={styles.logoIcon}>🎓</span>
+              <span>
+                <span className={styles.logoWordmark}>Uni</span>
+                <span className={styles.logoText}>2Insight</span>
+              </span>
             </Link>
+          </div>
 
-            {/* Hamburger button — chỉ hiện trên mobile */}
+          {/* CENTER — Nav links */}
+          <div className={styles.navCenter}>
+            <nav className={styles.nav} aria-label="Menu chính">
+              {NAV_LINKS.map((link) => {
+                const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`${styles.navLink} ${isActive ? styles.active : ''}`}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+            </nav>
+          </div>
+
+          {/* RIGHT — CTA + Hamburger */}
+          <div className={styles.navRight}>
+            <SearchBar />
+            <Link href="/auth/login" className={styles.loginBtn}>
+              Đăng nhập
+            </Link>
             <button
-              className="hamburger-btn"
+              className={styles.hamburgerBtn}
               aria-label={menuOpen ? 'Đóng menu' : 'Mở menu'}
               aria-expanded={menuOpen}
-              onClick={() => setMenuOpen((prev) => !prev)}
+              onClick={() => setMenuOpen(p => !p)}
             >
-              {menuOpen ? (
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
-              ) : (
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                  <line x1="3" y1="6" x2="21" y2="6" />
-                  <line x1="3" y1="12" x2="21" y2="12" />
-                  <line x1="3" y1="18" x2="21" y2="18" />
-                </svg>
-              )}
+              <div className={`${styles.hamburgerIcon} ${menuOpen ? styles.open : ''}`}>
+                <span />
+                <span />
+                <span />
+              </div>
             </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Nav Overlay */}
+      {/* Mobile overlay */}
       <div
         className={`mobile-nav-overlay ${menuOpen ? 'open' : ''}`}
         onClick={closeMenu}
         aria-hidden="true"
       />
 
-      {/* Mobile Nav Drawer */}
-      <nav
-        className={`mobile-nav-drawer ${menuOpen ? 'open' : ''}`}
-        aria-label="Menu di động"
-      >
+      {/* Mobile drawer */}
+      <nav className={`mobile-nav-drawer ${menuOpen ? 'open' : ''}`} aria-label="Menu di động">
         <div className="mobile-nav-header">
           <Link href="/" className="mobile-nav-logo" onClick={closeMenu}>
-            🎓 Uni2Insight
+            🎓 <span>Uni2Insight</span>
           </Link>
-          <button
-            className="mobile-nav-close"
-            onClick={closeMenu}
-            aria-label="Đóng menu"
-          >
-            ✕
-          </button>
+          <button className="mobile-nav-close" onClick={closeMenu} aria-label="Đóng">✕</button>
         </div>
 
         <div className="mobile-nav-links">
           {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="mobile-nav-link"
-              onClick={closeMenu}
-            >
+            <Link key={link.href} href={link.href} className="mobile-nav-link" onClick={closeMenu}>
               <span className="mobile-nav-link-icon">{link.icon}</span>
               {link.label}
             </Link>
@@ -117,7 +126,7 @@ export default function Header() {
         </div>
 
         <div className="mobile-nav-footer">
-          <Link href="/login" className="mobile-nav-login-btn" onClick={closeMenu}>
+          <Link href="/auth/login" className="mobile-nav-login-btn" onClick={closeMenu}>
             Đăng Nhập
           </Link>
         </div>

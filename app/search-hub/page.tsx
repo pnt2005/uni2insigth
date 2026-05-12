@@ -1,23 +1,12 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import MarkdownPageRenderer from '../../components/MarkdownPageRenderer/MarkdownPageRenderer';
+import type { Metadata } from 'next';
+import SearchHubClient from './SearchHubClient';
 
-export async function generateMetadata() {
-  const filePath = path.join(process.cwd(), 'data/pages', 'search-hub.mdx');
-  try {
-    const fileContent = fs.readFileSync(filePath, 'utf8');
-    const { data } = matter(fileContent);
-    return {
-      title: data.title,
-      description: data.description,
-      alternates: { canonical: '/search-hub' },
-    };
-  } catch (error) {
-    return { title: 'Trung tâm tra cứu - Uni2Insight' };
-  }
-}
+export const metadata: Metadata = {
+  title: 'Tìm kiếm — Uni2Insight',
+  description: 'Tìm kiếm thông tin ngành học, điểm chuẩn, học bổng và bài viết giáo dục tại Uni2Insight.',
+  alternates: { canonical: '/search-hub' },
+};
 
-export default async function SearchHubPage() {
-  return <MarkdownPageRenderer slug="search-hub" />;
+export default function SearchHubPage() {
+  return <SearchHubClient />;
 }

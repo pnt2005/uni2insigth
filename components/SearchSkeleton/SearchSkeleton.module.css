@@ -1,0 +1,54 @@
+/* Shimmer animation for skeleton loading */
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position:  400px 0; }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-bg-muted) 25%,
+    var(--color-bg-secondary) 50%,
+    var(--color-bg-muted) 75%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: var(--radius-sm);
+}
+
+.type {
+  height: 12px;
+  width: 60px;
+}
+
+.title {
+  height: 20px;
+  width: 75%;
+}
+
+.desc {
+  height: 14px;
+  width: 100%;
+}
+
+.descShort {
+  height: 14px;
+  width: 55%;
+}

@@ -1,0 +1,85 @@
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: var(--max-content);
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+@media (min-width: 1024px) {
+  .layout {
+    grid-template-columns: var(--sidebar-width) 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+}
+
+/* On mobile, sidebar comes first but is visually minimal */
+.sidebar {
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .sidebar {
+    margin-bottom: 0;
+  }
+}
+
+.content {
+  max-width: var(--max-prose);
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-text);
+}
+
+.content h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text);
+  scroll-margin-top: calc(var(--header-height) + 1.5rem);
+}
+
+.content h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.content h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-text);
+}
+
+.content p {
+  margin-bottom: 1.1rem;
+  color: var(--color-text);
+}
+
+.content ul,
+.content ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.1rem;
+  color: var(--color-text);
+}
+
+.content li {
+  margin-bottom: 0.4rem;
+  line-height: 1.7;
+}
+
+.content a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.content a:hover {
+  color: var(--color-primary-hover);
+}
+
+.content strong {
+  font-weight: 600;
+  color: var(--color-text);
+}

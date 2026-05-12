@@ -1,0 +1,72 @@
+.toc {
+  position: sticky;
+  top: calc(var(--header-height) + 1rem);
+  display: none; /* hidden on mobile */
+}
+
+@media (min-width: 1024px) {
+  .toc {
+    display: block;
+  }
+}
+
+.tocTitle {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.tocList {
+  list-style: none;
+}
+
+.tocItem a {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  padding: 0.35rem 0.75rem;
+  border-left: 2px solid var(--color-border);
+  transition: color var(--color-transition), border-color var(--color-transition);
+  text-decoration: none;
+  line-height: 1.5;
+}
+
+.tocItem a:hover,
+.tocItem.active a {
+  color: var(--color-primary);
+  border-left-color: var(--color-primary);
+  text-decoration: none;
+}
+
+/* Mobile dropdown — visible only on small screens */
+.mobileSelect {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .mobileSelect {
+    display: none;
+  }
+}
+
+.mobileSelectLabel {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+}
+
+.mobileSelectEl {
+  width: 100%;
+  padding: 0.6rem 0.875rem;
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: 0.9rem;
+}

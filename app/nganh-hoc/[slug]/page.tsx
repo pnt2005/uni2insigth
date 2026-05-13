@@ -7,10 +7,9 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import styles from './page.module.css';
 import InternalLink from '../../../components/InternalLink/InternalLink';
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string[] }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
-  const slugPaths = resolvedParams.slug;
-  const slug = slugPaths[slugPaths.length - 1];
+  const slug = resolvedParams.slug;
   
   const mdxPath = path.join(process.cwd(), 'data/majors', `${slug}.mdx`);
   if (fs.existsSync(mdxPath)) {
@@ -20,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: data.title || data.majorName || slug.replace(/-/g, ' ').toUpperCase(),
       description: data.description,
       alternates: {
-        canonical: `/nganh-hoc/${slugPaths.join('/')}`,
+        canonical: `/nganh-hoc/${slug}`,
       },
     };
   }
@@ -28,16 +27,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return { 
     title: slug.replace(/-/g, ' ').toUpperCase(),
     alternates: {
-      canonical: `/nganh-hoc/${slugPaths.join('/')}`,
+      canonical: `/nganh-hoc/${slug}`,
     },
   };
 }
 
-export default async function NganhHocDeepPage({ params }: { params: Promise<{ slug: string[] }> }) {
+export default async function NganhHocDeepPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
-  const slugPaths = resolvedParams.slug;
-  const slug = slugPaths[slugPaths.length - 1];
-  const category = slugPaths.length > 1 ? slugPaths[0] : null;
+  const slug = resolvedParams.slug;
 
   const mdxPath = path.join(process.cwd(), 'data/majors', `${slug}.mdx`);
 
@@ -101,9 +98,9 @@ export default async function NganhHocDeepPage({ params }: { params: Promise<{ s
         </div>
 
         <header className={styles.header}>
-          {category && (
+          {data.category && (
             <div className={styles.category}>
-              {category.replace(/-/g, ' ')}
+              {data.category}
             </div>
           )}
           <h1 className={styles.title}>

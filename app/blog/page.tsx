@@ -11,13 +11,17 @@ export const metadata: Metadata = {
   },
 };
 import styles from "../nganh-hoc/page.module.css";
-import filterStyles from "../../components/Common/FilterLayout.module.css";
 
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import TopFilterBar from '../../components/Common/TopFilterBar';
 
-export default async function BlogList() {
+export default async function BlogList({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
+  const params = await searchParams;
+  const query = typeof params.q === 'string' ? params.q.toLowerCase() : '';
+  const category = typeof params.cat === 'string' ? params.cat : 'Tất cả';
+
   const blogDir = path.join(process.cwd(), 'data/blog');
   let blogs: any[] = [];
 
@@ -49,40 +53,25 @@ export default async function BlogList() {
   } catch (error) {
     console.error("Lỗi khi đọc file blog", error);
   }
-  const customFilters = (
-    <>
-      <div className={filterStyles.filterGroup}>
-        <label className={filterStyles.filterLabel}>Chuyên Mục</label>
-        <select className={filterStyles.select}>
-          <option value="">Tất cả chuyên mục</option>
-          <option value="tu-van">Tư vấn chọn trường</option>
-          <option value="huong-nghiep">Định hướng nghề nghiệp</option>
-          <option value="doi-song">Đời sống sinh viên</option>
-        </select>
-      </div>
 
-      <div className={filterStyles.filterGroup}>
-        <label className={filterStyles.filterLabel}>Sắp Xếp Dữ Liệu</label>
-        <div className={filterStyles.checkboxGroup}>
-          <label className={filterStyles.checkboxLabel}>
-            <input type="radio" name="sort" defaultChecked /> Mới nhất
-          </label>
-          <label className={filterStyles.checkboxLabel}>
-            <input type="radio" name="sort" /> Xem nhiều nhất
-          </label>
-        </div>
-      </div>
-    </>
-  );
+  const categoriesSet = new Set<string>();
+  blogs.forEach(b => categoriesSet.add(b.category));
+  const filterOptions = Array.from(categoriesSet);
+
+  const filteredBlogs = blogs.filter(b => {
+    const matchQuery = !query || b.title.toLowerCase().includes(query) || b.slug.toLowerCase().includes(query);
+    const matchCat = category === 'Tất cả' || b.category === category;
+    return matchQuery && matchCat;
+  });
 
   return (
     <FilterLayout
       title="Blog & Hướng Nghiệp"
       subtitle="Các bài viết chia sẻ kinh nghiệm, định hướng nghề nghiệp và đời sống sinh viên."
-      filters={customFilters}
+      filters={<TopFilterBar placeholder="Tìm kiếm bài viết..." filterOptions={filterOptions} filterLabel="Danh mục" />}
     >
       <div className={styles.grid}>
-        {blogs.map((blog, idx) => (
+        {filteredBlogs.map((blog, idx) => (
           <Link href={`/blog/${blog.slug}`} key={idx} className={styles.card}>
             <div style={{ position: 'relative', height: '150px', borderRadius: 'var(--radius-md) var(--radius-md) 0 0', margin: '-1.5rem -1.5rem 1rem -1.5rem', overflow: 'hidden', background: 'var(--border)' }}>
               {blog.thumbnail && (
@@ -109,6 +98,11 @@ export default async function BlogList() {
             </div>
           </Link>
         ))}
+        {filteredBlogs.length === 0 && (
+          <p style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '3rem', color: 'var(--text-muted)' }}>
+            Không tìm thấy bài viết nào phù hợp.
+          </p>
+        )}
       </div>
     </FilterLayout>
   );

@@ -4,9 +4,13 @@ import matter from 'gray-matter';
 import Link from 'next/link';
 import Image from 'next/image';
 import FilterLayout from '../../components/Common/FilterLayout';
+import TopFilterBar from '../../components/Common/TopFilterBar';
 import styles from '../nganh-hoc/page.module.css';
 
-export default async function ReviewIndex() {
+export default async function ReviewIndex({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
+  const params = await searchParams;
+  const query = typeof params.q === 'string' ? params.q.toLowerCase() : '';
+
   const reviewsDir = path.join(process.cwd(), 'data/reviews');
   let reviews: Array<{ slug: string, title: string, schoolName: string, description: string, image: string }> = [];
   
@@ -40,13 +44,18 @@ export default async function ReviewIndex() {
     console.error("Lỗi khi đọc file review", error);
   }
 
+  const filteredReviews = reviews.filter(r => {
+    return !query || r.title.toLowerCase().includes(query) || r.schoolName.toLowerCase().includes(query) || r.slug.toLowerCase().includes(query);
+  });
+
   return (
     <FilterLayout 
       title="Danh Sách Review" 
       subtitle="Tổng hợp các bài đánh giá, phân tích trải nghiệm thực tế về tất cả các trường đại học."
+      filters={<TopFilterBar placeholder="Tìm kiếm trường đại học..." />}
     >
       <div className={styles.grid}>
-        {reviews.map((review, idx) => (
+        {filteredReviews.map((review, idx) => (
           <Link href={`/review/${review.slug}`} key={idx} className={styles.card} style={{ display: 'flex', flexDirection: 'column' }}>
             <div style={{
               position: 'relative',
@@ -80,9 +89,9 @@ export default async function ReviewIndex() {
             </div>
           </Link>
         ))}
-        {reviews.length === 0 && (
+        {filteredReviews.length === 0 && (
           <p style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '3rem', color: 'var(--text-muted)' }}>
-            Chưa có bài review nào trong hệ thống.
+            Không tìm thấy bài review nào phù hợp.
           </p>
         )}
       </div>

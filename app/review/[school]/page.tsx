@@ -94,24 +94,32 @@ export default async function SchoolReviewPage({ params }: { params: Promise<{ s
   };
 
   // Rehype plugin: unwrap <summary> nodes that remark incorrectly wraps in <p>
+  // remark treats raw <summary> as inline HTML → injects <p> → React hydration error
   function rehypeUnwrapSummary() {
     return (tree: any) => {
       function walk(node: any) {
         if (!node.children) return;
         for (let i = 0; i < node.children.length; i++) {
           const child = node.children[i];
-          if (child.type === 'element' && child.tagName === 'p' && child.children) {
+          const isP = (child.type === 'element' && child.tagName === 'p') ||
+                      (child.type === 'mdxJsxFlowElement' && child.name === 'p');
+          
+          if (isP && child.children) {
             const summaryIdx = child.children.findIndex(
-              (c: any) => c.type === 'element' && c.tagName === 'summary'
+              (c: any) => (c.type === 'element' && c.tagName === 'summary') ||
+                          (c.type === 'mdxJsxFlowElement' && c.name === 'summary') ||
+                          (c.type === 'mdxJsxTextElement' && c.name === 'summary')
             );
+            
             if (summaryIdx !== -1) {
               const summaryNode = child.children[summaryIdx];
               const rest = child.children.filter(
                 (_: any, idx: number) => idx !== summaryIdx
               ).filter((c: any) => !(c.type === 'text' && c.value.trim() === ''));
+
               const replacements: any[] = [summaryNode];
               if (rest.length > 0) {
-                replacements.push({ type: 'element', tagName: 'p', properties: {}, children: rest });
+                replacements.push({ ...child, children: rest });
               }
               node.children.splice(i, 1, ...replacements);
               i += replacements.length - 1;
@@ -184,6 +192,16 @@ export default async function SchoolReviewPage({ params }: { params: Promise<{ s
       />
 
       <h1 className={styles.title}>{data.title}</h1>
+
+      {(universityData?.address || data.address) && (
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-secondary)', marginBottom: '1rem', fontSize: '0.95rem' }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <span>{universityData?.address || data.address}</span>
+        </div>
+      )}
 
       <div className={styles.metaTags}>
         <span className={styles.tag}>Đánh giá sinh viên</span>

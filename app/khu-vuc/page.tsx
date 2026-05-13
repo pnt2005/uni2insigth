@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 import FilterLayout from "../../components/Common/FilterLayout";
+import TopFilterBar from "../../components/Common/TopFilterBar";
 import Link from "next/link";
 import styles from "../nganh-hoc/page.module.css";
 import { MapPin, School, ArrowRight } from "lucide-react";
-import filterStyles from "../../components/Common/FilterLayout.module.css";
 import { slugify } from "../../utils/slugify";
 import fs from 'fs';
 import path from 'path';
@@ -16,7 +16,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RegionList() {
+export default async function RegionList({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
+  const params = await searchParams;
+  const query = typeof params.q === 'string' ? params.q.toLowerCase() : '';
+
   let unis: any[] = [];
   try {
     const unisContent = fs.readFileSync(path.join(process.cwd(), 'data/universities.json'), 'utf8');
@@ -40,7 +43,7 @@ export default async function RegionList() {
     cityCounts["Đà Nẵng"] = 25;
   }
 
-  const regions = Object.keys(cityCounts).map(city => {
+  let regions = Object.keys(cityCounts).map(city => {
     // Clean up city name when parsing for URL slug
     const cleanCity = city.replace(/TP\.?\s*/g, '');
 
@@ -51,37 +54,15 @@ export default async function RegionList() {
     };
   });
 
-  const customFilters = (
-    <>
-      <div className={filterStyles.filterGroup}>
-        <label className={filterStyles.filterLabel}>Phân Loại Vùng Miền</label>
-        <select className={filterStyles.select}>
-          <option value="">Tất cả vùng miền</option>
-          <option value="mb">Miền Bắc</option>
-          <option value="mt">Miền Trung</option>
-          <option value="mn">Miền Nam</option>
-        </select>
-      </div>
-
-      <div className={filterStyles.filterGroup}>
-        <label className={filterStyles.filterLabel}>Số lượng trường</label>
-        <div className={filterStyles.checkboxGroup}>
-          <label className={filterStyles.checkboxLabel}>
-            <input type="checkbox" /> Nhiều nhất (&gt; 50 trường)
-          </label>
-          <label className={filterStyles.checkboxLabel}>
-            <input type="checkbox" /> Trung bình (10 - 50 trường)
-          </label>
-        </div>
-      </div>
-    </>
-  );
+  if (query) {
+    regions = regions.filter(r => r.title.toLowerCase().includes(query) || r.slug.toLowerCase().includes(query));
+  }
 
   return (
     <FilterLayout 
       title="Tra cứu theo Khu vực" 
       subtitle="Tìm kiếm cụm trường đại học, cao đẳng theo tỉnh thành phố."
-      filters={customFilters}
+      filters={<TopFilterBar placeholder="Tìm kiếm tỉnh/thành phố..." />}
     >
       <div 
         className={styles.grid}
@@ -160,6 +141,11 @@ export default async function RegionList() {
             </div>
           </Link>
         ))}
+        {regions.length === 0 && (
+          <p style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '3rem', color: 'var(--text-muted)' }}>
+            Không tìm thấy khu vực nào phù hợp.
+          </p>
+        )}
       </div>
     </FilterLayout>
   );

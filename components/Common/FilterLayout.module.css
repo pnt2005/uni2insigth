@@ -1,36 +1,15 @@
 .layout {
-  display: flex;
-  gap: 2rem;
   padding: 3rem 1.5rem;
-  flex-direction: column;
 }
 
 @media (max-width: 1023px) {
   .layout {
-    /* Padding 2 bên đảm bảo nội dung không dính vào viền điện thoại */
     padding: 1.25rem 1rem;
-    gap: 1.5rem;
   }
 }
 
-@media (min-width: 1024px) {
-  .layout {
-    flex-direction: row;
-  }
-}
-
-.sidebar {
-  width: 100%;
-  /* Trên mobile: đẩy sidebar xuống dưới main content */
-  order: 2;
-}
-
-@media (min-width: 1024px) {
-  .sidebar {
-    width: 300px;
-    flex-shrink: 0;
-    order: 0; /* Phục hồi vị trí bên trái trên desktop */
-  }
+.topFilters {
+  margin-bottom: 2rem;
 }
 
 .filterBox {

@@ -1,244 +1,288 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
-import { Search, Filter, History, TrendingUp, X, Check, ArrowRight } from 'lucide-react';
-import SearchBar from '../../components/SearchBar/SearchBar';
-import SearchResult from '../../components/SearchResult/SearchResult';
-import SearchSkeleton from '../../components/SearchSkeleton/SearchSkeleton';
+import { useState, useMemo, Suspense } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { Search, MapPin, Filter, X, ChevronDown, Building2 } from 'lucide-react';
 import universitiesData from '../../data/universities.json';
 import styles from './search.module.css';
 
-// --- Types & Constants ---
-const CATEGORIES = [
-  { id: 'all', label: 'Tất cả' },
-  { id: 'universities', label: 'Trường đại học' },
-  { id: 'articles', label: 'Bài viết' },
-  { id: 'docs', label: 'Tài liệu' },
-];
-
-const TRENDING = ['Điểm chuẩn 2024', 'Học bổng toàn phần', 'Ngành kỹ thuật', 'Y khoa', 'Công nghệ thông tin'];
-
-// --- Component ---
 function SearchHubContent() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const initialQuery = searchParams.get('q') || '';
 
   const [query, setQuery] = useState(initialQuery);
-  const [activeCategory, setActiveCategory] = useState('all');
-  const [isSearching, setIsSearching] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  // Memoized data for instant filtering
-  const allResults = useMemo(() => {
-    const unis = universitiesData.map(uni => ({
-      id: uni.id,
-      type: 'Trường đại học',
-      title: uni.name,
-      description: `${uni.region} • ${uni.city} • Điểm chuẩn: ${uni.admissionScoreRange} • Học phí: ${uni.tuitionText}`,
-      href: `/review/${uni.id}`,
-      category: 'universities'
-    }));
-
-    const mock = [
-      { id: 'a1', type: 'Bài viết', title: 'Điểm chuẩn Bách Khoa 2024', description: 'Chi tiết điểm chuẩn các ngành năm 2024.', href: '#', category: 'articles' },
-      { id: 'a2', type: 'Tài liệu', title: 'Hướng dẫn tuyển sinh', description: 'Cẩm nang cho thí sinh 2k6.', href: '#', category: 'docs' }
-    ];
-
-    return [...unis, ...mock];
-  }, []);
-
-  // Filter results
+  const [selectedLocation, setSelectedLocation] = useState('Toàn quốc');
+  const [selectedRegion, setSelectedRegion] = useState('Tất cả');
+  const [sortBy, setSortBy] = useState('Điểm chuẩn');
+  const [showLocationMenu, setShowLocationMenu] = useState(false);
+  const [showSortMenu, setShowSortMenu] = useState(false);
+  const [showFilterPanel, setShowFilterPanel] = useState(false);
+  
+  // Real data from universities.json
+  const universities = useMemo(() => universitiesData as any[], []);
+  
+  // Filter and search
   const filteredResults = useMemo(() => {
-    const q = query.toLowerCase().trim();
-    return allResults.filter(item => {
-      const matchQuery = !q || item.title.toLowerCase().includes(q) || item.description.toLowerCase().includes(q);
-      const matchCat = activeCategory === 'all' || item.category === activeCategory;
-      return matchQuery && matchCat;
-    });
-  }, [allResults, query, activeCategory]);
-
-  const suggestions = useMemo(() => {
-    if (!query.trim()) return [];
-    return allResults
-      .filter(i => i.title.toLowerCase().includes(query.toLowerCase()))
-      .map(i => i.title)
-      .slice(0, 6);
-  }, [allResults, query]);
-
-  // Effects
-  useEffect(() => {
-    if (query) {
-      setIsSearching(true);
-      const timer = setTimeout(() => setIsSearching(false), 500);
-      return () => clearTimeout(timer);
+    let results = universities;
+    
+    // Filter by search query
+    if (query.trim()) {
+      const lowerQuery = query.toLowerCase();
+      results = results.filter((uni: any) => 
+        uni.name?.toLowerCase().includes(lowerQuery) ||
+        uni.title?.toLowerCase().includes(lowerQuery) ||
+        uni.city?.toLowerCase().includes(lowerQuery)
+      );
     }
-  }, [query, activeCategory]);
+    
+    // Filter by location
+    if (selectedLocation !== 'Toàn quốc') {
+      results = results.filter((uni: any) => 
+        uni.city === selectedLocation || uni.city?.includes(selectedLocation)
+      );
+    }
+    
+    // Filter by region
+    if (selectedRegion !== 'Tất cả') {
+      results = results.filter((uni: any) => uni.region === selectedRegion);
+    }
+    
+    // Sort results
+    if (sortBy === 'Điểm chuẩn') {
+      results = [...results].sort((a: any, b: any) => {
+        const scoreA = parseFloat(a.admissionScoreRange?.toString() || '0') || 0;
+        const scoreB = parseFloat(b.admissionScoreRange?.toString() || '0') || 0;
+        return scoreB - scoreA;
+      });
+    } else if (sortBy === 'A-Z') {
+      results = [...results].sort((a: any, b: any) => 
+        (a.name || a.title || '').localeCompare(b.name || b.title || '')
+      );
+    }
+    
+    return results;
+  }, [query, selectedLocation, selectedRegion, sortBy, universities]);
+
+  // Get unique locations
+  const locations = useMemo(() => {
+    const locs = new Set(['Toàn quốc']);
+    universities.forEach((uni: any) => {
+      if (uni.city) locs.add(uni.city);
+    });
+    return Array.from(locs);
+  }, [universities]);
+
+  const removeTag = (tagToRemove: string) => {
+    if (tagToRemove === selectedLocation) {
+      setSelectedLocation('Toàn quốc');
+    } else if (tagToRemove === selectedRegion) {
+      setSelectedRegion('Tất cả');
+    } else if (tagToRemove === sortBy) {
+      setSortBy('Điểm chuẩn');
+    }
+  };
+
+  const getTagsToDisplay = () => {
+    const tags = [];
+    if (query.trim()) tags.push(query);
+    if (selectedLocation !== 'Toàn quốc') tags.push(selectedLocation);
+    if (selectedRegion !== 'Tất cả') tags.push(selectedRegion);
+    return tags;
+  };
 
   return (
     <div className={styles.searchPage}>
-      {/* 1. Top Search Area */}
-      <section className={styles.searchHeader}>
-        <div className={styles.searchHeaderInner}>
-          <h1>Tra cứu thông tin</h1>
-          <p>Tìm kiếm trường đại học, ngành học và tài liệu giáo dục tốt nhất dành cho bạn.</p>
-          
+      <div className={styles.container}>
+        <h1 className={styles.pageTitle}>Tra cứu thông tin</h1>
+
+        {/* 1. Top Controls */}
+        <div className={styles.controlsRow}>
           <div className={styles.searchBox}>
-            <div style={{ flex: 1 }}>
-              <SearchBar 
-                value={query} 
-                onChange={setQuery} 
-                suggestions={suggestions}
-                onSuggestionSelect={setQuery}
-                placeholder="Ví dụ: Đại học Kinh tế, Ngành CNTT..."
-                className={styles.minimalSearch}
+            <Search size={18} color="#999" />
+            <input
+              type="text"
+              placeholder="Tìm kiếm trường đại học, ngành học, từ khóa..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+            />
+            {query && (
+              <X 
+                size={16} 
+                color="#999" 
+                style={{ cursor: 'pointer' }} 
+                onClick={() => setQuery('')} 
               />
-            </div>
-            <button className={styles.searchBtn}>
-              <Search size={18} />
-              <span>Tìm kiếm</span>
-            </button>
+            )}
           </div>
-        </div>
-      </section>
 
-      {/* 2. Stats & Quick Filters */}
-      <div className={styles.statsBar}>
-        <div className={styles.statsBarInner}>
-          <span className={styles.resultCount}>
-            Tìm thấy <strong>{filteredResults.length}</strong> kết quả
-          </span>
-          <div className={styles.quickFilters}>
-            {CATEGORIES.map(cat => (
-              <button 
-                key={cat.id}
-                className={`${styles.filterChip} ${activeCategory === cat.id ? styles.filterChipActive : ''}`}
-                onClick={() => setActiveCategory(cat.id)}
-              >
-                {cat.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* 3. Main Content */}
-      <div className={styles.mainGrid}>
-        {/* Sidebar */}
-        <aside className={styles.sidebar}>
-          <div className={styles.facetGroup}>
-            <h3 className={styles.facetTitle}>Lọc theo loại</h3>
-            <div className={styles.facetList}>
-              {CATEGORIES.map(cat => (
-                <div 
-                  key={cat.id} 
-                  className={`${styles.facetItem} ${activeCategory === cat.id ? styles.facetItemActive : ''}`}
-                  onClick={() => setActiveCategory(cat.id)}
-                >
-                  <div className={styles.customCheck}>
-                    {activeCategory === cat.id && <Check size={12} strokeWidth={3} />}
+          <div 
+            className={styles.dropdownBox}
+            onClick={() => setShowLocationMenu(!showLocationMenu)}
+          >
+            <MapPin size={18} color="#7b61ff" />
+            <span>{selectedLocation}</span>
+            <ChevronDown size={16} style={{ marginLeft: 'auto' }} />
+            
+            {showLocationMenu && (
+              <div className={styles.dropdownMenu}>
+                {locations.map(loc => (
+                  <div
+                    key={loc}
+                    className={`${styles.menuItem} ${selectedLocation === loc ? styles.active : ''}`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedLocation(loc);
+                      setShowLocationMenu(false);
+                    }}
+                  >
+                    {loc}
                   </div>
-                  {cat.label}
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
 
-          <div className={styles.facetGroup}>
-            <h3 className={styles.facetTitle}>Từ khóa hot</h3>
-            <div className={styles.facetList}>
-              {TRENDING.map(tag => (
-                <div key={tag} className={styles.facetItem} onClick={() => setQuery(tag)}>
-                  <TrendingUp size={14} style={{ opacity: 0.5 }} />
-                  {tag}
-                </div>
-              ))}
-            </div>
+          <div 
+            className={styles.filterBtn}
+            onClick={() => setShowFilterPanel(!showFilterPanel)}
+          >
+            <Filter size={18} color="#777" />
+            <span>Bộ lọc</span>
+            {getTagsToDisplay().length > 0 && <span className={styles.badge}>{getTagsToDisplay().length}</span>}
+            
+            {showFilterPanel && (
+              <div className={styles.dropdownMenu} style={{ padding: '1rem', width: '200px' }} onClick={(e) => e.stopPropagation()}>
+                <h4 style={{ margin: '0 0 10px 0', fontSize: '14px', color: '#333' }}>Vùng miền</h4>
+                <select 
+                  value={selectedRegion}
+                  onChange={(e) => {
+                    setSelectedRegion(e.target.value);
+                    setShowFilterPanel(false);
+                  }}
+                  style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ddd', outline: 'none' }}
+                >
+                  <option value="Tất cả">Tất cả</option>
+                  <option value="Miền Bắc">Miền Bắc</option>
+                  <option value="Miền Trung">Miền Trung</option>
+                  <option value="Miền Nam">Miền Nam</option>
+                </select>
+              </div>
+            )}
           </div>
-        </aside>
+        </div>
 
-        {/* Results */}
-        <section className={styles.results}>
-          {isSearching ? (
-            <SearchSkeleton count={5} />
-          ) : filteredResults.length > 0 ? (
-            filteredResults.map(item => (
-              <SearchResult 
-                key={item.id}
-                type={item.type}
-                title={item.title}
-                description={item.description}
-                href={item.href}
-                query={query}
-              />
+        {/* 2. Active Filter Tags */}
+        <div className={styles.activeTagsRow}>
+          {getTagsToDisplay().map(tag => (
+            <span key={tag} className={styles.tag} onClick={() => {
+              if (tag === selectedLocation) {
+                setSelectedLocation('Toàn quốc');
+              } else if (tag === selectedRegion) {
+                setSelectedRegion('Tất cả');
+              } else {
+                setQuery('');
+              }
+            }}>
+              <X size={14} /> {tag}
+            </span>
+          ))}
+          {getTagsToDisplay().length > 0 && (
+            <button 
+              className={styles.clearAll} 
+              onClick={() => {
+                setQuery('');
+                setSelectedLocation('Toàn quốc');
+                setSelectedRegion('Tất cả');
+              }}
+            >
+              Xóa tất cả
+            </button>
+          )}
+        </div>
+
+        {/* 3. Results Header */}
+        <div className={styles.resultsHeader}>
+          <span>Chúng tôi tìm thấy <strong>{filteredResults.length} kết quả</strong></span>
+          <div 
+            style={{ cursor: 'pointer', position: 'relative' }}
+            onClick={() => setShowSortMenu(!showSortMenu)}
+          >
+            Sắp xếp theo: <strong>{sortBy}</strong> <ChevronDown size={14} style={{ display: 'inline', verticalAlign: 'middle' }} />
+            
+            {showSortMenu && (
+              <div className={styles.dropdownMenu} style={{ right: 0, left: 'auto' }}>
+                <div
+                  className={`${styles.menuItem} ${sortBy === 'Điểm chuẩn' ? styles.active : ''}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSortBy('Điểm chuẩn');
+                    setShowSortMenu(false);
+                  }}
+                >
+                  Điểm chuẩn
+                </div>
+                <div
+                  className={`${styles.menuItem} ${sortBy === 'A-Z' ? styles.active : ''}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSortBy('A-Z');
+                    setShowSortMenu(false);
+                  }}
+                >
+                  A-Z
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* 4. Results List (Card Layout) */}
+        <div className={styles.resultsList}>
+          {filteredResults.length > 0 ? (
+            filteredResults.map((item: any, index: number) => (
+              <div 
+                key={item.id || index} 
+                className={styles.card}
+                onClick={() => router.push(`/review/${item.id}`)}
+              >
+                <div className={styles.cardLeft}>
+                  <div className={styles.cardLogo}>
+                    <Building2 size={24} />
+                  </div>
+                  <div className={styles.cardInfo}>
+                    <h3>
+                      {item.name || item.title}
+                      {item.majors && item.majors.length > 0 && (
+                        <div className={styles.cardTags}>
+                          <span className={`${styles.miniTag} ${styles.tagBlue}`}>{item.majors[0]}</span>
+                        </div>
+                      )}
+                    </h3>
+                    <p className={styles.cardSubtitle}>{item.region || 'Đại học'} — {item.city}</p>
+                  </div>
+                </div>
+                <div className={styles.cardRight}>
+                  <div className={styles.cardScore}>{item.admissionScoreRange || 'N/A'}</div>
+                  <div className={styles.cardTime}>Cập nhật 2 ngày trước</div>
+                </div>
+              </div>
             ))
           ) : (
-            <div className={styles.emptyState}>
-              <h2>Không tìm thấy kết quả</h2>
-              <p>Thử tìm kiếm với từ khóa khác hoặc xóa bớt các bộ lọc.</p>
-              <button className={styles.searchBtn} onClick={() => { setQuery(''); setActiveCategory('all'); }}>
-                Xóa tất cả
-              </button>
-              
-              <div className={styles.suggestionGrid}>
-                {TRENDING.slice(0, 3).map(tag => (
-                  <div key={tag} className={styles.suggestionCard} onClick={() => setQuery(tag)}>
-                    <p style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--primary)', marginBottom: '0.5rem' }}>GỢI Ý</p>
-                    <p style={{ fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                      {tag} <ArrowRight size={16} />
-                    </p>
-                  </div>
-                ))}
-              </div>
+            <div className={styles.noResults}>
+              <p>Không tìm thấy kết quả nào. Vui lòng thử với từ khóa khác.</p>
             </div>
           )}
-        </section>
-      </div>
+        </div>
 
-      {/* 4. Mobile Controls */}
-      <div className={styles.mobileFilters}>
-        <button className={styles.mobileBtn} onClick={() => setMobileMenuOpen(true)}>
-          <Filter size={18} />
-          Bộ lọc
-        </button>
       </div>
-
-      {mobileMenuOpen && (
-        <>
-          <div className={styles.overlay} onClick={() => setMobileMenuOpen(false)} />
-          <div className={`${styles.mobileSheet} ${mobileMenuOpen ? styles.mobileSheetOpen : ''}`}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2rem' }}>
-              <h2 style={{ fontSize: '1.25rem', fontWeight: 800 }}>Bộ lọc</h2>
-              <button onClick={() => setMobileMenuOpen(false)}><X size={24} /></button>
-            </div>
-            
-            <div className={styles.facetGroup}>
-              <h3 className={styles.facetTitle}>Danh mục</h3>
-              <div className={styles.facetList}>
-                {CATEGORIES.map(cat => (
-                  <div 
-                    key={cat.id} 
-                    className={`${styles.facetItem} ${activeCategory === cat.id ? styles.facetItemActive : ''}`}
-                    onClick={() => { setActiveCategory(cat.id); setMobileMenuOpen(false); }}
-                  >
-                    <div className={styles.customCheck}>
-                      {activeCategory === cat.id && <Check size={12} strokeWidth={3} />}
-                    </div>
-                    {cat.label}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </>
-      )}
     </div>
   );
 }
 
 export default function SearchHubClient() {
   return (
-    <Suspense fallback={<SearchSkeleton count={5} />}>
+    <Suspense fallback={<div>Loading...</div>}>
       <SearchHubContent />
     </Suspense>
   );

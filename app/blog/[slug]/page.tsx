@@ -77,6 +77,43 @@ export default async function BlogDeepPage({ params }: { params: Promise<{ slug:
       "image": data.image || "https://uni2insight.com/favicon.ico"
     };
 
+    function rehypeUnwrapSummary() {
+      return (tree: any) => {
+        function walk(node: any) {
+          if (!node.children) return;
+          for (let i = 0; i < node.children.length; i++) {
+            const child = node.children[i];
+            const isP = (child.type === 'element' && child.tagName === 'p') ||
+                        (child.type === 'mdxJsxFlowElement' && child.name === 'p');
+            
+            if (isP && child.children) {
+              const summaryIdx = child.children.findIndex(
+                (c: any) => (c.type === 'element' && c.tagName === 'summary') ||
+                            (c.type === 'mdxJsxFlowElement' && c.name === 'summary') ||
+                            (c.type === 'mdxJsxTextElement' && c.name === 'summary')
+              );
+              
+              if (summaryIdx !== -1) {
+                const summaryNode = child.children[summaryIdx];
+                const rest = child.children.filter(
+                  (_: any, idx: number) => idx !== summaryIdx
+                ).filter((c: any) => !(c.type === 'text' && c.value.trim() === ''));
+
+                const replacements: any[] = [summaryNode];
+                if (rest.length > 0) {
+                  replacements.push({ ...child, children: rest });
+                }
+                node.children.splice(i, 1, ...replacements);
+                i += replacements.length - 1;
+              }
+            }
+            walk(child);
+          }
+        }
+        walk(tree);
+      };
+    }
+
     function rehypeImageToFigure() {
       return (tree: any) => {
         function walk(node: any) {
@@ -144,7 +181,7 @@ export default async function BlogDeepPage({ params }: { params: Promise<{ slug:
         <div className={styles.content}>
           <MDXRemote 
             source={content} 
-            options={{ mdxOptions: { remarkPlugins: [remarkGfm], rehypePlugins: [rehypeImageToFigure] } }} 
+            options={{ mdxOptions: { remarkPlugins: [remarkGfm], rehypePlugins: [rehypeUnwrapSummary, rehypeImageToFigure] } }} 
             components={{
               InternalLink,
               figure: ({ style, ...props }: any) => (

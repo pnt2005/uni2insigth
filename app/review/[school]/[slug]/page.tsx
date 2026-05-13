@@ -105,21 +105,25 @@ export default async function SubArticlePage({ params }: { params: Promise<{ sch
           if (!node.children) return;
           for (let i = 0; i < node.children.length; i++) {
             const child = node.children[i];
-            if (child.type === 'element' && child.tagName === 'p' && child.children) {
+            const isP = (child.type === 'element' && child.tagName === 'p') ||
+                        (child.type === 'mdxJsxFlowElement' && child.name === 'p');
+            
+            if (isP && child.children) {
               const summaryIdx = child.children.findIndex(
-                (c: any) => c.type === 'element' && c.tagName === 'summary'
+                (c: any) => (c.type === 'element' && c.tagName === 'summary') ||
+                            (c.type === 'mdxJsxFlowElement' && c.name === 'summary') ||
+                            (c.type === 'mdxJsxTextElement' && c.name === 'summary')
               );
+              
               if (summaryIdx !== -1) {
                 const summaryNode = child.children[summaryIdx];
-                // Collect any siblings that are not the summary and not empty whitespace
                 const rest = child.children.filter(
                   (_: any, idx: number) => idx !== summaryIdx
                 ).filter((c: any) => !(c.type === 'text' && c.value.trim() === ''));
 
                 const replacements: any[] = [summaryNode];
                 if (rest.length > 0) {
-                  // Wrap remaining siblings back in a <p>
-                  replacements.push({ type: 'element', tagName: 'p', properties: {}, children: rest });
+                  replacements.push({ ...child, children: rest });
                 }
                 node.children.splice(i, 1, ...replacements);
                 i += replacements.length - 1;

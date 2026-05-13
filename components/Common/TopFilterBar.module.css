@@ -1,0 +1,88 @@
+.controlsRow {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.searchBox {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  gap: 0.5rem;
+  border: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.searchBox:focus-within {
+  border-color: #7b61ff;
+}
+
+.searchBox input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 0.95rem;
+  background: transparent;
+}
+
+.searchBox input::placeholder {
+  color: #999;
+}
+
+.dropdownBox {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  gap: 0.5rem;
+  min-width: 160px;
+  cursor: pointer;
+  color: #555;
+  font-size: 0.95rem;
+  border: 1px solid transparent;
+  position: relative;
+  transition: border-color 0.2s;
+}
+
+.dropdownBox:hover {
+  border-color: #7b61ff;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  min-width: 200px;
+  max-height: 300px;
+  overflow-y: auto;
+  margin-top: 0.5rem;
+}
+
+.menuItem {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: #555;
+  transition: background-color 0.2s;
+}
+
+.menuItem:hover,
+.menuItem.active {
+  background-color: #f3f4f6;
+  color: #7b61ff;
+  font-weight: 600;
+}

@@ -19,8 +19,8 @@ export default function SearchBar({ alwaysExpanded = false }: SearchBarProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false);
 
-  // State riêng cho mobile expand
-  const [mobileExpanded, setMobileExpanded] = useState(false);
+  // State chung cho việc expand search panel (áp dụng cho cả desktop & mobile)
+  const [expanded, setExpanded] = useState(alwaysExpanded);
 
   const wrapperRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -45,19 +45,19 @@ export default function SearchBar({ alwaysExpanded = false }: SearchBarProps) {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
         setIsOpen(false);
         setIsTypeDropdownOpen(false);
-        if (!alwaysExpanded) setMobileExpanded(false);
+        if (!alwaysExpanded) setExpanded(false);
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [alwaysExpanded]);
 
-  // Khi mobileExpanded mở, focus input
+  // Khi expanded mở, focus input
   useEffect(() => {
-    if (mobileExpanded && inputRef.current) {
+    if (expanded && inputRef.current) {
       inputRef.current.focus();
     }
-  }, [mobileExpanded]);
+  }, [expanded]);
 
   const results = useMemo(() => {
     if (!searchTerm.trim()) return [];
@@ -140,11 +140,11 @@ export default function SearchBar({ alwaysExpanded = false }: SearchBarProps) {
   };
 
   const handleIconClick = () => {
-    setMobileExpanded(true);
+    setExpanded(true);
     setIsOpen(true);
   };
 
-  // Nút icon thu gọn — chỉ hiện trên mobile khi chưa expand
+  // Nút icon thu gọn — luôn hiện khi chưa expand
   const searchIconBtn = (
     <button
       type="button"
@@ -160,7 +160,7 @@ export default function SearchBar({ alwaysExpanded = false }: SearchBarProps) {
     </button>
   );
 
-  // Panel tìm kiếm đầy đủ (desktop luôn hiện, mobile hiện khi expanded)
+  // Panel tìm kiếm đầy đủ (hiện khi expanded)
   const searchPanel = (
     <div className={styles.searchWrapper} ref={wrapperRef}>
       {/* Type selector */}
@@ -210,13 +210,13 @@ export default function SearchBar({ alwaysExpanded = false }: SearchBarProps) {
         onFocus={() => setIsOpen(true)}
       />
 
-      {/* Nút đóng (chỉ hiện trên mobile khi đang expanded) */}
+      {/* Nút đóng */}
       <button
         type="button"
         className={styles.searchCloseBtn}
         aria-label="Đóng tìm kiếm"
         onClick={() => {
-          setMobileExpanded(false);
+          setExpanded(false);
           setIsOpen(false);
           setSearchTerm('');
         }}
@@ -246,7 +246,7 @@ export default function SearchBar({ alwaysExpanded = false }: SearchBarProps) {
                 className={styles.resultItem}
                 onClick={() => {
                   setIsOpen(false);
-                  setMobileExpanded(false);
+                  setExpanded(false);
                 }}
               >
                 <div style={{ position: 'relative', width: '45px', height: '45px', flexShrink: 0, marginRight: '14px' }}>
@@ -274,13 +274,13 @@ export default function SearchBar({ alwaysExpanded = false }: SearchBarProps) {
 
   return (
     <div className={styles.searchContainer}>
-      {/* Icon button — chỉ hiện trên mobile khi chưa expand */}
-      <div className={`${styles.iconOnly} ${mobileExpanded ? styles.iconHidden : ''}`}>
+      {/* Icon button — luôn hiện khi chưa expand */}
+      <div className={`${styles.iconOnly} ${expanded ? styles.iconHidden : ''}`}>
         {searchIconBtn}
       </div>
 
-      {/* Search panel — luôn hiện trên desktop, chỉ hiện khi mobileExpanded trên mobile */}
-      <div className={`${styles.panelWrapper} ${mobileExpanded ? styles.panelExpanded : ''}`}>
+      {/* Search panel — hiện dưới dạng overlay khi expanded */}
+      <div className={`${styles.panelWrapper} ${expanded ? styles.panelExpanded : ''}`}>
         {searchPanel}
       </div>
     </div>

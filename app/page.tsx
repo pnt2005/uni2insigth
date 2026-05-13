@@ -22,7 +22,7 @@ const FEATURED_MAJORS = [
   {
     Icon: Monitor,
     name: 'Công Nghệ TT',
-    href: '/nganh-hoc/ky-thuat-cong-nghe/cong-nghe-thong-tin',
+    href: '/nganh-hoc/cong-nghe-thong-tin',
     badge: 'Hot',
   },
   {
@@ -166,9 +166,6 @@ export default async function Home() {
                 </div>
                 <div className={styles.schoolInfo}>
                   <h3 className={styles.schoolName}>{school.name}</h3>
-                  <div className={styles.schoolMeta}>
-                    <span>{school.type}</span>
-                  </div>
                 </div>
               </Link>
             ))}

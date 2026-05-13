@@ -14,7 +14,7 @@ const VALUES = [
   {
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" aria-hidden="true">
-        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
       </svg>
     ),
     title: 'Chính xác',
@@ -23,9 +23,9 @@ const VALUES = [
   {
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" aria-hidden="true">
-        <circle cx="12" cy="12" r="10"/>
-        <line x1="12" y1="8" x2="12" y2="12"/>
-        <line x1="12" y1="16" x2="12.01" y2="16"/>
+        <circle cx="12" cy="12" r="10" />
+        <line x1="12" y1="8" x2="12" y2="12" />
+        <line x1="12" y1="16" x2="12.01" y2="16" />
       </svg>
     ),
     title: 'Minh bạch',
@@ -34,9 +34,9 @@ const VALUES = [
   {
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" aria-hidden="true">
-        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
-        <circle cx="9" cy="7" r="4"/>
-        <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
       </svg>
     ),
     title: 'Cộng đồng',
@@ -45,7 +45,7 @@ const VALUES = [
   {
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" aria-hidden="true">
-        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
       </svg>
     ),
     title: 'Đổi mới',
@@ -54,10 +54,11 @@ const VALUES = [
 ];
 
 const TEAM = [
-  { name: 'Nguyễn Minh Đức', role: 'Đồng sáng lập & CEO', initials: 'NMĐ', linkedIn: 'https://linkedin.com' },
-  { name: 'Trần Thị Lan Anh', role: 'Trưởng nhóm Dữ liệu', initials: 'TTLA', linkedIn: 'https://linkedin.com' },
-  { name: 'Lê Hoàng Phúc', role: 'Kỹ sư phần mềm', initials: 'LHP', linkedIn: 'https://linkedin.com' },
-  { name: 'Phạm Thu Hà', role: 'Thiết kế sản phẩm', initials: 'PTH', linkedIn: 'https://linkedin.com' },
+  { name: 'Lê Hoàng Thái', role: 'Đồng sáng lập & CEO', initials: 'LHT' },
+  { name: 'Nguyễn Hiền Trân', role: 'Trưởng nhóm Dữ liệu', initials: 'NHT' },
+  { name: 'Trần Thị Như Phương', role: 'Kỹ sư phần mềm', initials: 'TTNP' },
+  { name: 'Nguyễn Ngọc Quyên', role: 'Thiết kế sản phẩm', initials: 'NNQ' },
+  { name: 'Phan Nam Thanh', role: 'Thiết kế sản phẩm', initials: 'PNT' },
 ];
 
 const STATS = [
@@ -106,8 +107,8 @@ export default function AboutPage() {
           <div className={styles.storyIllustration} aria-hidden="true">
             <div className={styles.illustrationBox}>
               <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" aria-hidden="true" style={{ opacity: 0.4 }}>
-                <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/>
-                <path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/>
+                <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z" />
+                <path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" />
               </svg>
               <p>Dữ liệu từ Bộ GD&ĐT và 200+ trường đại học Việt Nam</p>
             </div>

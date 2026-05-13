@@ -26,12 +26,7 @@
    2. HEADER — Navigation & Search Bar
    ============================================================ */
 
-/* Ẩn nút Login trên mobile (đã có trong mobile menu) */
-@media (max-width: 767px) {
-  .header-login-desktop {
-    display: none !important;
-  }
-}
+
 
 /* Thu nhỏ search input trên mobile */
 @media (max-width: 640px) {
@@ -353,29 +348,7 @@
   flex-shrink: 0;
 }
 
-.mobile-nav-footer {
-  margin-top: auto;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--border);
-}
 
-.mobile-nav-login-btn {
-  display: block;
-  width: 100%;
-  padding: 0.875rem;
-  background: var(--primary);
-  color: white;
-  text-align: center;
-  border-radius: var(--radius-md);
-  font-weight: 600;
-  font-size: 1rem;
-  text-decoration: none;
-  transition: background 0.2s;
-}
-
-.mobile-nav-login-btn:hover {
-  background: var(--primary-hover);
-}
 
 /* Hamburger button — chỉ hiện trên mobile */
 .hamburger-btn {

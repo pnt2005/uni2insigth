@@ -193,32 +193,7 @@ h3 { font-family: var(--font-display); font-weight: 600; }
 
 .mobile-nav-link-icon { font-size: 1.2rem; flex-shrink: 0; }
 
-.mobile-nav-footer {
-  margin-top: auto;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--border);
-}
 
-.mobile-nav-login-btn {
-  display: block;
-  width: 100%;
-  padding: 0.875rem;
-  background: var(--primary);
-  color: white;
-  text-align: center;
-  border-radius: var(--radius-pill);
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  transition: var(--transition);
-}
-.mobile-nav-login-btn:hover {
-  background: var(--primary-hover);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
 
 .hamburger-btn {
   display: none;

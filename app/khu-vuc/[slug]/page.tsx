@@ -19,11 +19,16 @@ export default async function RegionDeepPage({ params }: { params: Promise<{ slu
   }
 
   const regionUnis = unis.filter((u: any) => {
-    const cleanCity = (u.city || "").replace(/TP\.\s*/g, '');
-    return slugify(cleanCity) === regionSlug;
+    const cleanCity = (u.city || "").replace(/TP\.?\s*/g, '');
+    const citySlug = slugify(cleanCity);
+    const regionNameSlug = slugify(u.region || "");
+    return citySlug === regionSlug || regionNameSlug === regionSlug;
   });
 
-  const exactRegionName = regionUnis.length > 0 ? regionUnis[0].city : regionNameOriginal;
+  const isRegionMatch = regionUnis.length > 0 && slugify(regionUnis[0].region || "") === regionSlug;
+  const exactRegionName = isRegionMatch 
+    ? regionUnis[0].region 
+    : (regionUnis.length > 0 ? regionUnis[0].city : regionNameOriginal);
 
   return (
     <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '3rem 2rem' }}>

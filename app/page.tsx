@@ -111,11 +111,7 @@ export default async function Home() {
               Tìm kiếm trường đại học, ngành học, điểm chuẩn và đánh giá thực tế từ sinh viên
             </p>
             <HeroSearch />
-            <div className={styles.quickTags}>
-              <span className={styles.quickTag}>Công nghệ thông tin</span>
-              <span className={styles.quickTag}>Kinh tế</span>
-              <span className={styles.quickTag}>Đại học Bách Khoa</span>
-            </div>
+
           </div>
 
           <HeroVisual />
@@ -172,8 +168,6 @@ export default async function Home() {
                   <h3 className={styles.schoolName}>{school.name}</h3>
                   <div className={styles.schoolMeta}>
                     <span>{school.type}</span>
-                    <span>•</span>
-                    <span>{school.reviews} Reviews</span>
                   </div>
                 </div>
               </Link>

@@ -42,7 +42,7 @@ export default async function RegionList() {
 
   const regions = Object.keys(cityCounts).map(city => {
     // Clean up city name when parsing for URL slug
-    const cleanCity = city.replace(/TP\.\s*/g, '');
+    const cleanCity = city.replace(/TP\.?\s*/g, '');
 
     return { 
       title: city, 
@@ -92,7 +92,7 @@ export default async function RegionList() {
       >
         {regions.map((region, idx) => (
           <Link 
-            href={`/khu-vuc/${slugify(region.title)}`} 
+            href={`/khu-vuc/${slugify(region.title.replace(/TP\.?\s*/g, ""))}`} 
             key={idx} 
             className={styles.card}
             style={{ 

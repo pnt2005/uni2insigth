@@ -17,8 +17,8 @@
 }
 
 .avatar {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   overflow: hidden;
   background: linear-gradient(135deg, var(--color-primary) 0%, #7c3aed 100%);
@@ -49,14 +49,14 @@
 }
 
 .name {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: var(--color-text);
   margin: 0;
 }
 
 .role {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--color-text-secondary);
 }
 

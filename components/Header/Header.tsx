@@ -42,7 +42,6 @@ export default function Header() {
 
   const closeMenu = () => setMenuOpen(false);
 
-  if (pathname.startsWith('/auth')) return null;
 
   return (
     <>
@@ -81,9 +80,7 @@ export default function Header() {
           {/* RIGHT — CTA + Hamburger */}
           <div className={styles.navRight}>
             <SearchBar />
-            <Link href="/auth/login" className={styles.loginBtn}>
-              Đăng nhập
-            </Link>
+
             <button
               className={styles.hamburgerBtn}
               aria-label={menuOpen ? 'Đóng menu' : 'Mở menu'}
@@ -125,11 +122,7 @@ export default function Header() {
           ))}
         </div>
 
-        <div className="mobile-nav-footer">
-          <Link href="/auth/login" className="mobile-nav-login-btn" onClick={closeMenu}>
-            Đăng Nhập
-          </Link>
-        </div>
+
       </nav>
     </>
   );

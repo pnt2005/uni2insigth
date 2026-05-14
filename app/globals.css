@@ -3,6 +3,10 @@
 /* ========================================================
    DESIGN SYSTEM — LIGHT THEME
    ======================================================== */
+body {
+  text-align: justify;
+}
+
 :root {
   /* ---- Colors ---- */
   --primary:         #4F46E5;
@@ -116,6 +120,7 @@ h3 { font-family: var(--font-display); font-weight: 600; }
   inset: 0;
   background: rgba(15, 23, 42, 0.45);
   z-index: 100;
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
 }
 .mobile-nav-overlay.open { display: block; }

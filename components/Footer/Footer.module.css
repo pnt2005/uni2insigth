@@ -8,6 +8,7 @@
   color: var(--text-secondary);
   padding: 4.5rem 0 0;
   font-family: var(--font-body);
+  text-align: justify;
 }
 
 .container {
@@ -58,6 +59,7 @@
   line-height: 1.75;
   color: var(--text-secondary);
   max-width: 300px;
+  text-align: justify;
 }
 
 .socials {

@@ -40,7 +40,7 @@ function validateField(name: keyof FormData, value: string): string {
   }
 }
 
-export default function ContactForm() {
+export default function ContactForm({ className }: { className?: string }) {
   const [formData, setFormData] = useState<FormData>({
     name: '', email: '', subject: '', message: '',
   });
@@ -98,7 +98,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit} noValidate>
+    <form className={`${styles.form} ${className || ''}`} onSubmit={handleSubmit} noValidate>
       {/* Họ và tên */}
       <div className={styles.fieldGroup}>
         <label htmlFor="cf-name" className={styles.label}>

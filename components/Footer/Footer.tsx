@@ -57,7 +57,7 @@ export default function Footer() {
             <h3 className={styles.columnTitle}>Hỗ Trợ</h3>
             <ul className={styles.linkList}>
               <li><Link href="/about" className={styles.link}>Về Chúng Tôi</Link></li>
-              <li><Link href="/contact" className={styles.link}>Chăm Sóc Khách Hàng</Link></li>
+              <li><Link href="/contact" className={styles.link}>Liên Hệ</Link></li>
             </ul>
           </div>
 

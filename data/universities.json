@@ -431,5 +431,21 @@
     "admissionScoreRange": "22 - 26.5",
     "image": "https://tse4.mm.bing.net/th/id/OIP.n4FPW1PsBnLBYFq_H2J0FQHaE8?rs=1&pid=ImgDetMain&o=7&rm=3",
     "address": "Số 10-12 Đinh Tiên Hoàng, Bến Nghé, Quận 1, TP. Hồ Chí Minh"
+  },
+  {
+    "id": "uel-hcm",
+    "name": "Trường Đại học Kinh tế - Luật - ĐHQG TP.HCM (UEL)",
+    "region": "Miền Nam",
+    "city": "TP. Hồ Chí Minh",
+    "majors": [
+      "Kinh tế quốc tế",
+      "Kinh doanh quốc tế",
+      "Luật kinh tế"
+    ],
+    "tuitionScore": 4,
+    "tuitionText": "Từ 13.750.000 - 28.800.000 VNĐ / học kỳ",
+    "admissionScoreRange": "24.39 - 27.44",
+    "image": "https://www.uel.edu.vn/storage/about/toa-a-moi.jpg",
+    "address": "Số 669 Đỗ Mười, Khu phố 13, Phường Linh Xuân, TP. Thủ Đức, TP. Hồ Chí Minh"
   }
 ]

@@ -5,9 +5,9 @@ import Image from 'next/image';
 import styles from '../../app/Home.module.css';
 
 const HERO_IMAGES = [
-  '/images/bg_img.jpg',
-  '/images/beauty_1.jpg',
-  '/images/beauty_3.jpg',
+  '/images/bg_1.jpg',
+  '/images/bg_2.jpg',
+  '/images/bg_3.jpg',
 ];
 
 export default function HeroVisual() {

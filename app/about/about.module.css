@@ -115,6 +115,18 @@
   opacity: 0.8;
 }
 
+.storyLogo {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 30px rgba(123, 97, 255, 0.15));
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.illustrationBox:hover .storyLogo {
+  transform: scale(1.1) rotate(5deg);
+}
+
 /* ── Section header ── */
 .sectionHeader {
   text-align: center;

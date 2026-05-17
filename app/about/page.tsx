@@ -44,12 +44,12 @@ const VALUES = [
   },
   {
     icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" aria-hidden="true">
-        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
       </svg>
     ),
-    title: 'Đổi mới',
-    desc: 'Ứng dụng AI và phân tích dữ liệu để cá nhân hóa hành trình chọn trường.',
+    title: 'Tận tâm',
+    desc: 'Luôn đặt lợi ích và sự hài lòng của người dùng lên hàng đầu.',
   },
 ];
 
@@ -78,7 +78,7 @@ export default function AboutPage() {
         </h1>
         <p className={styles.heroSub}>
           Uni2Insight là nền tảng thông tin tuyển sinh toàn diện — cung cấp dữ liệu điểm chuẩn,
-          học phí, ngành học và cơ hội nghề nghiệp từ hơn 200 trường đại học tại Việt Nam.
+          học phí, ngành học và cơ hội nghề nghiệp từ gần 30 trường đại học tại Việt Nam.
         </p>
       </section>
 
@@ -88,29 +88,18 @@ export default function AboutPage() {
           <div className={styles.storyText}>
             <h2>Câu chuyện của chúng tôi</h2>
             <p>
-              Uni2Insight ra đời năm 2023 từ trải nghiệm thực tế của những sinh viên từng phải
-              tự mình lần mò thông tin điểm chuẩn qua hàng chục trang web khác nhau. Chúng tôi
-              tin rằng mỗi học sinh đều xứng đáng có được thông tin rõ ràng, chính xác và dễ
-              tiếp cận để đưa ra quyết định quan trọng nhất của cuộc đời.
+              Uni2Insight ra đời năm 2026 như một đồ án môn học, được xây dựng từ mong muốn giúp học sinh và phụ huynh dễ dàng tiếp cận thông tin tuyển sinh một cách trực quan và thuận tiện hơn.
             </p>
             <p>
-              Từ một dự án nhỏ với dữ liệu của 30 trường, chúng tôi đã mở rộng để phủ sóng
-              toàn bộ hệ thống giáo dục đại học Việt Nam, tích hợp thêm AI phân tích xu hướng
-              tuyển sinh và công cụ so sánh ngành học thông minh.
+              Dù vẫn còn nhiều thiếu sót và đang trong quá trình hoàn thiện, chúng tôi luôn nỗ lực từng ngày để cải thiện hệ thống, bổ sung tính năng và nâng cao trải nghiệm người dùng.
             </p>
             <p>
-              Hôm nay, Uni2Insight phục vụ hơn 500.000 lượt truy cập mỗi tháng, trở thành
-              người bạn đồng hành đáng tin cậy trong hành trình chọn trường của hàng triệu
-              học sinh và phụ huynh Việt Nam.
+              Uni2Insight hy vọng sẽ nhận được sự ủng hộ, góp ý và đồng hành từ mọi người để có thể phát triển thành một ứng dụng hoàn chỉnh, hữu ích cho cộng đồng học sinh Việt Nam trong hành trình chọn trường và định hướng tương lai.
             </p>
           </div>
           <div className={styles.storyIllustration} aria-hidden="true">
             <div className={styles.illustrationBox}>
-              <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" aria-hidden="true" style={{ opacity: 0.4 }}>
-                <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z" />
-                <path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" />
-              </svg>
-              <p>Dữ liệu từ Bộ GD&ĐT và 200+ trường đại học Việt Nam</p>
+              <img src="/images/about-logo.png" alt="Uni2Insight Logo" className={styles.storyLogo} />
             </div>
           </div>
         </div>
@@ -146,23 +135,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── 5. Stats ── */}
-      <section className={styles.statsSection}>
-        <div className={styles.sectionHeader}>
-          <h2>Con số nói lên tất cả</h2>
-        </div>
-        <div className={styles.statsGrid}>
-          {STATS.map((stat) => (
-            <StatCard key={stat.label} {...stat} />
-          ))}
-        </div>
-      </section>
-
       {/* ── 6. CTA ── */}
       <section className={styles.cta}>
         <h2>Sẵn sàng tìm ngôi trường phù hợp?</h2>
-        <p>Khám phá dữ liệu điểm chuẩn và ngành học từ hơn 200 trường đại học ngay hôm nay.</p>
-        <Link href="/tra-cuu" className={styles.ctaBtn}>
+        <p>Khám phá dữ liệu điểm chuẩn và ngành học từ gần 30 trường đại học ngay hôm nay.</p>
+        <Link href="/search-hub" className={styles.ctaBtn}>
           Bắt đầu tra cứu miễn phí →
         </Link>
       </section>

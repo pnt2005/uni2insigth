@@ -447,5 +447,21 @@
     "admissionScoreRange": "24.39 - 27.44",
     "image": "https://www.uel.edu.vn/storage/about/toa-a-moi.jpg",
     "address": "Số 669 Đỗ Mười, Khu phố 13, Phường Linh Xuân, TP. Thủ Đức, TP. Hồ Chí Minh"
+  },
+  {
+  "id": "hcmufa",
+  "name": "Trường Đại học Mỹ thuật TP.HCM (HCMUFA)",
+  "region": "Miền Nam",
+  "city": "TP. Hồ Chí Minh",
+  "majors": [
+    "Thiết kế đồ họa",
+    "Hội họa",
+    "Đồ họa"
+  ],
+  "tuitionScore": 2,
+  "tuitionText": "Từ 6.750.000 - 7.500.000 VNĐ / học kỳ",
+  "admissionScoreRange": "16 - 26.5",
+  "image": "https://tse1.mm.bing.net/th/id/OIP.g3o9J5XlK3Z6w9E7H4_K8AHaE8?rs=1&pid=ImgDetMain",
+  "address": "Số 5 Phan Đăng Lưu, Phường 1, Quận Bình Thạnh, TP. Hồ Chí Minh"
   }
 ]

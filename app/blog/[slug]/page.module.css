@@ -271,3 +271,22 @@
   font-weight: 500;
   cursor: pointer;
 }
+
+.featuredImage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+}
+
+@media (max-width: 768px) {
+  .featuredImage {
+    border-radius: var(--radius-lg);
+    margin-bottom: 1.5rem;
+  }
+}
+

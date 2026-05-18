@@ -3,15 +3,19 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import SearchBar from './SearchBar';
+import dynamic from 'next/dynamic';
 import styles from './Header.module.css';
 
+const SearchBar = dynamic(() => import('./SearchBar'), {
+  ssr: false,
+});
+
 const NAV_LINKS = [
-  { href: '/nganh-hoc',  label: 'Ngành Học',   icon: '📚' },
-  { href: '/khu-vuc',    label: 'Cụm Trường',   icon: '🗺️' },
-  { href: '/review',     label: 'Review',        icon: '⭐' },
-  { href: '/search-hub', label: 'Tra Cứu',       icon: '🔍' },
-  { href: '/blog',       label: 'Blog',          icon: '📰' },
+  { href: '/nganh-hoc', label: 'Ngành Học', icon: '📚' },
+  { href: '/khu-vuc', label: 'Cụm Trường', icon: '🗺️' },
+  { href: '/review', label: 'Review', icon: '⭐' },
+  { href: '/search-hub', label: 'Tra Cứu', icon: '🔍' },
+  { href: '/blog', label: 'Blog', icon: '📰' },
 ];
 
 export default function Header() {

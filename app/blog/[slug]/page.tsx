@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import Link from "next/link";
+import Image from 'next/image';
 import styles from "./page.module.css";
 import { notFound } from "next/navigation";
 import { MDXRemote } from 'next-mdx-remote/rsc';
@@ -178,6 +179,19 @@ export default async function BlogDeepPage({ params }: { params: Promise<{ slug:
           <span>Đăng lúc: {data.date || 'Cập nhật mới nhất 2026'}</span> • <span>Tác giả: {data.author || 'Uni2Insight Team'}</span>
         </div>
 
+        {data.thumbnail && (
+          <div className={styles.featuredImage}>
+            <Image
+              src={data.thumbnail}
+              alt={data.title || titlePath}
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 900px"
+              style={{ objectFit: 'cover' }}
+            />
+          </div>
+        )}
+
         <div className={styles.content}>
           <MDXRemote 
             source={content} 
@@ -191,7 +205,21 @@ export default async function BlogDeepPage({ params }: { params: Promise<{ slug:
                 <figcaption {...props} style={{ fontSize: '0.85rem', color: '#666', marginTop: '0.5rem', fontStyle: 'italic' }} />
               ),
               img: (props: any) => (
-                <img {...props} style={{ maxWidth: '100%', height: 'auto', borderRadius: 'var(--radius-md)', display: 'block', margin: '0 auto', objectFit: 'contain' }} />
+                <span style={{ display: 'block', width: '100%', position: 'relative', margin: '1.5rem 0' }}>
+                  <Image
+                    src={props.src}
+                    alt={props.alt || ''}
+                    width={800}
+                    height={450}
+                    sizes="(max-width: 768px) 100vw, 800px"
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                      borderRadius: 'var(--radius-md)',
+                      display: 'block',
+                    }}
+                  />
+                </span>
               ),
             }}
           />

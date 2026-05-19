@@ -101,6 +101,12 @@ export default async function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
       />
+      <Script
+        id="ahrefs-analytics"
+        src="https://analytics.ahrefs.com/analytics.js"
+        data-key="fsyFx2m76CRDLcB1ImMHWQ"
+        strategy="afterInteractive" 
+      />
       <section className={styles.hero}>
         <div className={styles.heroInner}>
           <div className={styles.heroContent}>

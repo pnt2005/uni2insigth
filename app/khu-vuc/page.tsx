@@ -59,11 +59,23 @@ export default async function RegionList({ searchParams }: { searchParams: Promi
   }
 
   return (
-    <FilterLayout 
-      title="Tra cứu theo Khu vực" 
-      subtitle="Tìm kiếm cụm trường đại học, cao đẳng theo tỉnh thành phố."
-      filters={<TopFilterBar placeholder="Tìm kiếm tỉnh/thành phố..." />}
-    >
+    <FilterLayout>
+      <div style={{ marginBottom: '2.5rem', padding: '2rem', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)' }}>
+        <h1 style={{ fontSize: '1.6rem', fontWeight: 700, marginTop: 0, marginBottom: '1rem', color: 'var(--text-primary)' }}>Tra cứu Trường Đại học theo Tỉnh & Thành Phố (Khu Vực)</h1>
+        <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: '1rem', fontSize: '0.95rem' }}>
+          Chào mừng bạn đến với chuyên mục <strong>Tra cứu Khu vực</strong> của Uni2Insight. Việc lựa chọn trường đại học không chỉ phụ thuộc vào ngành học, mức điểm chuẩn hay học phí, mà còn bị ảnh hưởng rất lớn bởi vị trí địa lý. Mỗi khu vực, từ các đô thị sầm uất như Hà Nội, TP. Hồ Chí Minh, Đà Nẵng cho đến các tỉnh thành lân cận, đều mang lại những trải nghiệm học tập và sinh hoạt hoàn toàn khác biệt. Tại đây, chúng tôi tổng hợp và phân loại chi tiết danh sách các trường đại học, cao đẳng, học viện theo từng tỉnh thành phố cụ thể, giúp học sinh và phụ huynh dễ dàng tra cứu, so sánh và đưa ra quyết định phù hợp nhất với điều kiện cá nhân.
+        </p>
+        <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: '1rem', fontSize: '0.95rem' }}>
+          Lựa chọn học tập tại các thành phố lớn thường đi kèm với lợi thế về cơ sở hạ tầng hiện đại, cơ hội thực tập, việc làm phong phú và mạng lưới giao tiếp xã hội rộng mở. Tuy nhiên, mức sống đắt đỏ, chi phí sinh hoạt cao và áp lực cạnh tranh cũng là những yếu tố cần được cân nhắc kỹ lưỡng. Ngược lại, khi chọn học tại các trường đại học thuộc khu vực lân cận hoặc tỉnh nhà, sinh viên sẽ tiết kiệm được đáng kể chi phí, tận hưởng không gian sống yên bình hơn và được hỗ trợ từ gia đình. Dù lựa chọn của bạn là gì, Uni2Insight luôn sẵn sàng đồng hành, cung cấp những góc nhìn khách quan và review thực tế từ cộng đồng cựu sinh viên, giúp bạn tự tin hơn trên con đường định hướng nghề nghiệp tương lai.
+        </p>
+        <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', fontSize: '0.95rem' }}>
+          Bên cạnh việc tra cứu danh sách trường theo khu vực, nền tảng của chúng tôi còn tích hợp các công cụ hỗ trợ như tìm kiếm chuyên sâu theo ngành học, so sánh mức học phí và đánh giá cơ sở vật chất. Hãy bắt đầu hành trình khám phá và tìm ra bến đỗ lý tưởng nhất cho chặng đường học thuật sắp tới của bạn!
+        </p>
+      </div>
+
+      <div style={{ marginBottom: '2rem' }}>
+        <TopFilterBar placeholder="Tìm kiếm tỉnh/thành phố..." />
+      </div>
       <div 
         className={styles.grid}
         style={{ 

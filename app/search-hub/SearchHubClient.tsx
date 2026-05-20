@@ -94,7 +94,20 @@ function SearchHubContent() {
   return (
     <div className={styles.searchPage}>
       <div className={styles.container}>
-        <h1 className={styles.pageTitle}>Tra cứu thông tin</h1>
+        <div style={{ marginBottom: '2.5rem', padding: '2rem', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)' }}>
+          <h1 style={{ fontSize: '1.6rem', fontWeight: 700, marginTop: 0, marginBottom: '1rem', color: 'var(--text-primary)' }}>
+            Tra cứu thông tin tuyển sinh & đánh giá trường Đại học
+          </h1>
+          <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: '1rem', fontSize: '0.95rem' }}>
+            Chào mừng bạn đến với <strong>Trung tâm Tìm kiếm thông tin giáo dục</strong> của Uni2Insight. Đây là cổng thông tin tổng hợp giúp học sinh, phụ huynh và các nhà nghiên cứu dễ dàng tiếp cận với kho dữ liệu khổng lồ của các trường đại học, học viện trên toàn quốc. Tại đây, bạn có thể thực hiện tìm kiếm chuyên sâu theo tên trường, nhóm ngành học, khu vực địa lý, điểm chuẩn xét tuyển qua các năm học hoặc mức học phí thực tế. Hệ thống tìm kiếm của chúng tôi được thiết kế tối ưu, phản hồi nhanh chóng và cập nhật liên tục để mang đến những kết quả chính xác nhất cho hành trình định hướng tương lai của bạn.
+          </p>
+          <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: '1rem', fontSize: '0.95rem' }}>
+            Bằng việc sử dụng các thanh bộ lọc thông minh (lọc theo vị trí địa lý, khu vực vùng miền, hoặc sắp xếp theo mức điểm chuẩn thi tốt nghiệp THPT, học bạ), bạn sẽ nhanh chóng lập ra danh sách các trường đại học phù hợp nhất với năng lực và điều kiện tài chính của bản thân. Hãy gõ từ khóa tìm kiếm (ví dụ như tên trường, ngành Công nghệ thông tin, Kinh tế đối ngoại, hoặc một tỉnh thành phố cụ thể) để bắt đầu sàng lọc và so sánh các chương trình đào tạo hấp dẫn nhất.
+          </p>
+          <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', fontSize: '0.95rem' }}>
+            Uni2Insight cam kết đồng hành cùng các sĩ tử trên mọi miền Tổ quốc bằng cách cung cấp không chỉ thông tin tuyển sinh khô khan mà còn cả các bài review trải nghiệm sinh viên chân thực. Chúc bạn tìm được bến đỗ đại học mơ ước!
+          </p>
+        </div>
 
         {/* 1. Top Controls */}
         <div className={styles.controlsRow}>

@@ -33,10 +33,22 @@ export default async function RegionDeepPage({ params }: { params: Promise<{ slu
     : (regionUnis.length > 0 ? regionUnis[0].city : regionNameOriginal);
 
   return (
-    <FilterLayout 
-      title={`Các trường đại học tại: ${exactRegionName}`}
-      subtitle={`Khám phá ${regionUnis.length} trường đại học, học viện nổi bật nhất tại khu vực ${exactRegionName}.`}
-    >
+    <FilterLayout>
+      <div style={{ marginBottom: '2.5rem', padding: '2rem', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)' }}>
+        <h1 style={{ fontSize: '1.6rem', fontWeight: 700, marginTop: 0, marginBottom: '1rem', color: 'var(--text-primary)' }}>
+          Các trường đại học tại: {exactRegionName}
+        </h1>
+        <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: '1rem', fontSize: '0.95rem' }}>
+          Chào mừng các bạn học sinh và phụ huynh đến với danh sách tổng hợp các trường đại học tại <strong>{exactRegionName}</strong>. Việc lựa chọn một môi trường đại học phù hợp tại khu vực <strong>{exactRegionName}</strong> đóng vai trò cực kỳ quan trọng đối với sự nghiệp và sự phát triển cá nhân của mỗi sinh viên. Nơi đây quy tụ nhiều trường đại học hàng đầu, viện nghiên cứu uy tín và cơ sở đào tạo đa ngành chất lượng cao. Với sự đa dạng trong các mô hình đào tạo từ công lập, dân lập đến quốc tế, khu vực này mang đến hàng loạt cơ hội học tập phong phú, đáp ứng tối đa mọi nhu cầu và định hướng nghề nghiệp khác nhau của người học.
+        </p>
+        <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: '1rem', fontSize: '0.95rem' }}>
+          Học tập tại <strong>{exactRegionName}</strong> mang lại những lợi thế vô song về mặt trải nghiệm thực tế cũng như kết nối doanh nghiệp. Sinh viên theo học tại đây sẽ được tiếp cận với hệ thống cơ sở hạ tầng học thuật đồng bộ, thư viện hiện đại và đội ngũ giảng viên giàu kinh nghiệm thực tế. Hơn thế nữa, mạng lưới liên kết rộng rãi của các trường đại học tại <strong>{exactRegionName}</strong> với cộng đồng doanh nghiệp địa phương và các tập đoàn đa quốc gia mở ra vô số cơ hội thực tập, kiến tập cũng như việc làm hấp dẫn ngay sau khi tốt nghiệp. Ngoài giờ học, cuộc sống sinh viên năng động với hàng loạt hoạt động ngoại khóa, câu lạc bộ và sự kiện văn hóa nghệ thuật phong phú tại đây hứa hẹn sẽ mang đến cho bạn những năm tháng thanh xuân rực rỡ và đầy ý nghĩa.
+        </p>
+        <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', fontSize: '0.95rem' }}>
+          Đến với Uni2Insight, chúng tôi cung cấp cho bạn những thông tin chi tiết và khách quan nhất về học phí, điểm chuẩn xét tuyển qua các năm, cùng các đánh giá thực tế từ cộng đồng cựu sinh viên đi trước tại khu vực <strong>{exactRegionName}</strong>. Những đánh giá đa chiều này sẽ giúp bạn hiểu rõ hơn về chất lượng giảng dạy, môi trường học thuật, hoạt động phong trào và cơ hội việc làm sau khi ra trường của từng đơn vị đào tạo. Chúc các bạn sẽ tìm thấy một ngôi trường đại học lý tưởng tại <strong>{exactRegionName}</strong> để chắp cánh cho những ước mơ, hoài bão lớn của mình!
+        </p>
+      </div>
+
       <div style={{ marginBottom: '2rem' }}>
         <Link href="/khu-vuc" style={{ display: 'inline-block', color: 'var(--primary)', textDecoration: 'none', fontWeight: 500, padding: '8px 16px', background: 'var(--border)', borderRadius: '8px' }}>
           ← Quay lại Cụm Trường

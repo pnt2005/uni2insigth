@@ -182,6 +182,22 @@ export default async function Home() {
             ))}
           </div>
         </section>
+
+        {/* Giới thiệu Nền tảng */}
+        <section style={{ marginBottom: '3rem', padding: '2.5rem', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-xl)' }}>
+          <h2 style={{ fontSize: '1.6rem', fontWeight: 800, marginBottom: '1.25rem', color: 'var(--text-primary)', fontFamily: 'var(--font-display)' }}>
+            Giới thiệu Nền tảng Tra cứu & Hướng nghiệp Uni2Insight
+          </h2>
+          <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: '1.25rem', fontSize: '0.95rem' }}>
+            Chào mừng bạn đến với <strong>Uni2Insight</strong> - Nền tảng tổng hợp, tra cứu thông tin và review trường đại học, ngành học hàng đầu tại Việt Nam. Chúng tôi ra đời với sứ mệnh cung cấp một không gian chia sẻ thông tin khách quan, chân thực và toàn diện, giúp các bạn học sinh THPT và sinh viên có thể định hướng nghề nghiệp một cách đúng đắn và tự tin nhất.
+          </p>
+          <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: '1.25rem', fontSize: '0.95rem' }}>
+            Tại Uni2Insight, bạn sẽ tìm thấy kho dữ liệu phong phú được cập nhật liên tục về cơ sở vật chất, chất lượng giảng dạy, học phí thực tế cùng môi trường học tập của hàng trăm trường Đại học trên khắp cả nước. Ngoài ra, nền tảng còn cung cấp các công cụ hướng nghiệp khoa học như trắc nghiệm tính cách MBTI, mật mã Holland và hệ thống cẩm nang ôn thi THPT Quốc gia hiệu quả. Những công cụ này hỗ trợ đắc lực giúp bạn thấu hiểu điểm mạnh, điểm yếu và sở thích nghề nghiệp cá nhân để chọn được ngành học phù hợp.
+          </p>
+          <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', fontSize: '0.95rem' }}>
+            Chúng tôi hy vọng Uni2Insight sẽ trở thành người bạn đồng hành đáng tin cậy trên hành trình chinh phục tri thức và định hình tương lai sự nghiệp của bạn. Hãy cùng chúng tôi khai phá tiềm năng học thuật của riêng bạn ngay hôm nay!
+          </p>
+        </section>
       </div>
     </>
   );

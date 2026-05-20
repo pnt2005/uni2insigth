@@ -7,7 +7,7 @@ import PrintButton from '../../components/PrintButton/PrintButton';
 import styles from './terms.module.css';
 
 export const metadata: Metadata = {
-  title: 'Điều khoản dịch vụ — Uni2Insight',
+  title: 'Điều Khoản Sử Dụng Dịch Vụ Nền Tảng | Uni2Insight',
   description: 'Đọc điều khoản sử dụng dịch vụ Uni2Insight trước khi sử dụng nền tảng.',
   alternates: { canonical: '/terms' },
 };

@@ -6,6 +6,39 @@ import path from "path";
 import { slugify } from "../../../utils/slugify";
 import FilterLayout from "../../../components/Common/FilterLayout";
 import { MapPin, Coins, BookOpen } from "lucide-react";
+import type { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const resolvedParams = await params;
+  const regionSlug = resolvedParams.slug;
+  const regionNameOriginal = regionSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+
+  let unis: any[] = [];
+  try {
+    const unisContent = fs.readFileSync(path.join(process.cwd(), 'data/universities.json'), 'utf8');
+    unis = JSON.parse(unisContent);
+  } catch (error) {}
+
+  const regionUnis = unis.filter((u: any) => {
+    const cleanCity = (u.city || "").replace(/TP\.?\s*/g, '');
+    const citySlug = slugify(cleanCity);
+    const regionNameSlug = slugify(u.region || "");
+    return citySlug === regionSlug || regionNameSlug === regionSlug;
+  });
+
+  const isRegionMatch = regionUnis.length > 0 && slugify(regionUnis[0].region || "") === regionSlug;
+  const exactRegionName = isRegionMatch 
+    ? regionUnis[0].region 
+    : (regionUnis.length > 0 ? regionUnis[0].city : regionNameOriginal);
+
+  return {
+    title: `Trường Đại Học Tại Khu Vực ${exactRegionName} | Uni2Insight`,
+    description: `Khám phá các trường đại học, học viện nổi bật nhất tại khu vực ${exactRegionName} kèm thông tin tuyển sinh, điểm chuẩn và học phí.`,
+    alternates: {
+      canonical: `/khu-vuc/${regionSlug}`,
+    },
+  };
+}
 
 export default async function RegionDeepPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;

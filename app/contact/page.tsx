@@ -4,7 +4,7 @@ import FAQAccordion from '../../components/FAQAccordion/FAQAccordion';
 import styles from './contact.module.css';
 
 export const metadata: Metadata = {
-  title: 'Liên hệ chúng tôi — Uni2Insight',
+  title: 'Liên Hệ Với Chúng Tôi Contact Us | Uni2Insight',
   description: 'Gửi câu hỏi, báo lỗi hoặc đề xuất hợp tác. Chúng tôi phản hồi trong vòng 24 giờ làm việc.',
   alternates: { canonical: '/contact' },
 };

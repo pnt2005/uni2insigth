@@ -74,7 +74,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '',
     '/khu-vuc',
     '/nganh-hoc',
-    '/tra-cuu',
+    '/search-hub',
     '/blog',
   ];
 

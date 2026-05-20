@@ -5,7 +5,7 @@ import Link from "next/link";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: 'Danh Mục Ngành Học | Uni2Insight',
+  title: 'Tra Cứu Danh Mục Các Ngành Học Đại Học | Uni2Insight',
   description: 'Khám phá và tìm hiểu chi tiết về các ngành học phổ biến nhất hiện nay.',
   alternates: {
     canonical: '/nganh-hoc',

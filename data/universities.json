@@ -9,7 +9,6 @@
       "Kinh tế",
       "Ngôn ngữ"
     ],
-    "tuitionScore": 5,
     "tuitionText": "Từ 28.700.000 VNĐ / học kỳ",
     "admissionScoreRange": "21 - 25",
     "image": "https://rmep.vn/wp-content/uploads/2024/06/z5503795221847_32de2d1145b3d58dba3c7c10de7885c0.jpg",
@@ -25,7 +24,6 @@
       "Công nghệ thông tin",
       "Cơ khí"
     ],
-    "tuitionScore": 4,
     "tuitionText": "Từ 15.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "24 - 28",
     "image": "https://dlcorp.com.vn/wp-content/uploads/2021/09/Ba%CC%81ch-Khoa-768x385.png",
@@ -41,7 +39,6 @@
       "Quản trị kinh doanh",
       "Kế toán"
     ],
-    "tuitionScore": 4,
     "tuitionText": "Từ 16.000.000 - 22.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "25 - 28.5",
     "image": "https://cdn-media.sforum.vn/storage/app/media/ngocmy/truong-dai-hoc-kinh-te-quoc-dan-neu/truong-dai-hoc-kinh-te-quoc-dan-neu-1.jpg",
@@ -57,7 +54,6 @@
       "Thiết kế",
       "Truyền thông"
     ],
-    "tuitionScore": 5,
     "tuitionText": "Từ 100.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "Tuyển sinh riêng",
     "image": "https://baoxinviec.shop/wp-content/uploads/2020/04/bang-dai-hoc-rmit-co-tot-khong_optimized.jpeg",
@@ -74,7 +70,6 @@
       "Điều dưỡng",
       "Y học cổ truyền"
     ],
-    "tuitionScore": 4,
     "tuitionText": "Từ 8.450.000 - 31.100.000 VNĐ / học kỳ",
     "admissionScoreRange": "22 - 28.5",
     "image": "https://huongnghiep.hocmai.vn/wp-content/uploads/2025/10/de-an-tuyen-sinh-dai-hoc-y-ha-noi-2023.jpeg",
@@ -90,7 +85,6 @@
       "Công nghệ thông tin",
       "Điện - Điện tử"
     ],
-    "tuitionScore": 4,
     "tuitionText": "Từ 14.000.000 - 30.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "24 - 28",
     "image": "https://tse2.mm.bing.net/th/id/OIP.6QpyquiIYszTpjXtz9baAgHaE5?rs=1&pid=ImgDetMain&o=7&rm=3",
@@ -106,7 +100,6 @@
       "Trí tuệ nhân tạo",
       "Khoa học dữ liệu"
     ],
-    "tuitionScore": 3,
     "tuitionText": "Từ 12.000.000 - 20.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "25 - 28.5",
     "image": "https://th.bing.com/th/id/R.0397d9bae79c03cb3311319b490b12d1?rik=BYM6iuqNVzXfFA&riu=http%3a%2f%2fthongtintuyensinh247.com%2fwp-content%2fuploads%2f2023%2f07%2ftruong-dai-hoc-cong-nghe-thong-tin-tphcm.jpg&ehk=IkgrMVRUlHOjnnC3a9Kw1dfkVREJQXMw2nMvgiApUCs%3d&risl=&pid=ImgRaw&r=0",
@@ -122,7 +115,6 @@
       "Ô tô",
       "Điện - Điện tử"
     ],
-    "tuitionScore": 3,
     "tuitionText": "Từ 10.000.000 - 18.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "22 - 27",
     "image": "https://tse4.mm.bing.net/th/id/OIP.Gk4VQHOzzrlNXXuJYzu6DAHaFj?rs=1&pid=ImgDetMain&o=7&rm=3",
@@ -138,7 +130,6 @@
       "Viễn thông",
       "An toàn thông tin"
     ],
-    "tuitionScore": 3,
     "tuitionText": "Từ 12.000.000 - 20.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "23 - 27",
     "image": "https://tse4.mm.bing.net/th/id/OIP.iNL0vZLgv87Fxj0jgsCzVQHaEd?rs=1&pid=ImgDetMain&o=7&rm=3",
@@ -154,7 +145,6 @@
       "Kinh doanh quốc tế",
       "Tài chính"
     ],
-    "tuitionScore": 4,
     "tuitionText": "Từ 18.000.000 - 25.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "26 - 28.5",
     "image": "https://th.bing.com/th/id/OIP.oPpwnMlbjgFj5A3XO1IZngHaE7?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3",
@@ -170,7 +160,6 @@
       "Quản trị kinh doanh",
       "Marketing"
     ],
-    "tuitionScore": 4,
     "tuitionText": "Từ 15.000.000 - 30.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "24 - 27.5",
     "image": "https://phongvu.vn/cong-nghe/wp-content/uploads/2025/05/hinh-anh-ngoi-truong-ueh-1392x870.jpg",
@@ -186,7 +175,6 @@
       "Luật kinh tế",
       "Luật quốc tế"
     ],
-    "tuitionScore": 3,
     "tuitionText": "Từ 10.000.000 - 18.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "23 - 27",
     "image": "https://th.bing.com/th/id/OIP.IA-hNGZiPbH4NDET9-xGWAHaEw?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3",
@@ -202,7 +190,6 @@
       "Luật thương mại",
       "Luật quốc tế"
     ],
-    "tuitionScore": 3,
     "tuitionText": "Từ 12.000.000 - 22.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "24 - 27.5",
     "image": "https://th.bing.com/th/id/R.e1d2f1b315a900e1122b27fd9dfd2ecb?rik=ABisSN0S7bhAnA&pid=ImgRaw&r=0",
@@ -218,7 +205,6 @@
       "Kế toán",
       "Kiểm toán"
     ],
-    "tuitionScore": 3,
     "tuitionText": "Từ 10.000.000 - 18.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "23 - 27",
     "image": "https://hocvientaichinh.com.vn/wp-content/uploads/2013/10/1143_hYc_viYn_tai_chinh.jpg",
@@ -234,7 +220,6 @@
       "Tài chính",
       "Kế toán"
     ],
-    "tuitionScore": 3,
     "tuitionText": "Từ 10.000.000 - 20.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "23 - 26.5",
     "image": "https://tse3.mm.bing.net/th/id/OIP.uQVG9A8nkefSgtURT8kAKgHaEl?rs=1&pid=ImgDetMain&o=7&rm=3",
@@ -250,7 +235,6 @@
       "Giáo dục",
       "Tâm lý học"
     ],
-    "tuitionScore": 2,
     "tuitionText": "Từ 8.000.000 - 15.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "22 - 27",
     "image": "https://xdcs.cdnchinhphu.vn/446259493575335936/2023/1/20/sp-1674180928283979325020.jpg",
@@ -266,7 +250,6 @@
       "Ngôn ngữ Nhật",
       "Ngôn ngữ Hàn"
     ],
-    "tuitionScore": 3,
     "tuitionText": "Từ 15.000.000 - 25.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "24 - 27.5",
     "image": "https://th.bing.com/th/id/R.b7dd2be1217a916561cdb3c6b17a8744?rik=qiK1VHmtUrcIkA&pid=ImgRaw&r=0",
@@ -282,7 +265,6 @@
       "Sư phạm ngoại ngữ",
       "Biên phiên dịch"
     ],
-    "tuitionScore": 3,
     "tuitionText": "Từ 12.000.000 - 20.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "24 - 27.5",
     "image": "https://tse3.mm.bing.net/th/id/OIP.dxutBYr4f5Bl5xAj37bH5QHaEK?rs=1&pid=ImgDetMain&o=7&rm=3",
@@ -298,7 +280,6 @@
       "Kinh tế quốc tế",
       "Luật quốc tế"
     ],
-    "tuitionScore": 4,
     "tuitionText": "Từ 18.000.000 - 30.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "26 - 28.5",
     "image": "https://reviewedu.net/wp-content/uploads/2023/01/hoc-vien-ngoai-giao.jpg",
@@ -314,7 +295,6 @@
       "Truyền thông",
       "Quan hệ công chúng"
     ],
-    "tuitionScore": 3,
     "tuitionText": "Từ 10.000.000 - 18.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "23 - 27",
     "image": "https://thongtintuyensinh.net/wp-content/uploads/2020/07/hoc-vien-bao-chi-tuyen-truyen-duoc-quy-hoach-hien-dai-voi-nhieu-cay-xanh1568860454.jpg",
@@ -330,7 +310,6 @@
       "Kỹ thuật",
       "Y khoa"
     ],
-    "tuitionScore": 5,
     "tuitionText": "Từ 120.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "Tuyển sinh riêng",
     "image": "https://tse3.mm.bing.net/th/id/OIP.8rJK_bvr2Vy99f1kunyi8wHaE7?rs=1&pid=ImgDetMain&o=7&rm=3",
@@ -346,7 +325,6 @@
       "Kỹ thuật",
       "Công nghệ thông tin"
     ],
-    "tuitionScore": 3,
     "tuitionText": "Từ 12.000.000 - 25.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "22 - 26.5",
     "image": "https://www.tdtu.edu.vn/sites/www/files/articles/2022/Apr/Nha-trang/NT-0.jpg",
@@ -362,7 +340,6 @@
       "Kỹ thuật",
       "Y dược"
     ],
-    "tuitionScore": 3,
     "tuitionText": "Từ 15.000.000 - 30.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "21 - 26",
     "image": "https://tse3.mm.bing.net/th/id/OIP.RfhfkS199dr4JLXtOJlGDAHaE8?rs=1&pid=ImgDetMain&o=7&rm=3",
@@ -378,7 +355,6 @@
       "Dược học",
       "Răng Hàm Mặt"
     ],
-    "tuitionScore": 4,
     "tuitionText": "Từ 15.000.000 - 35.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "23 - 28.5",
     "image": "https://topchuyengia.vn/uploads/images/original_images/truong-dai-hoc-y-duoc-tphcm-1-5779.jpeg",
@@ -394,7 +370,6 @@
       "Điều dưỡng",
       "Xét nghiệm"
     ],
-    "tuitionScore": 4,
     "tuitionText": "Từ 20.000.000 - 27.500.000 VNĐ / học kỳ",
     "admissionScoreRange": "22 - 27",
     "image": "https://toplist.vn/images/800px/dai-hoc-y-khoa-pham-ngoc-thach-1096456.jpg",
@@ -410,7 +385,6 @@
       "Toán",
       "Vật lý"
     ],
-    "tuitionScore": 3,
     "tuitionText": "Từ 10.000.000 - 20.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "23 - 27.5",
     "image": "https://tse4.mm.bing.net/th/id/OIP.3DUoSzfgKGqJN2vNxKTBfwHaEK?rs=1&pid=ImgDetMain&o=7&rm=3",
@@ -426,7 +400,6 @@
       "Quan hệ quốc tế",
       "Ngôn ngữ học"
     ],
-    "tuitionScore": 3,
     "tuitionText": "Từ 10.000.000 - 18.000.000 VNĐ / học kỳ",
     "admissionScoreRange": "22 - 26.5",
     "image": "https://tse4.mm.bing.net/th/id/OIP.n4FPW1PsBnLBYFq_H2J0FQHaE8?rs=1&pid=ImgDetMain&o=7&rm=3",
@@ -442,26 +415,24 @@
       "Kinh doanh quốc tế",
       "Luật kinh tế"
     ],
-    "tuitionScore": 4,
     "tuitionText": "Từ 13.750.000 - 28.800.000 VNĐ / học kỳ",
     "admissionScoreRange": "24.39 - 27.44",
     "image": "https://www.uel.edu.vn/storage/about/toa-a-moi.jpg",
     "address": "Số 669 Đỗ Mười, Khu phố 13, Phường Linh Xuân, TP. Thủ Đức, TP. Hồ Chí Minh"
   },
   {
-  "id": "hcmufa",
-  "name": "Trường Đại học Mỹ thuật TP.HCM (HCMUFA)",
-  "region": "Miền Nam",
-  "city": "TP. Hồ Chí Minh",
-  "majors": [
-    "Thiết kế đồ họa",
-    "Hội họa",
-    "Đồ họa"
-  ],
-  "tuitionScore": 2,
-  "tuitionText": "Từ 6.750.000 - 7.500.000 VNĐ / học kỳ",
-  "admissionScoreRange": "16 - 26.5",
-  "image": "https://congchungnguyenhue.com/Uploaded/Images/Original/2023/11/27/9NosRfH0-truong-dai-hoc-my-thuat-tphcm_2711143429.jpg",
-  "address": "Số 5 Phan Đăng Lưu, Phường 1, Quận Bình Thạnh, TP. Hồ Chí Minh"
+    "id": "hcmufa",
+    "name": "Trường Đại học Mỹ thuật TP.HCM (HCMUFA)",
+    "region": "Miền Nam",
+    "city": "TP. Hồ Chí Minh",
+    "majors": [
+      "Thiết kế đồ họa",
+      "Hội họa",
+      "Đồ họa"
+    ],
+    "tuitionText": "Từ 6.750.000 - 7.500.000 VNĐ / học kỳ",
+    "admissionScoreRange": "16 - 26.5",
+    "image": "https://congchungnguyenhue.com/Uploaded/Images/Original/2023/11/27/9NosRfH0-truong-dai-hoc-my-thuat-tphcm_2711143429.jpg",
+    "address": "Số 5 Phan Đăng Lưu, Phường 1, Quận Bình Thạnh, TP. Hồ Chí Minh"
   }
 ]

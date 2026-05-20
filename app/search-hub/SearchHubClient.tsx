@@ -18,36 +18,36 @@ function SearchHubContent() {
   const [showLocationMenu, setShowLocationMenu] = useState(false);
   const [showSortMenu, setShowSortMenu] = useState(false);
   const [showFilterPanel, setShowFilterPanel] = useState(false);
-  
+
   // Real data from universities.json
   const universities = useMemo(() => universitiesData as any[], []);
-  
+
   // Filter and search
   const filteredResults = useMemo(() => {
     let results = universities;
-    
+
     // Filter by search query
     if (query.trim()) {
       const lowerQuery = query.toLowerCase();
-      results = results.filter((uni: any) => 
+      results = results.filter((uni: any) =>
         uni.name?.toLowerCase().includes(lowerQuery) ||
         uni.title?.toLowerCase().includes(lowerQuery) ||
         uni.city?.toLowerCase().includes(lowerQuery)
       );
     }
-    
+
     // Filter by location
     if (selectedLocation !== 'Toàn quốc') {
-      results = results.filter((uni: any) => 
+      results = results.filter((uni: any) =>
         uni.city === selectedLocation || uni.city?.includes(selectedLocation)
       );
     }
-    
+
     // Filter by region
     if (selectedRegion !== 'Tất cả') {
       results = results.filter((uni: any) => uni.region === selectedRegion);
     }
-    
+
     // Sort results
     if (sortBy === 'Điểm chuẩn') {
       results = [...results].sort((a: any, b: any) => {
@@ -56,11 +56,11 @@ function SearchHubContent() {
         return scoreB - scoreA;
       });
     } else if (sortBy === 'A-Z') {
-      results = [...results].sort((a: any, b: any) => 
+      results = [...results].sort((a: any, b: any) =>
         (a.name || a.title || '').localeCompare(b.name || b.title || '')
       );
     }
-    
+
     return results;
   }, [query, selectedLocation, selectedRegion, sortBy, universities]);
 
@@ -120,23 +120,23 @@ function SearchHubContent() {
               onChange={(e) => setQuery(e.target.value)}
             />
             {query && (
-              <X 
-                size={16} 
-                color="#999" 
-                style={{ cursor: 'pointer' }} 
-                onClick={() => setQuery('')} 
+              <X
+                size={16}
+                color="#999"
+                style={{ cursor: 'pointer' }}
+                onClick={() => setQuery('')}
               />
             )}
           </div>
 
-          <div 
+          <div
             className={styles.dropdownBox}
             onClick={() => setShowLocationMenu(!showLocationMenu)}
           >
             <MapPin size={18} color="#7b61ff" />
             <span>{selectedLocation}</span>
             <ChevronDown size={16} style={{ marginLeft: 'auto' }} />
-            
+
             {showLocationMenu && (
               <div className={styles.dropdownMenu}>
                 {locations.map(loc => (
@@ -156,18 +156,18 @@ function SearchHubContent() {
             )}
           </div>
 
-          <div 
+          <div
             className={styles.filterBtn}
             onClick={() => setShowFilterPanel(!showFilterPanel)}
           >
             <Filter size={18} color="#777" />
             <span>Bộ lọc</span>
             {getTagsToDisplay().length > 0 && <span className={styles.badge}>{getTagsToDisplay().length}</span>}
-            
+
             {showFilterPanel && (
               <div className={styles.dropdownMenu} style={{ padding: '1rem', width: '200px' }} onClick={(e) => e.stopPropagation()}>
                 <h4 style={{ margin: '0 0 10px 0', fontSize: '14px', color: '#333' }}>Vùng miền</h4>
-                <select 
+                <select
                   value={selectedRegion}
                   onChange={(e) => {
                     setSelectedRegion(e.target.value);
@@ -201,8 +201,8 @@ function SearchHubContent() {
             </span>
           ))}
           {getTagsToDisplay().length > 0 && (
-            <button 
-              className={styles.clearAll} 
+            <button
+              className={styles.clearAll}
               onClick={() => {
                 setQuery('');
                 setSelectedLocation('Toàn quốc');
@@ -217,12 +217,12 @@ function SearchHubContent() {
         {/* 3. Results Header */}
         <div className={styles.resultsHeader}>
           <span>Chúng tôi tìm thấy <strong>{filteredResults.length} kết quả</strong></span>
-          <div 
+          <div
             style={{ cursor: 'pointer', position: 'relative' }}
             onClick={() => setShowSortMenu(!showSortMenu)}
           >
             Sắp xếp theo: <strong>{sortBy}</strong> <ChevronDown size={14} style={{ display: 'inline', verticalAlign: 'middle' }} />
-            
+
             {showSortMenu && (
               <div className={styles.dropdownMenu} style={{ right: 0, left: 'auto' }}>
                 <div
@@ -254,8 +254,8 @@ function SearchHubContent() {
         <div className={styles.resultsList}>
           {filteredResults.length > 0 ? (
             filteredResults.map((item: any, index: number) => (
-              <div 
-                key={item.id || index} 
+              <div
+                key={item.id || index}
                 className={styles.card}
                 onClick={() => router.push(`/review/${item.id}`)}
               >
@@ -288,15 +288,14 @@ function SearchHubContent() {
           )}
         </div>
 
-      </div>
-    </div>
-  );
+      </>
+      );
 }
 
-export default function SearchHubClient() {
+      export default function SearchHubClient() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <SearchHubContent />
-    </Suspense>
-  );
+      <Suspense fallback={<div style={{ minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-secondary)' }}>Đang tải dữ liệu tra cứu...</div>}>
+        <SearchHubContent />
+      </Suspense>
+      );
 }

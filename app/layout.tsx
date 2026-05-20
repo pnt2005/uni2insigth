@@ -19,8 +19,8 @@ const beVietnamPro = Be_Vietnam_Pro({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://uni2insight.com"),
-  title: "Uni2Insight - Tương lai của bạn",
-  description: "Trang tra cứu thông tin trường đại học, ngành học, điểm chuẩn, học phí",
+
+  // description removed to allow child pages to provide unique meta descriptions
   icons: {
     icon: '/favicon.ico',
   },

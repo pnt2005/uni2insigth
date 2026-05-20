@@ -39,6 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<{ school: s
   } catch (error) {
     return {
       title: 'Review Trường Đại học',
+      description: 'Đánh giá chi tiết và review thực tế về trường đại học, bao gồm thông tin về giảng viên, cơ sở vật chất, học phí và môi trường học tập.',
     };
   }
 }

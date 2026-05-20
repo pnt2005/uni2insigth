@@ -10,7 +10,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Đánh Giá & Review Các Trường Đại Học | Uni2Insight',
-  description: 'Tổng hợp các bài đánh giá, review thực tế từ sinh viên về giảng viên, cơ sở vật chất, học phí và môi trường học tập tại các trường đại học.',
+
   alternates: {
     canonical: '/review',
   },

@@ -287,9 +287,9 @@ function SearchHubContent() {
             </div>
           )}
         </div>
-
-      </>
-      );
+      </div>
+    </div>
+  );
 }
 
       export default function SearchHubClient() {

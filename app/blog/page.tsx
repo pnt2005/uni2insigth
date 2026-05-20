@@ -65,20 +65,33 @@ export default async function BlogList({ searchParams }: { searchParams: Promise
   });
 
   return (
-    <FilterLayout
-      title="Blog & Hướng Nghiệp"
-      subtitle="Các bài viết chia sẻ kinh nghiệm, định hướng nghề nghiệp và đời sống sinh viên."
-      filters={<TopFilterBar placeholder="Tìm kiếm bài viết..." filterOptions={filterOptions} filterLabel="Danh mục" />}
-    >
+    <FilterLayout>
+      <div style={{ marginBottom: '2.5rem', padding: '2rem', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)' }}>
+        <h1 style={{ fontSize: '1.6rem', fontWeight: 700, marginTop: 0, marginBottom: '1rem', color: 'var(--text-primary)' }}>Chào mừng bạn đến với Blog Hướng nghiệp & Kinh nghiệm Học đường Uni2Insight</h1>
+        <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: '1rem', fontSize: '0.95rem' }}>
+          Trang Blog và Hướng nghiệp của Uni2Insight là nơi tổng hợp những bài viết chia sẻ kinh nghiệm học đường, định hướng nghề nghiệp và cẩm nang bổ ích dành cho học sinh, sinh viên. Tại đây, bạn sẽ tìm thấy các bài viết phân tích, đánh giá khách quan về cơ sở vật chất của các trường Đại học trên khắp cả nước, bao gồm không gian phòng học, thư viện, ký túc xá, và các tiện ích học tập khác. Những bài viết thực tế này được tổng hợp từ trải nghiệm của các cựu sinh viên đi trước, nhằm mang lại góc nhìn chân thực nhất giúp bạn đưa ra lựa chọn trường học phù hợp với bản thân.
+        </p>
+        <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: '1rem', fontSize: '0.95rem' }}>
+          Bên cạnh thông tin về cơ sở vật chất các trường đại học lớn như Đại học Y Hà Nội, Đại học Y Dược TP.HCM, VinUni, FPT, RMIT hay các trường công lập khác, góc hướng nghiệp của chúng tôi còn cung cấp các bài viết chuyên sâu về định hướng nghề nghiệp thông qua các phương pháp khoa học như trắc nghiệm tính cách MBTI và mật mã Holland. Những công cụ này sẽ hỗ trợ bạn thấu hiểu điểm mạnh, điểm yếu và xu hướng nghề nghiệp của chính mình để chọn được ngành học phù hợp.
+        </p>
+        <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', fontSize: '0.95rem' }}>
+          Đồng thời, trang blog cũng thường xuyên cập nhật những kinh nghiệm học tập thực tế, bí quyết ôn thi THPT Quốc gia hiệu quả, các phương pháp quản lý thời gian và mẹo nhỏ giúp giảm bớt áp lực tâm lý trong mùa thi cử. Chúng tôi hy vọng Uni2Insight sẽ trở thành người bạn đồng hành đáng tin cậy trên con đường định hướng tương lai và chinh phục ước mơ học đường của bạn. Hãy thường xuyên ghé thăm để cập nhật thêm nhiều kiến thức và tin tức bổ ích nhé!
+        </p>
+      </div>
+
+      <div style={{ marginBottom: '2rem' }}>
+        <TopFilterBar placeholder="Tìm kiếm bài viết..." filterOptions={filterOptions} filterLabel="Danh mục" />
+      </div>
+
       <div className={styles.grid}>
         {filteredBlogs.map((blog, idx) => (
           <Link href={`/blog/${blog.slug}`} key={idx} className={styles.card}>
             <div style={{ position: 'relative', height: '150px', borderRadius: 'var(--radius-md) var(--radius-md) 0 0', margin: '-1.5rem -1.5rem 1rem -1.5rem', overflow: 'hidden', background: 'var(--border)' }}>
               {blog.thumbnail && (
-                <Image 
-                  src={blog.thumbnail} 
-                  alt={blog.title} 
-                  fill 
+                <Image
+                  src={blog.thumbnail}
+                  alt={blog.title}
+                  fill
                   style={{ objectFit: 'cover' }}
                   sizes="(max-width: 768px) 100vw, 400px"
                 />

@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "./FilterLayout.module.css";
 
 interface FilterLayoutProps {
-  title: string;
+  title?: string;
   subtitle?: string;
   children: React.ReactNode;
   filters?: React.ReactNode;
@@ -10,14 +10,16 @@ interface FilterLayoutProps {
 
 export default function FilterLayout({ title, subtitle, children, filters }: FilterLayoutProps) {
   return (
-    <div className={`container ${styles.layout}`}>
-      <main className={styles.mainContent}>
-        <div className={styles.header}>
-          <div>
-            <h1 className={styles.pageTitle}>{title}</h1>
-            {subtitle && <p className={styles.pageSubtitle}>{subtitle}</p>}
+    <div className={`container ${styles.layout}`} style={!title ? { paddingTop: '1rem' } : undefined}>
+      <div className={styles.mainContent}>
+        {title && (
+          <div className={styles.header}>
+            <div>
+              <h1 className={styles.pageTitle}>{title}</h1>
+              {subtitle && <p className={styles.pageSubtitle}>{subtitle}</p>}
+            </div>
           </div>
-        </div>
+        )}
 
         {filters && (
           <div className={styles.topFilters}>
@@ -26,7 +28,7 @@ export default function FilterLayout({ title, subtitle, children, filters }: Fil
         )}
 
         {children}
-      </main>
+      </div>
     </div>
   );
 }

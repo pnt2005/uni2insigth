@@ -73,7 +73,7 @@ export default async function ReviewLayout({
       <aside className={styles.sidebar}>
         <div className={styles.stickyBox}>
           <nav className={styles.spokeNav} aria-label="Khám phá các chủ đề khác">
-            <h3 className={styles.sidebarTitle}>Nội Dung Khám Phá</h3>
+            <h2 className={styles.sidebarTitle}>Nội Dung Khám Phá</h2>
             <ul className={styles.spokeList}>
               <li>
                 <Link href={`/review/${schoolSlug}`} className={styles.spokeLink}>
@@ -104,7 +104,7 @@ export default async function ReviewLayout({
           </nav>
 
           {/* <nav className={styles.toc} aria-label="Mục lục bài viết">
-            <h3 className={styles.sidebarTitle}>Mục Lục (TOC)</h3>
+            <h2 className={styles.sidebarTitle}>Mục Lục (TOC)</h2>
             <ul className={styles.tocList}>
               <li><a href="#gioi-thieu">1. Giới thiệu chung</a></li>
               <li><a href="#chuong-trinh">2. Chương trình đào tạo</a></li>

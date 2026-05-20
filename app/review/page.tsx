@@ -9,8 +9,9 @@ import styles from '../nganh-hoc/page.module.css';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Đánh Giá & Review Các Trường Đại Học | Uni2Insight',
-  description: 'Khám phá danh sách review trường đại học từ sinh viên thực tế: môi trường học tập, giảng viên, học phí, cơ hội việc làm và trải nghiệm campus.',
+  title: 'Review Đánh Giá Các Trường Đại Học | Uni2Insight',
+  description: 'Góc nhìn thực tế, bài review chi tiết về giảng viên, cơ sở vật chất, học phí từ sinh viên các trường đại học.',
+  keywords: ['review', 'review trường', 'đánh giá trường', 'đánh giá đại học', 'uni2insight'], description: 'Khám phá danh sách review trường đại học từ sinh viên thực tế: môi trường học tập, giảng viên, học phí, cơ hội việc làm và trải nghiệm campus.',
   alternates: {
     canonical: '/review',
   },

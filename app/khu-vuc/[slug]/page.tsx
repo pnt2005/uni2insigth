@@ -31,9 +31,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     ? regionUnis[0].region 
     : (regionUnis.length > 0 ? regionUnis[0].city : regionNameOriginal);
 
+  const regionSlugWithoutHyphen = regionSlug.replace(/-/g, ' ');
+
   return {
     title: `Trường Đại Học Tại Khu Vực ${exactRegionName} | Uni2Insight`,
     description: `Khám phá các trường đại học, học viện nổi bật nhất tại khu vực ${exactRegionName} kèm thông tin tuyển sinh, điểm chuẩn và học phí.`,
+    keywords: [
+      'khu-vuc',
+      'khu vực',
+      regionSlug,
+      regionSlugWithoutHyphen,
+      exactRegionName.toLowerCase(),
+      `trường đại học tại ${exactRegionName.toLowerCase()}`,
+      'uni2insight'
+    ],
     alternates: {
       canonical: `/khu-vuc/${regionSlug}`,
     },

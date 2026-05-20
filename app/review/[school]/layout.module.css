@@ -85,10 +85,11 @@
   }
 }
 
-/* Ẩn sidebar TOC trên mobile — chỉ hiện content chính */
+/* Đã gỡ bỏ display: none để hiện sidebar trên mobile */
 @media (max-width: 1023px) {
   .sidebar {
-    display: none;
+    display: block;
+    margin-top: 1rem;
   }
 }
 

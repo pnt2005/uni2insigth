@@ -23,12 +23,12 @@ export default async function ReviewIndex({ searchParams }: { searchParams: Prom
 
   const reviewsDir = path.join(process.cwd(), 'data/reviews');
   let reviews: Array<{ slug: string, title: string, schoolName: string, description: string, image: string }> = [];
-  
+
   let unisData: any[] = [];
   try {
     const unisStr = fs.readFileSync(path.join(process.cwd(), 'data/universities.json'), 'utf8');
     unisData = JSON.parse(unisStr);
-  } catch(e) {}
+  } catch (e) { }
 
   try {
     const filenames = fs.readdirSync(reviewsDir);
@@ -41,7 +41,7 @@ export default async function ReviewIndex({ searchParams }: { searchParams: Prom
         const { data } = matter(fileContent);
         const slug = filename.replace(/\.mdx$/, '');
         const uniInfo = unisData.find(u => u.id === slug);
-        
+
         return {
           slug,
           title: data.title || "Bài Review Trường",
@@ -59,7 +59,7 @@ export default async function ReviewIndex({ searchParams }: { searchParams: Prom
   });
 
   return (
-    <FilterLayout 
+    <FilterLayout
       filters={<TopFilterBar placeholder="Tìm kiếm trường đại học..." />}
     >
       <div style={{ marginBottom: '2.5rem', padding: '2rem', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)' }}>
@@ -88,7 +88,7 @@ export default async function ReviewIndex({ searchParams }: { searchParams: Prom
               borderRadius: 'var(--radius-md) var(--radius-md) 0 0',
               overflow: 'hidden'
             }}>
-              <Image 
+              <Image
                 src={review.image}
                 alt={`Ảnh đại diện review trường ${review.schoolName}`}
                 fill

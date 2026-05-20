@@ -101,13 +101,15 @@ export default async function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
       />
-      <script>
-        var ahrefs_analytics_script = document.createElement('script');
-        ahrefs_analytics_script.async = true;
-        ahrefs_analytics_script.src = 'https://analytics.ahrefs.com/analytics.js';
-        ahrefs_analytics_script.setAttribute('data-key', 'fsyFx2m76CRDLcB1ImMHWQ');
-        document.getElementsByTagName('head')[0].appendChild(ahrefs_analytics_script);
-      </script>
+      <Script id="ahrefs-analytics" strategy="afterInteractive">
+        {`
+          var ahrefs_analytics_script = document.createElement('script');
+          ahrefs_analytics_script.async = true;
+          ahrefs_analytics_script.src = 'https://analytics.ahrefs.com/analytics.js';
+          ahrefs_analytics_script.setAttribute('data-key', 'fsyFx2m76CRDLcB1ImMHWQ');
+          document.getElementsByTagName('head')[0].appendChild(ahrefs_analytics_script);
+        `}
+      </Script>
       <section className={styles.hero}>
         <div className={styles.heroInner}>
           <div className={styles.heroContent}>

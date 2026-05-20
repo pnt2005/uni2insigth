@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: 'Cẩm Nang Hướng Nghiệp & Kinh Nghiệm Đại Học | Uni2Insight',
+  title: 'Blog Cẩm Nang Hướng Nghiệp & Kinh Nghiệm Đại Học | Uni2Insight',
   description: 'Các bài viết chia sẻ kinh nghiệm, định hướng nghề nghiệp và đời sống sinh viên.',
   alternates: {
     canonical: '/blog',

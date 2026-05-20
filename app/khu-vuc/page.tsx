@@ -11,6 +11,7 @@ import path from 'path';
 export const metadata: Metadata = {
   title: 'Danh Sách Các Trường Đại Học Theo Khu Vực | Uni2Insight',
   description: 'Tìm kiếm cụm trường đại học, cao đẳng theo tỉnh thành phố.',
+  keywords: ['khu-vuc', 'khu vực', 'tỉnh thành', 'thành phố', 'trường đại học theo khu vực', 'uni2insight'],
   alternates: {
     canonical: '/khu-vuc',
   },

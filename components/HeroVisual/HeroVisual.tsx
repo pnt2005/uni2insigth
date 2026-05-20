@@ -16,7 +16,7 @@ export default function HeroVisual() {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % HERO_IMAGES.length);
-    }, 3000);
+    }, 6000);
     return () => clearInterval(interval);
   }, []);
 
@@ -38,7 +38,7 @@ export default function HeroVisual() {
             <Image
               src={img}
               fill
-              priority={i === 0}
+              priority={true}
               alt={`Hero image ${i + 1}`}
               className={styles.heroImage}
               sizes="(max-width: 768px) 100vw, 50vw"

@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: [
         '/api/',      // Chặn Bot crawl dữ liệu API thô
-        '/tra-cuu?*', // Chặn các trang tìm kiếm để tránh Duplicate Content
+        '/search-hub?*', // Chặn các trang tìm kiếm để tránh Duplicate Content
         '/search/',   // Chặn các trang tìm kiếm
         '/_next/',    // Chặn các tệp cấu hình hệ thống của Next.js
       ],

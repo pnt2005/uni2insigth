@@ -92,9 +92,7 @@ function SearchHubContent() {
   };
 
   return (
-    <div className={styles.searchPage}>
-      <div className={styles.container}>
-        <h1 className={styles.pageTitle}>Tra cứu thông tin</h1>
+    <>
 
         {/* 1. Top Controls */}
         <div className={styles.controlsRow}>
@@ -275,14 +273,13 @@ function SearchHubContent() {
           )}
         </div>
 
-      </div>
-    </div>
+    </>
   );
 }
 
 export default function SearchHubClient() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div style={{ minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-secondary)' }}>Đang tải dữ liệu tra cứu...</div>}>
       <SearchHubContent />
     </Suspense>
   );

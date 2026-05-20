@@ -9,7 +9,7 @@ import fs from 'fs';
 import path from 'path';
 
 export const metadata: Metadata = {
-  title: 'Tra Cứu Khu Vực | Uni2Insight',
+  title: 'Danh Sách Các Trường Đại Học Theo Khu Vực | Uni2Insight',
   description: 'Tìm kiếm cụm trường đại học, cao đẳng theo tỉnh thành phố.',
   alternates: {
     canonical: '/khu-vuc',
@@ -47,9 +47,9 @@ export default async function RegionList({ searchParams }: { searchParams: Promi
     // Clean up city name when parsing for URL slug
     const cleanCity = city.replace(/TP\.?\s*/g, '');
 
-    return { 
-      title: city, 
-      count: cityCounts[city], 
+    return {
+      title: city,
+      count: cityCounts[city],
       slug: cleanCity
     };
   });
@@ -59,28 +59,28 @@ export default async function RegionList({ searchParams }: { searchParams: Promi
   }
 
   return (
-    <FilterLayout 
-      title="Tra cứu theo Khu vực" 
+    <FilterLayout
+      title="Tra cứu theo Khu vực"
       subtitle="Tìm kiếm cụm trường đại học, cao đẳng theo tỉnh thành phố."
       filters={<TopFilterBar placeholder="Tìm kiếm tỉnh/thành phố..." />}
     >
-      <div 
+      <div
         className={styles.grid}
-        style={{ 
+        style={{
           gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
           gap: '1rem'
         }}
       >
         {regions.map((region, idx) => (
-          <Link 
-            href={`/khu-vuc/${slugify(region.title.replace(/TP\.?\s*/g, ""))}`} 
-            key={idx} 
+          <Link
+            href={`/khu-vuc/${slugify(region.title.replace(/TP\.?\s*/g, ""))}`}
+            key={idx}
             className={styles.card}
-            style={{ 
-              padding: '1.5rem', 
-              display: 'flex', 
-              flexDirection: 'column', 
-              alignItems: 'center', 
+            style={{
+              padding: '1.5rem',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
               textAlign: 'center',
               backgroundColor: 'var(--bg-white)',
               borderRadius: 'var(--radius-lg)',
@@ -89,33 +89,33 @@ export default async function RegionList({ searchParams }: { searchParams: Promi
               boxShadow: 'var(--shadow-sm)'
             }}
           >
-            <div style={{ 
-              width: '48px', 
-              height: '48px', 
-              borderRadius: '12px', 
-              backgroundColor: 'var(--primary-light)', 
-              display: 'flex', 
-              alignItems: 'center', 
+            <div style={{
+              width: '48px',
+              height: '48px',
+              borderRadius: '12px',
+              backgroundColor: 'var(--primary-light)',
+              display: 'flex',
+              alignItems: 'center',
               justifyContent: 'center',
               color: 'var(--primary)',
               marginBottom: '1rem'
             }}>
               <MapPin size={24} />
             </div>
-            
-            <h3 style={{ 
-              fontSize: '1.125rem', 
-              fontWeight: 800, 
+
+            <h3 style={{
+              fontSize: '1.125rem',
+              fontWeight: 800,
               color: 'var(--text-primary)',
               marginBottom: '0.25rem'
             }}>
               {region.title}
             </h3>
-            
-            <div style={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: '0.4rem', 
+
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.4rem',
               color: 'var(--text-secondary)',
               fontSize: '0.85rem',
               marginBottom: '1.25rem'
@@ -124,7 +124,7 @@ export default async function RegionList({ searchParams }: { searchParams: Promi
               <span><strong>{region.count}</strong> trường</span>
             </div>
 
-            <div style={{ 
+            <div style={{
               marginTop: 'auto',
               width: '100%',
               paddingTop: '1rem',

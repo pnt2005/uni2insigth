@@ -6,6 +6,15 @@ import Image from 'next/image';
 import FilterLayout from '../../components/Common/FilterLayout';
 import TopFilterBar from '../../components/Common/TopFilterBar';
 import styles from '../nganh-hoc/page.module.css';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Đánh Giá & Review Các Trường Đại Học | Uni2Insight',
+  description: 'Tổng hợp các bài đánh giá, review thực tế từ sinh viên về giảng viên, cơ sở vật chất, học phí và môi trường học tập tại các trường đại học.',
+  alternates: {
+    canonical: '/review',
+  },
+};
 
 export default async function ReviewIndex({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
   const params = await searchParams;

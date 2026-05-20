@@ -5,8 +5,8 @@ import StatCard from '../../components/StatCard/StatCard';
 import styles from './about.module.css';
 
 export const metadata: Metadata = {
-  title: 'Về chúng tôi — Uni2Insight',
-  description: 'Tìm hiểu sứ mệnh, câu chuyện, đội ngũ và những con số ấn tượng của Uni2Insight — nền tảng thông tin tuyển sinh hàng đầu Việt Nam.',
+  title: 'Nền Tảng Tra Cứu Đại Học Việt Nam | Uni2Insight',
+  description: 'Tìm hiểu sứ mệnh, câu chuyện, đội ngũ và những con số ấn tượng của Uni2Insight - nền tảng thông tin tuyển sinh hàng đầu Việt Nam.',
   alternates: { canonical: '/about' },
 };
 

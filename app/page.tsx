@@ -10,6 +10,8 @@ import HeroSearch from "@/components/HeroSearch/HeroSearch";
 import HeroVisual from "@/components/HeroVisual/HeroVisual";
 
 export const metadata: Metadata = {
+  title: 'Uni2Insight - Nền Tảng Tra Cứu Điểm Chuẩn & Học Phí Đại Học',
+  description: 'Tra cứu thông tin tuyển sinh, điểm chuẩn lịch sử, học phí, đánh giá chi tiết và cẩm nang kinh nghiệm cho học sinh, phụ huynh và sinh viên.',
   alternates: {
     canonical: '/',
   },

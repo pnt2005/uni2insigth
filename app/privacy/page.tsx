@@ -6,7 +6,7 @@ import TLDRBox from '../../components/TLDRBox/TLDRBox';
 import styles from './privacy.module.css';
 
 export const metadata: Metadata = {
-  title: 'Chính sách bảo mật — Uni2Insight',
+  title: 'Chính Sách Bảo Mật Thông Tin Người Dùng | Uni2Insight',
   description: 'Tìm hiểu cách Uni2Insight thu thập, sử dụng và bảo vệ thông tin cá nhân của bạn.',
   alternates: { canonical: '/privacy' },
 };

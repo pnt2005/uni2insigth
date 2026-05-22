@@ -7,6 +7,8 @@ import FilterLayout from '../../components/Common/FilterLayout';
 import TopFilterBar from '../../components/Common/TopFilterBar';
 import styles from '../nganh-hoc/page.module.css';
 import type { Metadata } from 'next';
+import ExpandableSection from "@/components/Common/ExpandableSection";
+
 
 export const metadata: Metadata = {
   title: 'Review Đánh Giá Các Trường Đại Học | Uni2Insight',
@@ -66,15 +68,17 @@ export default async function ReviewIndex({ searchParams }: { searchParams: Prom
         <h1 style={{ fontSize: '1.6rem', fontWeight: 700, marginTop: 0, marginBottom: '1rem', color: 'var(--text-primary)' }}>
           Góc Nhìn Thực Tế — Đánh Giá & Review Trường Đại Học
         </h1>
-        <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: '1rem', fontSize: '0.95rem' }}>
-          Chào mừng bạn đến với chuyên mục <strong>Review Trường Đại học</strong> của Uni2Insight. Quyết định lựa chọn trường đại học là một trong những bước ngoặt quan trọng nhất của cuộc đời học sinh. Để đưa ra quyết định đúng đắn, bên cạnh các thông số kỹ thuật như điểm chuẩn tuyển sinh hay học phí công bố, những trải nghiệm thực tế từ cộng đồng sinh viên và cựu sinh viên đi trước là nguồn tham khảo vô giá. Chuyên mục này được xây dựng với mục tiêu cung cấp những góc nhìn khách quan, đa chiều và chân thực nhất về môi trường học tập, cơ sở vật chất, hoạt động phong trào và cơ hội phát triển bản thân tại từng trường đại học, học viện trên khắp cả nước.
-        </p>
-        <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: '1rem', fontSize: '0.95rem' }}>
-          Tại đây, bạn sẽ tìm thấy những bài viết đánh giá sâu sắc về mọi khía cạnh của đời sống sinh viên. Từ chất lượng giảng dạy của đội ngũ giảng viên, độ hiện đại của phòng thí nghiệm, thư viện cho đến tính năng động của các câu lạc bộ ngoại khóa và mạng lưới hỗ trợ việc làm của nhà trường. Chúng tôi tin rằng, mỗi ngôi trường đều có những thế mạnh nổi bật riêng biệt và những hạn chế cần cải thiện. Hiểu rõ những điều này sẽ giúp các bạn học sinh có sự chuẩn bị tâm lý vững vàng, tránh những cú sốc văn hóa học đường và nhanh chóng hòa nhập với môi trường mới.
-        </p>
-        <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', fontSize: '0.95rem' }}>
-          Uni2Insight luôn nỗ lực làm cầu nối đáng tin cậy giữa các thế hệ sinh viên, cùng nhau chia sẻ kiến thức và kinh nghiệm hữu ích để chắp cánh cho tương lai. Hãy bắt đầu tìm kiếm tên trường đại học mà bạn quan tâm tại thanh bộ lọc bên dưới để khám phá ngay những bài viết review chân thực nhất!
-        </p>
+        <ExpandableSection>
+          <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: '1rem', fontSize: '0.95rem' }}>
+            Chào mừng bạn đến với chuyên mục <strong>Review Trường Đại học</strong> của Uni2Insight. Quyết định lựa chọn trường đại học là một trong những bước ngoặt quan trọng nhất của cuộc đời học sinh. Để đưa ra quyết định đúng đắn, bên cạnh các thông số kỹ thuật như điểm chuẩn tuyển sinh hay học phí công bố, những trải nghiệm thực tế từ cộng đồng sinh viên và cựu sinh viên đi trước là nguồn tham khảo vô giá. Chuyên mục này được xây dựng với mục tiêu cung cấp những góc nhìn khách quan, đa chiều và chân thực nhất về môi trường học tập, cơ sở vật chất, hoạt động phong trào và cơ hội phát triển bản thân tại từng trường đại học, học viện trên khắp cả nước.
+          </p>
+          <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: '1rem', fontSize: '0.95rem' }}>
+            Tại đây, bạn sẽ tìm thấy những bài viết đánh giá sâu sắc về mọi khía cạnh của đời sống sinh viên. Từ chất lượng giảng dạy của đội ngũ giảng viên, độ hiện đại của phòng thí nghiệm, thư viện cho đến tính năng động của các câu lạc bộ ngoại khóa và mạng lưới hỗ trợ việc làm của nhà trường. Chúng tôi tin rằng, mỗi ngôi trường đều có những thế mạnh nổi bật riêng biệt và những hạn chế cần cải thiện. Hiểu rõ những điều này sẽ giúp các bạn học sinh có sự chuẩn bị tâm lý vững vàng, tránh những cú sốc văn hóa học đường và nhanh chóng hòa nhập với môi trường mới.
+          </p>
+          <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', fontSize: '0.95rem' }}>
+            Uni2Insight luôn nỗ lực làm cầu nối đáng tin cậy giữa các thế hệ sinh viên, cùng nhau chia sẻ kiến thức và kinh nghiệm hữu ích để chắp cánh cho tương lai. Hãy bắt đầu tìm kiếm tên trường đại học mà bạn quan tâm tại thanh bộ lọc bên dưới để khám phá ngay những bài viết review chân thực nhất!
+          </p>
+        </ExpandableSection>
       </div>
 
       <div className={styles.grid}>

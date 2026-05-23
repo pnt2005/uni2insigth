@@ -56,6 +56,7 @@ export default function RootLayout({
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', 'G-KZ32GY64BW');
+              gtag('config', 'G-DZ16Q627HR');
             `,
           }}
         />

@@ -82,7 +82,7 @@ export default function ContactPage() {
               </span>
               <div>
                 <p className={styles.infoLabel}>Điện thoại</p>
-                <a href="tel:+84901234567" className={styles.infoValue}>1900 1234</a>
+                <a href="tel:+84901234567" className={styles.infoValue}>0366 961 755</a>
               </div>
             </li>
             <li className={styles.infoItem}>
@@ -94,7 +94,7 @@ export default function ContactPage() {
               </span>
               <div>
                 <p className={styles.infoLabel}>Địa chỉ</p>
-                <p className={styles.infoValue}>Đại học Công Nghệ Thông Tin - Khu phố 34, Phường Linh Xuân, Thành phố Hồ Chí Minh.</p>
+                <p className={styles.infoValue}>VRC2+2MP, Linh Xuân, Thành phố Hồ Chí Minh.</p>
               </div>
             </li>
           </ul>

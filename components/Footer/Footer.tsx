@@ -71,7 +71,7 @@ export default function Footer() {
               <li>
                 <div className={styles.contactItem}>
                   <strong className={styles.contactLabel}>Hotline:</strong>
-                  <span>1900 1234</span>
+                  <span>0366 961 755</span>
                 </div>
               </li>
               <li>
@@ -83,7 +83,7 @@ export default function Footer() {
               <li>
                 <div className={styles.contactItem}>
                   <strong className={styles.contactLabel}>Văn phòng:</strong>
-                  <span>Đại học Công Nghệ Thông Tin - Khu phố 34, Phường Linh Xuân, Thành phố Hồ Chí Minh.</span>
+                  <span>VRC2+2MP, Linh Xuân, Thành phố Hồ Chí Minh.</span>
                 </div>
               </li>
             </ul>

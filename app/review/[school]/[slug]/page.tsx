@@ -85,6 +85,37 @@ export default async function SubArticlePage({ params }: { params: Promise<{ sch
   const resolvedParams = await params;
   const { school, slug } = resolvedParams;
 
+  // 1. Kiểm tra xem trường học này có tồn tại trong universities.json hay không
+  try {
+    const unisContent = fs.readFileSync(path.join(process.cwd(), 'data/universities.json'), 'utf8');
+    const universityExists = JSON.parse(unisContent).some((u: any) => u.id === school);
+    if (!universityExists) {
+      notFound();
+    }
+  } catch (e) {
+    notFound();
+  }
+
+  // 2. Kiểm tra xem slug có hợp lệ hay không (phải là các slug mặc định hoặc file mdx thực tế tồn tại)
+  const defSlugs = ['hoc-phi', 'chuong-trinh', 'co-hoi-viec-lam', 'diem-chuan'];
+  const schoolDir = path.join(process.cwd(), 'data/reviews', school);
+  let isValidSlug = defSlugs.includes(slug);
+
+  if (!isValidSlug && fs.existsSync(schoolDir) && fs.statSync(schoolDir).isDirectory()) {
+    try {
+      const existingSlugs = fs.readdirSync(schoolDir)
+        .filter(f => f.endsWith('.mdx') || f.endsWith('.md'))
+        .map(f => f.replace(/\.mdx?$/, ''));
+      if (existingSlugs.includes(slug)) {
+        isValidSlug = true;
+      }
+    } catch (e) {}
+  }
+
+  if (!isValidSlug) {
+    notFound();
+  }
+
   const schoolName = "Đại học " + school.replace(/-/g, ' ').toUpperCase();
   const mdxPath = path.join(process.cwd(), 'data/reviews', school, `${slug}.mdx`);
 

@@ -238,43 +238,6 @@ export default async function BlogDeepPage({ params }: { params: Promise<{ slug:
     );
   }
 
-  // NẾU CHƯA CÓ BÀI VIẾT .MDX
-  return (
-    <div className={styles.container}>
-      <article className={styles.article}>
-      <div style={{ marginBottom: '2rem' }}>
-        <Link href="/blog" style={{ display: 'inline-block', color: 'var(--primary)', textDecoration: 'none', fontWeight: 500 }}>
-          ← Quay lại Blog Danh mục
-        </Link>
-      </div>
-
-      <h1 className={styles.title}>
-        {titlePath}
-      </h1>
-      
-      <div className={styles.metaInfo}>
-        <span>Đăng lúc: Cập nhật mới nhất 2026</span> • <span>Tác giả: Uni2Insight Team</span>
-      </div>
-
-      <div className={styles.content}>
-        <p>
-          Xin chào! Bạn đang truy cập bài viết <strong>{titlePath}</strong>. 
-          Hiện tại tính năng Blog chi tiết đang trong giai đoạn phát triển nội dung và hệ thống CMS.
-        </p>
-        <p style={{ marginTop: '1rem' }}>
-          Đội ngũ nội dung của Uni2Insight sẽ sớm cập nhật bài viết này với những phân tích chuyên sâu về thị trường lao động, xu hướng ngành nghề, và các số liệu báo cáo tin cậy nhất. Vui lòng đón chờ!
-        </p>
-      </div>
-
-      <div className={styles.subscribeBox}>
-        <h3>Đăng ký nhận thông báo</h3>
-        <p>Nhận bài viết phân tích ngành mới nhất qua email.</p>
-        <div className={styles.subscribeForm}>
-          <input type="email" placeholder="Email của bạn..." className={styles.subscribeInput} />
-          <button className={styles.subscribeBtn}>Đăng ký</button>
-        </div>
-      </div>
-    </article>
-    </div>
-  );
+  // NẾU CHƯA CÓ BÀI VIẾT .MDX -> TRẢ VỀ TRANG 404
+  notFound();
 }

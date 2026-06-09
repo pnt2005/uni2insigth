@@ -89,7 +89,7 @@ npm start
 ## Cấu trúc thư mục dự án
 
 ```text
-uni2insigth/
+uni2insight/
 ├── app/                  # Next.js App Router (Các trang & Route APIs)
 │   ├── about/            # Trang giới thiệu
 │   ├── api/              # Các API xử lý 
@@ -115,4 +115,4 @@ uni2insigth/
 
 ---
 
-<p align="center">Made with ❤️ by Team Uni2Insight – UIT IE303 2025-2026</p>
+<p align="center">Made with ❤️ by Team Uni2Insight – UIT IE204 2025-2026</p>

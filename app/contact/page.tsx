@@ -70,7 +70,7 @@ export default function ContactPage() {
               <div>
                 <p className={styles.infoLabel}>Email</p>
                 <a href="mailto:contact@uni2insight.com" className={styles.infoValue}>
-                  uni2insight@.com
+                  uni2insight@gmail.com
                 </a>
               </div>
             </li>
